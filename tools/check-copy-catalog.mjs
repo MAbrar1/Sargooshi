@@ -80,6 +80,9 @@ const seen = new Set();
 const errors = [];
 for (const [index, row] of rows.entries()) {
   const [key, where, sourceText] = row;
+  if (row.length !== 3) {
+    errors.push(`Row ${index + 2} must contain exactly 3 CSV columns (found ${row.length})`);
+  }
   if (!key || !where || sourceText === undefined) {
     errors.push(`Row ${index + 2} is incomplete`);
     continue;
