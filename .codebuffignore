@@ -1,0 +1,6 @@
+**/.dart_tool/**
+**/build/**
+**/target/**
+**/.gradle/**
+**/node_modules/**
+**/docs/blueprint/figures/**
