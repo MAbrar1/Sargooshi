@@ -271,6 +271,7 @@ void main() {
     await tester.pump();
     expect(selectedDigit, 1);
   });
+  mainComponentRegistryCoverage();
 }
 
 
@@ -483,5 +484,4 @@ void mainComponentRegistryCoverage() {
     expect(selected, hasLength(1));
     expect(selected.single, 7);
   });
-  mainComponentRegistryCoverage();
 }
