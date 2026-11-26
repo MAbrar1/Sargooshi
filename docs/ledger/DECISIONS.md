@@ -8,5 +8,6 @@
 
 ## P01 dependency decisions
 
-- Dynamic system colours: use `dynamic_color ^1.9.0`, published by the Material team. It exposes light/dark schemes from Android S+ wallpaper colours and supports the requested dynamic theme while preserving the product's non-dynamic presets.
-- Phosphor icon package: use `phosphor_icons ^3.0.1` (FuncCloud-maintained compatibility fork) rather than the upstream `phosphor_flutter 2.1.0`. The upstream package is listed on pub.dev as last published two years ago; the fork documents Flutter 3.43+ compatibility after Flutter made `IconData` final. This avoids adopting an incompatible icon wrapper on the owner's Flutter 3.47.7 / Dart 3.13.5 toolchain. The required Phosphor family, styles and icon semantics remain unchanged. The fork and its provenance must remain documented in dependency review.
+- Dynamic system colours use `dynamic_color ^2.1.0`, the Material-maintained package. It exposes light and dark schemes from the platform's dynamic colour implementation, including Android S+ wallpaper palettes.
+- Phosphor icons use `phosphor_icons ^3.0.1`, the FuncCloud-maintained compatibility fork of the Phosphor Flutter package. The fork documents Flutter 3.43+ compatibility after Flutter made `IconData` final. It retains the Phosphor icon family and six weights. The old `phosphor_flutter 2.1.0` is not selected because its subclassed icon-data representation conflicts with the current Flutter SDK.
+- The four required fonts are bundled from a pinned Google Fonts repository revision and remain unmodified under their SIL Open Font Licences. No font is loaded from a network request at runtime.
