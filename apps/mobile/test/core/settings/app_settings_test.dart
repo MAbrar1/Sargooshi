@@ -10,6 +10,15 @@ void main() {
     SharedPreferences.setMockInitialValues({});
   });
 
+  test('theme preset defaults to dark and persists a selected appearance', () async {
+    final store = AppSettingsStore(SharedPreferencesAsync());
+
+    expect(await store.readThemePreset(), SargoshiThemePreset.dark);
+
+    await store.writeThemePreset(SargoshiThemePreset.amoled);
+    expect(await store.readThemePreset(), SargoshiThemePreset.amoled);
+  });
+
   test('Lite UI setting defaults to Auto and persists each explicit choice',
       () async {
     final store = AppSettingsStore(SharedPreferencesAsync());
