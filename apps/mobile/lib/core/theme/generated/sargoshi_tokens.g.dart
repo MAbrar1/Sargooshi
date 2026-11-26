@@ -200,6 +200,7 @@ abstract final class SargoshiType {
     fontWeight: FontWeight.w800,
     fontSize: 36,
     height: 1.2222222222222223,
+    fontFamilyFallback: ['NotoNaskhArabic'],
   );
 
   static const TextStyle display = TextStyle(
@@ -207,6 +208,7 @@ abstract final class SargoshiType {
     fontWeight: FontWeight.w700,
     fontSize: 30,
     height: 1.2666666666666666,
+    fontFamilyFallback: ['NotoNaskhArabic'],
   );
 
   static const TextStyle headline = TextStyle(
@@ -214,6 +216,7 @@ abstract final class SargoshiType {
     fontWeight: FontWeight.w700,
     fontSize: 24,
     height: 1.3333333333333333,
+    fontFamilyFallback: ['NotoNaskhArabic'],
   );
 
   static const TextStyle title = TextStyle(
@@ -221,6 +224,7 @@ abstract final class SargoshiType {
     fontWeight: FontWeight.w600,
     fontSize: 20,
     height: 1.4,
+    fontFamilyFallback: ['NotoNaskhArabic'],
   );
 
   static const TextStyle titleS = TextStyle(
@@ -276,6 +280,7 @@ abstract final class SargoshiType {
     fontWeight: FontWeight.w600,
     fontSize: 15,
     height: 1.4666666666666666,
+    fontFamilyFallback: ['NotoNaskhArabic'],
   );
 
   static const TextStyle urduBody = TextStyle(
