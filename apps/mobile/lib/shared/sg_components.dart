@@ -80,8 +80,7 @@ class _SgButtonState extends State<SgButton> {
           if (_focused != value) setState(() => _focused = value);
         },
         child: AnimatedContainer(
-          duration: Theme.of(context).extension<SargoshiPerformanceVisuals>()?.transitionDuration ??
-              SargoshiMotion.micro,
+          duration: SargoshiMotion.micro,
           decoration: BoxDecoration(
             color: enabled ? background : colors.dusk2,
             gradient: enabled && gradient != null
