@@ -95,7 +95,6 @@ void main() {
       expect(profile.maxVideoHeight, 480);
       expect(profile.enableGlass, isTrue);
       expect(profile.enableSharedElementTransitions, isTrue);
-      expect(profile.maxVideoHeight, isNull);
     });
 
     test('T1/T2/T3 media profiles have distinct thumbnail and video caps', () {
