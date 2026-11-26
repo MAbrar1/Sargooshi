@@ -181,6 +181,19 @@ abstract final class SargoshiStroke {
   static const double focus = 2;
 }
 
+abstract final class SargoshiIconSize {
+  static const double standard = 24;
+  static const double boldThreshold = 18;
+  static const double duotoneSecondaryOpacity = 0.2;
+}
+
+abstract final class SargoshiLayout {
+  static const double welcomeMark = 76;
+  static const double welcomeMarkIcon = 38;
+  static const double welcomeContentMaxWidth = 560;
+  static const double welcomePrincipleIcon = 22;
+}
+
 abstract final class SargoshiType {
   static const TextStyle displayL = TextStyle(
     fontFamily: 'PlusJakartaSans',
