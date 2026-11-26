@@ -1,0 +1,65 @@
+name: Flutter quality
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/mobile/**"
+      - "tools/gen-tokens.mjs"
+      - "docs/blueprint/design-tokens.json"
+      - ".github/workflows/flutter-quality.yml"
+  pull_request:
+    paths:
+      - "apps/mobile/**"
+      - "tools/gen-tokens.mjs"
+      - "docs/blueprint/design-tokens.json"
+      - ".github/workflows/flutter-quality.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: flutter-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.47.7"
+          channel: stable
+          cache: true
+          cache-key: flutter-${{ runner.os }}-${{ hashFiles('apps/mobile/pubspec.lock') }}
+
+      - name: Verify generated design tokens
+        run: node tools/gen-tokens.mjs --check
+
+      - name: Resolve Flutter dependencies
+        working-directory: apps/mobile
+        run: flutter pub get
+
+      - name: Generate localization delegates
+        working-directory: apps/mobile
+        run: flutter gen-l10n
+
+      - name: Check Dart formatting
+        working-directory: apps/mobile
+        run: dart format --output=none --set-exit-if-changed lib test
+
+      - name: Analyze Dart sources
+        working-directory: apps/mobile
+        run: flutter analyze
+
+      - name: Run tests
+        working-directory: apps/mobile
+        run: flutter test --reporter expanded
