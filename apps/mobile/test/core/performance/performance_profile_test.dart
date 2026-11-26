@@ -89,8 +89,10 @@ void main() {
         override: PerformanceTierChoice.t3,
       );
 
-      expect(profile.deviceTier, PerformanceTier.t3);
+      expect(profile.deviceTier, PerformanceTier.t1);
       expect(profile.visualTier, PerformanceTier.t3);
+      expect(profile.allowBundledAiModels, isFalse);
+      expect(profile.maxVideoHeight, 480);
       expect(profile.enableGlass, isTrue);
       expect(profile.enableSharedElementTransitions, isTrue);
       expect(profile.maxVideoHeight, isNull);
