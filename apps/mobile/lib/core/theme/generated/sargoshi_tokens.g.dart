@@ -163,6 +163,7 @@ abstract final class SargoshiMotion {
   static const Duration micro = Duration(milliseconds: 120);
   static const Duration standard = Duration(milliseconds: 200);
   static const Duration screen = Duration(milliseconds: 320);
+  static const Duration undoSnackbar = Duration(milliseconds: 5000);
   static const double springSheetStiffness = 400;
   static const double springSheetDamping = 0.8;
 }
@@ -192,6 +193,41 @@ abstract final class SargoshiLayout {
   static const double welcomeMarkIcon = 38;
   static const double welcomeContentMaxWidth = 560;
   static const double welcomePrincipleIcon = 22;
+}
+
+abstract final class SargoshiComponents {
+  static const double buttonHeight = 48;
+  static const double chipHeight = 32;
+  static const double segmentedHeight = 36;
+  static const double textFieldHeight = 56;
+  static const double searchHeight = 44;
+  static const double toggleWidth = 46;
+  static const double toggleHeight = 26;
+  static const double switchThumb = 20;
+  static const double sliderTrack = 4;
+  static const double sliderThumb = 20;
+  static const double checkboxSize = 24;
+  static const double badgeHeight = 22;
+  static const double listTileOneLine = 56;
+  static const double listTileTwoLine = 72;
+  static const double listTileThreeLine = 88;
+  static const double ruleIcon = 15;
+  static const double reactionBarHeight = 44;
+  static const double composerMinHeight = 56;
+  static const double topBarHeight = 64;
+  static const double largeTopBarHeight = 112;
+  static const double bottomNavigationHeight = 80;
+  static const double navigationRailWidth = 72;
+  static const double fabSize = 56;
+  static const double dialogMaxWidth = 360;
+  static const double alertEdge = 5;
+  static const double pinKeySize = 52;
+  static const double pinKeyGap = 12;
+  static const double statRingSize = 88;
+  static const double statRingStroke = 10;
+  static const double progressMinThickness = 4;
+  static const double progressMaxThickness = 10;
+  static const double emptyIconSize = 80;
 }
 
 abstract final class SargoshiType {
