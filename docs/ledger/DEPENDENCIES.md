@@ -20,19 +20,21 @@
 | Docker Compose | 5.6.1 |
 | ADB | 37.0.1 |
 
-`flutter doctor -v` timed out after 4m30s in its Android toolchain check. Do not record doctor as clean. The owner did build, install and launch the debug APK successfully.
+`flutter doctor -v` timed out after 4m30s in its Android toolchain check. Do not record doctor as clean. The owner did build, install and launch the initial debug APK successfully.
 
 ## Flutter application dependencies
 
 | Package | Pin | Reason |
 |---|---:|---|
-| `flutter_riverpod` | `^2.6.1` | App-level state and dependency injection; resolved successfully on owner's Flutter 3.47.7 toolchain |
-| `go_router` | `^14.8.1` | Declarative route configuration; resolved and compiled on owner's toolchain |
-| `dynamic_color` | `^2.1.0` | Material team package for platform wallpaper/accent-derived color schemes; supports Android S+ |
-| `phosphor_icons` | `^3.0.1` | Phosphor 1,500+ icon family, six weights, compatibility fork for Flutter 3.43+ where `IconData` became final |
+| `flutter_riverpod` | `^2.6.1` | App-level state and dependency injection; resolved on owner's Flutter 3.47.7 toolchain |
+| `go_router` | `^14.8.1` | Declarative route configuration; initial shell compiled on owner's toolchain |
+| `dynamic_color` | `^2.1.0` | Material team package for platform wallpaper/accent-derived color schemes; Android S+ |
+| `phosphor_icons` | `^3.0.1` | Phosphor icon family and six weights; compatibility fork for Flutter 3.43+ where `IconData` became final |
+| `shared_preferences` | `^2.5.6` | Asynchronous non-secret settings (theme/language/performance choices); never use for credentials, message contents, or cryptographic keys |
+| `intl` | `any` | Version constraint supplied by the Flutter localization SDK; keep compatible with `flutter_localizations` |
 | `flutter_lints` | `^5.0.0` | Static analysis baseline |
 
-The Phosphor package choice is deliberately `phosphor_icons`, not the older `phosphor_flutter` package. The compatibility fork maintains the existing Phosphor visual family and supplies the Flutter 3.43+ compatible `IconData` declarations. Every one of the 46 semantic names in the supplied `icons.csv` was verified against its published regular icon registry.
+The Phosphor package choice is deliberately `phosphor_icons`, not the older `phosphor_flutter` package. The compatibility fork maintains the Phosphor visual family and supplies Flutter 3.43+ compatible `IconData` declarations. The supplied 46 semantic icon names were verified against its registry; app navigation and accessibility additions extend the semantic enum.
 
 ## Bundled font dependencies
 
@@ -45,9 +47,9 @@ Four variable-font families are bundled locally; there is no runtime font downlo
 Exact upstream revision, licence-file locations and SHA-256 values are recorded in `docs/compliance/LICENSES.md`.
 
 ## Owner-run verification
-- `flutter analyze`: PASS — no issues found (before P01 token/theme dependency update).
-- `flutter test`: PASS — one widget test (before P01 token/theme dependency update).
-- `flutter run`: PASS — debug APK built, installed and launched on Android 17/API 37 (before P01 token/theme dependency update).
-- No release build, Rust build or independent security review has been run.
+- `flutter analyze`: PASS — no issues found on the original shell, before current P01 dependency and code expansion.
+- `flutter test`: PASS — original welcome test only, before current P01 tests.
+- `flutter run`: PASS — original debug APK built, installed and launched on Android 17/API 37.
+- Current full P01 changes and new tests still require owner-run verification. No release build, Rust build or independent security review has been run.
 
-After each dependency change, run `flutter pub get`, commit `pubspec.lock`, then run analyze and tests. No dependency update is considered verified until those checks pass.
+After dependency changes, run `flutter pub get`, commit `pubspec.lock`, then run analyze and tests. No new dependency set is considered verified until those checks pass.
