@@ -11,7 +11,7 @@ class SgLogo extends StatelessWidget {
   const SgLogo({
     this.layout = SgLogoLayout.horizontal,
     this.tone = SgLogoTone.adaptive,
-    this.markSize = 40,
+    this.markSize = SargoshiLayout.brandMarkSize,
     this.showTagline = false,
     this.semanticLabel = 'Sargoshi — Say it softly.',
     super.key,
