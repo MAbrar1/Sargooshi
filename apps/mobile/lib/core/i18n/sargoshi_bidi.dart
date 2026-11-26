@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 
+// SG:LOC-01
 abstract final class SargoshiBidi {
   static const String _firstStrongIsolate = '\u2068';
   static const String _popDirectionalIsolate = '\u2069';
