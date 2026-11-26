@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../logging/redacting_logger.dart';
 import '../settings/app_settings.dart';
 import '../theme/generated/sargoshi_tokens.g.dart';
+import '../theme/performance_visuals.dart';
 
 enum PerformanceTier { t1, t2, t3 }
 
@@ -104,92 +104,6 @@ abstract final class DeviceProfileChannel {
         source: DeviceProfileSource.invalidNativePayload,
       );
     }
-  }
-}
-
-@immutable
-class SargoshiPerformanceVisuals
-    extends ThemeExtension<SargoshiPerformanceVisuals> {
-  const SargoshiPerformanceVisuals({
-    required this.tier,
-    required this.transitionDuration,
-    required this.enableGlass,
-    required this.enableSharedElementTransitions,
-    required this.enableSoftShadows,
-    required this.blurSigma,
-    required this.surfaceElevation,
-  });
-
-  final PerformanceTier tier;
-  final Duration transitionDuration;
-  final bool enableGlass;
-  final bool enableSharedElementTransitions;
-  final bool enableSoftShadows;
-  final double blurSigma;
-  final double surfaceElevation;
-
-  factory SargoshiPerformanceVisuals.fromProfile(PerformanceProfile profile) {
-    return SargoshiPerformanceVisuals(
-      tier: profile.visualTier,
-      transitionDuration: profile.transitionDuration,
-      enableGlass: profile.enableGlass,
-      enableSharedElementTransitions: profile.enableSharedElementTransitions,
-      enableSoftShadows: profile.enableSoftShadows,
-      blurSigma: profile.enableGlass ? SargoshiEffects.glassBlurSigma : 0,
-      surfaceElevation: switch (profile.visualTier) {
-        PerformanceTier.t1 => 0,
-        PerformanceTier.t2 => SargoshiElevation.card,
-        PerformanceTier.t3 => SargoshiElevation.glass,
-      },
-    );
-  }
-
-  @override
-  SargoshiPerformanceVisuals copyWith({
-    PerformanceTier? tier,
-    Duration? transitionDuration,
-    bool? enableGlass,
-    bool? enableSharedElementTransitions,
-    bool? enableSoftShadows,
-    double? blurSigma,
-    double? surfaceElevation,
-  }) {
-    return SargoshiPerformanceVisuals(
-      tier: tier ?? this.tier,
-      transitionDuration: transitionDuration ?? this.transitionDuration,
-      enableGlass: enableGlass ?? this.enableGlass,
-      enableSharedElementTransitions:
-          enableSharedElementTransitions ?? this.enableSharedElementTransitions,
-      enableSoftShadows: enableSoftShadows ?? this.enableSoftShadows,
-      blurSigma: blurSigma ?? this.blurSigma,
-      surfaceElevation: surfaceElevation ?? this.surfaceElevation,
-    );
-  }
-
-  @override
-  SargoshiPerformanceVisuals lerp(
-    covariant SargoshiPerformanceVisuals? other,
-    double t,
-  ) {
-    if (other == null) return this;
-    final milliseconds = transitionDuration.inMilliseconds +
-        ((other.transitionDuration.inMilliseconds -
-                    transitionDuration.inMilliseconds) *
-                t)
-            .round();
-    return SargoshiPerformanceVisuals(
-      tier: t < 0.5 ? tier : other.tier,
-      transitionDuration: Duration(milliseconds: milliseconds),
-      enableGlass: t < 0.5 ? enableGlass : other.enableGlass,
-      enableSharedElementTransitions:
-          t < 0.5
-              ? enableSharedElementTransitions
-              : other.enableSharedElementTransitions,
-      enableSoftShadows: t < 0.5 ? enableSoftShadows : other.enableSoftShadows,
-      blurSigma: blurSigma + (other.blurSigma - blurSigma) * t,
-      surfaceElevation:
-          surfaceElevation + (other.surfaceElevation - surfaceElevation) * t,
-    );
   }
 }
 
