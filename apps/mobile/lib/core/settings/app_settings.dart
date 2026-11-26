@@ -4,8 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../theme/app_theme.dart';
 
+// SG:STG-06
 enum LiteUiMode { auto, on, off }
 
+// SG:STL-01
 enum AppLanguage { system, english, urdu }
 
 enum PerformanceTierChoice { auto, t1, t2, t3 }
