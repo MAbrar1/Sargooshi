@@ -202,6 +202,8 @@
     "statRingStroke": 10,
     "progressMinThickness": 4,
     "progressMaxThickness": 10,
-    "emptyIconSize": 80
+    "emptyIconSize": 80,
+    "avatarDefaultSize": 48,
+    "chatBubbleMaxWidth": 560
   }
 }
