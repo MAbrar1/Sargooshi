@@ -1,3 +1,93 @@
 import 'package:flutter/material.dart';
+
 import '../../app/theme/app_theme.dart';
-class WelcomeScreen extends StatelessWidget { const WelcomeScreen({super.key}); @override Widget build(BuildContext context) { final dark=Theme.of(context).brightness==Brightness.dark; final fg=dark?Colors.white:SargoshiColors.ink; return Scaffold(body:SafeArea(child:Center(child:ConstrainedBox(constraints:const BoxConstraints(maxWidth:520),child:Padding(padding:const EdgeInsets.symmetric(horizontal:28,vertical:28),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[const Spacer(),Container(width:76,height:76,decoration:BoxDecoration(color:SargoshiColors.mint,borderRadius:BorderRadius.circular(26)),child:const Icon(Icons.forum_rounded,size:38,color:SargoshiColors.forestDeep)),const SizedBox(height:28),Text('Sargoshi',style:Theme.of(context).textTheme.headlineLarge?.copyWith(fontWeight:FontWeight.w800,letterSpacing:-1.4,color:fg)),const SizedBox(height:10),Text('Say it softly.',style:Theme.of(context).textTheme.titleLarge?.copyWith(color:SargoshiColors.forest,fontWeight:FontWeight.w600)),const SizedBox(height:20),Text('Conversations should feel personal, private, and calm. A quieter space for the people who matter.',style:Theme.of(context).textTheme.bodyLarge?.copyWith(height:1.6,color:dark?Colors.white70:SargoshiColors.mutedInk)),const Spacer(),SizedBox(width:double.infinity,child:FilledButton(onPressed:null,child:const Text('Get started'))),const SizedBox(height:12),Center(child:Text('Private by design',style:Theme.of(context).textTheme.labelLarge?.copyWith(color:SargoshiColors.mutedInk))),const SizedBox(height:20)])))))); } }
+
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final foreground = isDark ? Colors.white : SargoshiColors.ink;
+    final secondary = isDark ? Colors.white70 : SargoshiColors.mutedInk;
+
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 28,
+                vertical: 28,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Spacer(),
+                  Container(
+                    width: 76,
+                    height: 76,
+                    decoration: BoxDecoration(
+                      color: SargoshiColors.mint,
+                      borderRadius: BorderRadius.circular(26),
+                    ),
+                    child: const Icon(
+                      Icons.forum_rounded,
+                      size: 38,
+                      color: SargoshiColors.forestDeep,
+                    ),
+                  ),
+                  const SizedBox(height: 28),
+                  Text(
+                    'Sargoshi',
+                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -1.4,
+                          color: foreground,
+                        ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Say it softly.',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: SargoshiColors.forest,
+                          fontWeight: FontWeight.w600,
+                        ),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Conversations should feel personal, private, and calm. '
+                    'A quieter space for the people who matter.',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          height: 1.6,
+                          color: secondary,
+                        ),
+                  ),
+                  const Spacer(),
+                  const SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      onPressed: null,
+                      child: Text('Get started'),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Center(
+                    child: Text(
+                      'Private by design',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            color: secondary,
+                          ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
