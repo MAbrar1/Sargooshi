@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../theme/app_theme.dart';
+
 enum LiteUiMode { auto, on, off }
 
 enum AppLanguage { system, english, urdu }
@@ -41,8 +43,21 @@ class AppSettingsStore {
   static const _liteUiModeKey = 'sargoshi.settings.lite_ui_mode';
   static const _appLanguageKey = 'sargoshi.settings.app_language';
   static const _performanceTierKey = 'sargoshi.settings.performance_tier';
+  static const _themePresetKey = 'sargoshi.settings.theme_preset';
 
   final SharedPreferencesAsync _preferences;
+
+  Future<SargoshiThemePreset> readThemePreset() async {
+    final stored = await _preferences.getString(_themePresetKey);
+    return SargoshiThemePreset.values.firstWhere(
+      (preset) => preset.name == stored,
+      orElse: () => SargoshiThemePreset.dark,
+    );
+  }
+
+  Future<void> writeThemePreset(SargoshiThemePreset preset) {
+    return _preferences.setString(_themePresetKey, preset.name);
+  }
 
   Future<LiteUiMode> readLiteUiMode() async {
     final stored = await _preferences.getString(_liteUiModeKey);
