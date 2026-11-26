@@ -119,6 +119,16 @@ Widget buildGalleryHarness({
                 timestamp: '09:31',
                 variant: SgChatBubbleVariant.outgoing,
               ),
+              const SgChatBubble(
+                message: 'A quiet whisper',
+                timestamp: '09:32',
+                variant: SgChatBubbleVariant.whisper,
+              ),
+              const SgChatBubble(
+                message: 'System update',
+                timestamp: '09:33',
+                variant: SgChatBubbleVariant.system,
+              ),
               const SgRuleBadge(
                 label: 'Forwarding disabled',
                 icon: SgIconName.hidden,
@@ -264,6 +274,115 @@ void main() {
     await tester.pump();
     expect(selectedDigit, 1);
   });
+  testWidgets('SG:CMP-01 disabled buttons stay inert and loading shows progress',
+      (tester) async {
+    var actions = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Scaffold(
+          body: Column(
+            children: [
+              const SgButton(label: 'Disabled action', onPressed: null),
+              SgButton(
+                label: 'Loading action',
+                isLoading: true,
+                onPressed: () => actions += 1,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    await tester.tap(find.text('Disabled action'));
+    await tester.tap(find.text('Loading action'));
+    await tester.pump();
+    expect(actions, 0);
+  });
+
+  testWidgets('SG:CMP-16 whisper bubble uses the prescribed 78 percent fill',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: const Scaffold(
+          body: SgChatBubble(
+            message: 'Whisper message',
+            timestamp: '09:32',
+            variant: SgChatBubbleVariant.whisper,
+          ),
+        ),
+      ),
+    );
+
+    final ancestorContainers = tester.widgetList<Container>(
+      find.ancestor(
+        of: find.text('Whisper message'),
+        matching: find.byType(Container),
+      ),
+    );
+    final bubble = ancestorContainers.firstWhere(
+      (container) =>
+          container.decoration is BoxDecoration &&
+          (container.decoration! as BoxDecoration).color != null,
+    );
+    final fill = (bubble.decoration! as BoxDecoration).color!;
+    expect(fill.a, closeTo(0.78, 0.01));
+  });
+
+  testWidgets('SG:CMP-19 composer exposes attach, voice, six-line input and send',
+      (tester) async {
+    final controller = TextEditingController();
+    addTearDown(controller.dispose);
+    var attachCount = 0;
+    var voiceCount = 0;
+    String? sentMessage;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Scaffold(
+          body: SgComposer(
+            controller: controller,
+            hint: 'Write a message',
+            attachTooltip: 'Attach file',
+            voiceTooltip: 'Record voice',
+            sendTooltip: 'Send message',
+            onAttach: () => attachCount += 1,
+            onVoice: () => voiceCount += 1,
+            onSend: (value) => sentMessage = value,
+          ),
+        ),
+      ),
+    );
+
+    expect(tester.widget<TextField>(find.byType(TextField)).maxLines, 6);
+    await tester.tap(find.byTooltip('Attach file'));
+    await tester.tap(find.byTooltip('Record voice'));
+    expect(attachCount, 1);
+    expect(voiceCount, 1);
+
+    await tester.enterText(find.byType(TextField), '  Hello privately  ');
+    await tester.pump();
+    await tester.tap(find.byTooltip('Send message'));
+    await tester.pump();
+
+    expect(sentMessage, 'Hello privately');
+    expect(controller.text, isEmpty);
+    expect(find.byTooltip('Record voice'), findsOneWidget);
+  });
+
   mainComponentRegistryCoverage();
 }
 
@@ -320,7 +439,7 @@ final _componentCases = <({
     expect(find.byType(SgCard), findsNWidgets(3));
   }),
   (tag: 'SG:CMP-16', name: 'chat bubble', verify: (tester) {
-    expect(find.byType(SgChatBubble), findsNWidgets(2));
+    expect(find.byType(SgChatBubble), findsNWidgets(4));
   }),
   (tag: 'SG:CMP-17', name: 'rule badge', verify: (tester) {
     expect(find.byType(SgRuleBadge), findsOneWidget);
