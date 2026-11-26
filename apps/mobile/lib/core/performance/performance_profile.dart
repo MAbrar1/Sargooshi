@@ -6,6 +6,9 @@ import '../settings/app_settings.dart';
 import '../theme/generated/sargoshi_tokens.g.dart';
 import '../theme/performance_visuals.dart';
 
+// SG:NET-01
+// SG:STG-06
+// Lite UI selects visual behavior without changing hardware capability ceilings.
 enum PerformanceTier { t1, t2, t3 }
 
 enum DeviceProfileSource {
