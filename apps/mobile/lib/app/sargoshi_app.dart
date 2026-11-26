@@ -2,6 +2,7 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/performance/performance_profile.dart';
 import '../core/settings/app_settings.dart';
 import '../core/theme/app_theme.dart';
 import '../core/theme/theme_controller.dart';
@@ -18,6 +19,16 @@ class SargoshiApp extends ConsumerWidget {
         SargoshiThemePreset.dark;
     final language = ref.watch(appLanguageProvider).valueOrNull ??
         AppLanguage.system;
+    final performance = ref.watch(performanceProfileProvider);
+
+    ThemeData withPerformance(ThemeData theme) {
+      return theme.copyWith(
+        extensions: <ThemeExtension<dynamic>>[
+          ...theme.extensions.values,
+          SargoshiPerformanceVisuals.fromProfile(performance),
+        ],
+      );
+    }
 
     return DynamicColorBuilder(
       builder: (lightDynamic, darkDynamic) {
@@ -27,15 +38,19 @@ class SargoshiApp extends ConsumerWidget {
           debugShowCheckedModeBanner: false,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
-          theme: AppTheme.build(
-            brightness: Brightness.light,
-            preset: preset,
-            dynamicScheme: lightDynamic,
+          theme: withPerformance(
+            AppTheme.build(
+              brightness: Brightness.light,
+              preset: preset,
+              dynamicScheme: lightDynamic,
+            ),
           ),
-          darkTheme: AppTheme.build(
-            brightness: Brightness.dark,
-            preset: preset,
-            dynamicScheme: darkDynamic,
+          darkTheme: withPerformance(
+            AppTheme.build(
+              brightness: Brightness.dark,
+              preset: preset,
+              dynamicScheme: darkDynamic,
+            ),
           ),
           themeMode: AppTheme.flutterModeFor(preset),
           routerConfig: router,
