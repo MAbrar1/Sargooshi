@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/theme/app_theme.dart';
 import '../core/theme/theme_controller.dart';
+import '../l10n/generated/app_localizations.dart';
 import 'router.dart';
 
 class SargoshiApp extends ConsumerWidget {
@@ -19,6 +20,8 @@ class SargoshiApp extends ConsumerWidget {
         return MaterialApp.router(
           title: 'Sargoshi',
           debugShowCheckedModeBanner: false,
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           theme: AppTheme.build(
             brightness: Brightness.light,
             preset: preset,
