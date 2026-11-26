@@ -44,6 +44,9 @@ jobs:
       - name: Verify generated design tokens
         run: node tools/gen-tokens.mjs --check
 
+      - name: Verify localization source catalogue
+        run: node tools/check-copy-catalog.mjs
+
       - name: Resolve Flutter dependencies
         working-directory: apps/mobile
         run: flutter pub get
