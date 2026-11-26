@@ -1,7 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/performance/performance_profile.dart';
 import '../core/settings/app_settings.dart';
 import '../core/theme/app_theme.dart';
 import '../core/theme/theme_controller.dart';
@@ -447,7 +448,7 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _themeLabel,
           onChanged: (value) {
             if (value != null) {
-              ref.read(themePresetProvider.notifier).setPreset(value);
+              _save(context, () => ref.read(themePresetProvider.notifier).setPreset(value));
             }
           },
         ),
@@ -459,7 +460,7 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _languageLabel,
           onChanged: (value) {
             if (value != null) {
-              ref.read(appLanguageProvider.notifier).setLanguage(value);
+              _save(context, () => ref.read(appLanguageProvider.notifier).setLanguage(value));
             }
           },
         ),
@@ -471,7 +472,7 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _liteUiLabel,
           onChanged: (value) {
             if (value != null) {
-              ref.read(liteUiModeProvider.notifier).setMode(value);
+              _save(context, () => ref.read(liteUiModeProvider.notifier).setMode(value));
             }
           },
         ),
@@ -483,7 +484,7 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _tierLabel,
           onChanged: (value) {
             if (value != null) {
-              ref.read(performanceTierChoiceProvider.notifier).setChoice(value);
+              _save(context, () => ref.read(performanceTierChoiceProvider.notifier).setChoice(value));
             }
           },
         ),
@@ -495,6 +496,28 @@ class _DebugPreferenceControls extends ConsumerWidget {
         ),
       ],
     );
+  }
+
+  void _save(
+    BuildContext context,
+    Future<void> Function() operation,
+  ) {
+    unawaited(_persist(context, operation));
+  }
+
+  Future<void> _persist(
+    BuildContext context,
+    Future<void> Function() operation,
+  ) async {
+    try {
+      await operation();
+    } catch (_) {
+      if (!context.mounted) return;
+      SgSnackbar.show(
+        context: context,
+        message: 'Could not save this preference. Please try again.',
+      );
+    }
   }
 
   Widget _preferenceDropdown<T>(
