@@ -165,8 +165,6 @@ abstract final class SargoshiMotion {
   static const Duration screen = Duration(milliseconds: 320);
   static const double springSheetStiffness = 400;
   static const double springSheetDamping = 0.8;
-  static const double springSheetStiffness = 400;
-  static const double springSheetDamping = 0.8;
 }
 
 abstract final class SargoshiType {
@@ -259,6 +257,7 @@ abstract final class SargoshiType {
     fontSize: 17,
     height: 1.7647058823529411,
   );
+
 }
 
 abstract final class SargoshiBreakpoint {
