@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/theme/generated/sargoshi_tokens.g.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../../shared/sg_icon.dart';
+import '../../shared/sg_logo.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -50,10 +51,11 @@ class WelcomeScreen extends StatelessWidget {
                             border: Border.all(color: colors.line),
                           ),
                           alignment: Alignment.center,
-                          child: SgIcon(
-                            SgIconName.chats,
-                            size: SargoshiLayout.welcomeMarkIcon,
-                            color: colors.glow,
+                          child: const SgLogo(
+                            layout: SgLogoLayout.mark,
+                            tone: SgLogoTone.gradient,
+                            markSize: 58,
+                            semanticLabel: 'Sargoshi brand mark',
                           ),
                         ),
                         const SizedBox(height: SargoshiSpace.s32),
