@@ -261,10 +261,10 @@ class _DebugComponentGalleryScreenState
               variant: SgCardVariant.outlined,
               child: Text('Outlined surface'),
             ),
-            const SgCard(
+            SgCard(
               variant: SgCardVariant.alert,
-              alertColor: Color(0xFFFFC857),
-              child: Text('Card with status edge'),
+              alertColor: colors.amber,
+              child: const Text('Card with status edge'),
             ),
             const SgChatBubble(
               message: 'A private incoming message.',
