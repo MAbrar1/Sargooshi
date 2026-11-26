@@ -62,6 +62,10 @@ function render(tokens) {
   Object.entries(tokens.layout).forEach(([name, value]) => lines.push('  static const double ' + camel(name) + ' = ' + value + ';'));
   lines.push('}', '', 'abstract final class SargoshiComponents {');
   Object.entries(tokens.components).forEach(([name, value]) => lines.push('  static const double ' + camel(name) + ' = ' + value + ';'));
+  lines.push('}', '', 'abstract final class SargoshiEffects {');
+  Object.entries(tokens.effects).forEach(([name, value]) => lines.push('  static const double ' + camel(name) + ' = ' + value + ';'));
+  lines.push('}', '', 'abstract final class SargoshiElevation {');
+  Object.entries(tokens.elevation).forEach(([name, value]) => lines.push('  static const double ' + camel(name) + ' = ' + value + ';'));
   lines.push('}', '', 'abstract final class SargoshiType {');
   Object.entries(tokens.type).forEach(([name, spec]) => {
     const [family, weight, size, lineHeight] = spec;
