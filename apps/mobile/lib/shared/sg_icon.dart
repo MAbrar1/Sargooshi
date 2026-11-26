@@ -14,6 +14,7 @@ enum SgIconName {
   safetyWarning,
   send,
   hidden,
+  visible,
   attach,
   hushMode,
   camera,
@@ -131,6 +132,12 @@ class SgIcon extends StatelessWidget {
     ),
     SgIconName.hidden: IconData(
       PhosphorIconsRegular.eyeSlash.codePoint,
+      fontFamily: 'PhosphorRegular',
+      fontPackage: 'phosphor_icons',
+      matchTextDirection: false,
+    ),
+    SgIconName.visible: IconData(
+      PhosphorIconsRegular.eye.codePoint,
       fontFamily: 'PhosphorRegular',
       fontPackage: 'phosphor_icons',
       matchTextDirection: false,
@@ -438,6 +445,12 @@ class SgIcon extends StatelessWidget {
       fontPackage: 'phosphor_icons',
       matchTextDirection: false,
     ),
+    SgIconName.visible: IconData(
+      PhosphorIconsFill.eye.codePoint,
+      fontFamily: 'PhosphorFill',
+      fontPackage: 'phosphor_icons',
+      matchTextDirection: false,
+    ),
     SgIconName.attach: IconData(
       PhosphorIconsFill.paperclip.codePoint,
       fontFamily: 'PhosphorFill',
@@ -741,6 +754,12 @@ class SgIcon extends StatelessWidget {
       fontPackage: 'phosphor_icons',
       matchTextDirection: false,
     ),
+    SgIconName.visible: IconData(
+      PhosphorIconsBold.eye.codePoint,
+      fontFamily: 'PhosphorBold',
+      fontPackage: 'phosphor_icons',
+      matchTextDirection: false,
+    ),
     SgIconName.attach: IconData(
       PhosphorIconsBold.paperclip.codePoint,
       fontFamily: 'PhosphorBold',
@@ -1040,6 +1059,12 @@ class SgIcon extends StatelessWidget {
     ),
     SgIconName.hidden: IconData(
       PhosphorIconsDuotone.eyeSlash.codePoint,
+      fontFamily: 'PhosphorDuotone',
+      fontPackage: 'phosphor_icons',
+      matchTextDirection: false,
+    ),
+    SgIconName.visible: IconData(
+      PhosphorIconsDuotone.eye.codePoint,
       fontFamily: 'PhosphorDuotone',
       fontPackage: 'phosphor_icons',
       matchTextDirection: false,
