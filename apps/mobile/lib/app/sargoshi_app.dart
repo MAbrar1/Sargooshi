@@ -9,6 +9,7 @@ import '../core/theme/theme_controller.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'router.dart';
 
+// SG:LOC-01
 class SargoshiApp extends ConsumerWidget {
   const SargoshiApp({super.key});
 
