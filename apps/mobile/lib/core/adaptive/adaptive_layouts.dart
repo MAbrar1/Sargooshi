@@ -29,7 +29,7 @@ class SgAdaptiveScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final sizeClass = WindowSizeClassX.fromWidth(constraints.maxWidth);
+        final sizeClass = WindowSizeClasses.fromWidth(constraints.maxWidth);
         final compact = sizeClass.isCompact;
         final expanded = sizeClass.isExpanded;
         final content = compact
@@ -93,7 +93,11 @@ class SgAdaptivePaneLayout extends StatelessWidget {
         final sizeClass = WindowSizeClassX.fromWidth(constraints.maxWidth);
         if (sizeClass.isCompact) return compactPane ?? chatPane;
 
-        final canShowInfo = sizeClass.isExpanded && infoPane != null;
+        final canShowInfo = sizeClass.isExpanded &&
+            infoPane != null &&
+            constraints.maxWidth >=
+                listWidth + infoWidth + SargoshiLayout.minChatPaneWidth +
+                    2 * SargoshiStroke.hairline;
         final resolvedInfoWidth = canShowInfo
             ? infoWidth
             : 0.0;
