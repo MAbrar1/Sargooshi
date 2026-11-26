@@ -228,6 +228,8 @@ abstract final class SargoshiComponents {
   static const double progressMinThickness = 4;
   static const double progressMaxThickness = 10;
   static const double emptyIconSize = 80;
+  static const double avatarDefaultSize = 48;
+  static const double chatBubbleMaxWidth = 560;
 }
 
 abstract final class SargoshiType {
