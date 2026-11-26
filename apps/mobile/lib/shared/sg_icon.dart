@@ -60,7 +60,7 @@ class SgIcon extends StatelessWidget {
   const SgIcon(
     this.name, {
     super.key,
-    this.size = SargoshiSpace.s24,
+    this.size = SargoshiIconSize.standard,
     this.color,
     this.selected = false,
     this.emptyState = false,
@@ -1298,11 +1298,11 @@ class SgIcon extends StatelessWidget {
     SgIconName name, {
     bool selected = false,
     bool emptyState = false,
-    double size = SargoshiSpace.s24,
+    double size = SargoshiIconSize.standard,
   }) {
     if (emptyState) return _duotone[name]!;
     if (selected) return _fill[name]!;
-    if (size < 18) return _bold[name]!;
+    if (size < SargoshiIconSize.boldThreshold) return _bold[name]!;
     return _regular[name]!;
   }
 
@@ -1320,7 +1320,7 @@ class SgIcon extends StatelessWidget {
       semanticLabel: semanticLabel,
       textDirection: Directionality.of(context),
       duotoneSecondaryColor: color,
-      duotoneSecondaryOpacity: 0.20,
+      duotoneSecondaryOpacity: SargoshiIconSize.duotoneSecondaryOpacity,
     );
   }
 }
