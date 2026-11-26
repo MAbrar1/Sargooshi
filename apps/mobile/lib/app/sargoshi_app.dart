@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/performance/performance_profile.dart';
+import '../core/theme/performance_visuals.dart';
 import '../core/settings/app_settings.dart';
 import '../core/theme/app_theme.dart';
 import '../core/theme/theme_controller.dart';
@@ -25,7 +26,7 @@ class SargoshiApp extends ConsumerWidget {
       return theme.copyWith(
         extensions: <ThemeExtension<dynamic>>[
           ...theme.extensions.values,
-          SargoshiPerformanceVisuals.fromProfile(performance),
+          performance.themeVisuals,
         ],
       );
     }
