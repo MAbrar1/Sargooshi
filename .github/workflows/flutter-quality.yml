@@ -15,6 +15,8 @@ on:
     paths:
       - "apps/mobile/**"
       - "tools/gen-tokens.mjs"
+      - "tools/check-copy-catalog.mjs"
+      - "docs/spec-data/**"
       - "docs/blueprint/design-tokens.json"
       - ".github/workflows/flutter-quality.yml"
   workflow_dispatch:
