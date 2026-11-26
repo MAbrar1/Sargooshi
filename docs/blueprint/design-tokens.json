@@ -157,5 +157,16 @@
     "hairline": 1,
     "ghost": 1.5,
     "focus": 2
+  },
+  "icon": {
+    "standard": 24,
+    "boldThreshold": 18,
+    "duotoneSecondaryOpacity": 0.2
+  },
+  "layout": {
+    "welcomeMark": 76,
+    "welcomeMarkIcon": 38,
+    "welcomeContentMaxWidth": 560,
+    "welcomePrincipleIcon": 22
   }
 }
