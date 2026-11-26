@@ -190,6 +190,11 @@ Widget buildGalleryHarness({
                 selectedIndex: 0,
                 onDestinationSelected: _noopInt,
               ),
+              SgNavigationRail(
+                destinations: destinations,
+                selectedIndex: 0,
+                onDestinationSelected: _noopInt,
+              ),
             ],
           ),
         ),
@@ -266,4 +271,217 @@ void main() {
     await tester.pump();
     expect(selectedDigit, 1);
   });
+}
+
+
+final _componentCases = <({
+  String tag,
+  String name,
+  void Function(WidgetTester tester) verify,
+})>[
+  (tag: 'SG:CMP-01', name: 'primary button', verify: (tester) {
+    expect(find.text('Primary'), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-02', name: 'tonal button', verify: (tester) {
+    expect(find.text('Tonal'), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-03', name: 'ghost button', verify: (tester) {
+    expect(find.text('Ghost'), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-04', name: 'icon button', verify: (tester) {
+    expect(find.byType(SgIconButton), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-05', name: 'floating action button', verify: (tester) {
+    expect(find.byType(SgFab), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-06', name: 'chip', verify: (tester) {
+    expect(find.byType(SgChip), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-07', name: 'segmented control', verify: (tester) {
+    expect(find.byType(SgSegmentedControl<int>), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-08', name: 'text field', verify: (tester) {
+    expect(find.byType(SgTextField), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-09', name: 'toggle', verify: (tester) {
+    expect(find.byType(SgToggle), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-10', name: 'slider', verify: (tester) {
+    expect(find.byType(SgSlider), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-11', name: 'checkbox and radio', verify: (tester) {
+    expect(find.byType(SgCheckbox), findsOneWidget);
+    expect(find.byType(SgRadio<String>), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-12', name: 'avatar', verify: (tester) {
+    expect(find.byType(SgAvatar), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-13', name: 'badge', verify: (tester) {
+    expect(find.byType(SgBadge), findsNWidgets(2));
+  }),
+  (tag: 'SG:CMP-14', name: 'list tile', verify: (tester) {
+    expect(find.byType(SgListTile), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-15', name: 'card', verify: (tester) {
+    expect(find.byType(SgCard), findsNWidgets(2));
+  }),
+  (tag: 'SG:CMP-16', name: 'chat bubble', verify: (tester) {
+    expect(find.byType(SgChatBubble), findsNWidgets(2));
+  }),
+  (tag: 'SG:CMP-17', name: 'rule badge', verify: (tester) {
+    expect(find.byType(SgRuleBadge), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-18', name: 'reaction bar', verify: (tester) {
+    expect(find.byType(SgReactionBar), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-19', name: 'composer', verify: (tester) {
+    expect(find.byType(SgComposer), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-20', name: 'top app bar', verify: (tester) {
+    expect(find.byType(SgTopAppBar), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-21', name: 'bottom navigation', verify: (tester) {
+    expect(find.byType(SgBottomNavigation), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-22', name: 'navigation rail', verify: (tester) {
+    expect(find.byType(SgNavigationRail), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-23', name: 'bottom sheet', verify: (tester) {
+    expect(find.byType(SgBottomSheet), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-26', name: 'banner', verify: (tester) {
+    expect(find.byType(SgBanner), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-27', name: 'alert card', verify: (tester) {
+    expect(find.byType(SgAlertCard), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-28', name: 'PIN pad', verify: (tester) {
+    expect(find.byType(SgPinPad), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-29', name: 'stat ring', verify: (tester) {
+    expect(find.byType(SgStatRing), findsOneWidget);
+  }),
+  (tag: 'SG:CMP-30', name: 'progress variants', verify: (tester) {
+    expect(find.byType(SgProgress), findsNWidgets(3));
+  }),
+  (tag: 'SG:CMP-31', name: 'skeleton variants', verify: (tester) {
+    expect(find.byType(SgSkeleton), findsNWidgets(3));
+  }),
+  (tag: 'SG:CMP-32', name: 'empty state', verify: (tester) {
+    expect(find.byType(SgEmptyState), findsOneWidget);
+  }),
+];
+
+void mainComponentRegistryCoverage() {
+  for (final component in _componentCases) {
+    testWidgets(
+      '${component.tag} ${component.name} renders in the shared system',
+      (tester) async {
+        await tester.binding.setSurfaceSize(const Size(600, 1600));
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+        await tester.pumpWidget(
+          buildGalleryHarness(direction: TextDirection.ltr, textScale: 1),
+        );
+        component.verify(tester);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets('SG:CMP-24 destructive dialog returns the chosen result',
+      (tester) async {
+    bool? result;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: TextButton(
+              onPressed: () async {
+                result = await SgDialog.confirmDestructive(
+                  context: context,
+                  title: 'Delete account?',
+                  message: 'This action cannot be undone.',
+                  cancelLabel: 'Cancel',
+                  confirmLabel: 'Delete',
+                );
+              },
+              child: const Text('Open confirm dialog'),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('Open confirm dialog'));
+    await tester.pumpAndSettle();
+    expect(find.text('Delete account?'), findsOneWidget);
+    await tester.tap(find.text('Cancel'));
+    await tester.pumpAndSettle();
+    expect(result, isFalse);
+  });
+
+  testWidgets('SG:CMP-25 snackbar undo invokes its action',
+      (tester) async {
+    var undoCount = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: TextButton(
+              onPressed: () => SgSnackbar.show(
+                context: context,
+                message: 'Message sent',
+                undoLabel: 'Undo',
+                onUndo: () => undoCount += 1,
+              ),
+              child: const Text('Show snackbar'),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('Show snackbar'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 350));
+    expect(find.text('Message sent'), findsOneWidget);
+    await tester.tap(find.text('Undo'));
+    await tester.pumpAndSettle();
+    expect(undoCount, 1);
+  });
+
+  testWidgets('SG:CMP-28 scrambled PIN pad exposes all ten digits',
+      (tester) async {
+    final selected = <int>[];
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Scaffold(
+          body: SgPinPad(
+            scrambled: true,
+            onDigit: selected.add,
+            onBackspace: _noop,
+            backspaceTooltip: 'Delete last digit',
+            digitSemanticLabel: (digit) => 'Digit $digit',
+          ),
+        ),
+      ),
+    );
+    for (var digit = 0; digit <= 9; digit += 1) {
+      expect(find.text('$digit'), findsOneWidget);
+    }
+    await tester.tap(find.text('7'));
+    expect(selected, hasLength(1));
+    expect(selected.single, 7);
+  });
+  mainComponentRegistryCoverage();
 }
