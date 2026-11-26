@@ -190,10 +190,13 @@ Widget buildGalleryHarness({
                 selectedIndex: 0,
                 onDestinationSelected: _noopInt,
               ),
-              SgNavigationRail(
-                destinations: destinations,
-                selectedIndex: 0,
-                onDestinationSelected: _noopInt,
+              SizedBox(
+                height: 360,
+                child: SgNavigationRail(
+                  destinations: destinations,
+                  selectedIndex: 0,
+                  onDestinationSelected: _noopInt,
+                ),
               ),
             ],
           ),
@@ -324,7 +327,7 @@ final _componentCases = <({
     expect(find.byType(SgListTile), findsOneWidget);
   }),
   (tag: 'SG:CMP-15', name: 'card', verify: (tester) {
-    expect(find.byType(SgCard), findsNWidgets(2));
+    expect(find.byType(SgCard), findsNWidgets(3));
   }),
   (tag: 'SG:CMP-16', name: 'chat bubble', verify: (tester) {
     expect(find.byType(SgChatBubble), findsNWidgets(2));
