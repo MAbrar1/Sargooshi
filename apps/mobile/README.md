@@ -1,0 +1,2 @@
+# Sargoshi Flutter app foundation
+Initial app shell, routing, theme and welcome surface. Generate Android platform scaffolding locally using `flutter create --org app.sargoshi --project-name sargoshi --platforms android .`, then run `flutter pub get`, `flutter test`, and `flutter run`. The CTA remains deliberately disabled until onboarding is implemented; it is not represented as working functionality.
