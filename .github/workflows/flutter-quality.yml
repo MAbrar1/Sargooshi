@@ -6,6 +6,9 @@ on:
     paths:
       - "apps/mobile/**"
       - "tools/gen-tokens.mjs"
+      - "tools/check-copy-catalog.mjs"
+      - "docs/spec-data/**"
+      - "apps/mobile/lib/l10n/**"
       - "docs/blueprint/design-tokens.json"
       - ".github/workflows/flutter-quality.yml"
   pull_request:
