@@ -72,14 +72,14 @@ abstract final class AppTheme {
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.card),
-          side: BorderSide(color: colors.line.withValues(alpha: 0.62)),
+          side: BorderSide(color: colors.line.withValues(alpha: SargoshiOpacity.cardOutline)),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           foregroundColor: colors.paper,
           backgroundColor: colors.ember,
-          disabledForegroundColor: colors.mist.withValues(alpha: 0.38),
+          disabledForegroundColor: colors.mist.withValues(alpha: SargoshiOpacity.disabledContent),
           disabledBackgroundColor: colors.dusk2,
           minimumSize: const Size(0, SargoshiBreakpoint.minInteractiveTarget),
           padding: const EdgeInsets.symmetric(horizontal: SargoshiSpace.s20),
@@ -93,7 +93,7 @@ abstract final class AppTheme {
         style: OutlinedButton.styleFrom(
           foregroundColor: colors.moon,
           minimumSize: const Size(0, SargoshiBreakpoint.minInteractiveTarget),
-          side: BorderSide(color: colors.line, width: 1.5),
+          side: BorderSide(color: colors.line, width: SargoshiStroke.ghost),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(SargoshiShape.button),
           ),
@@ -118,7 +118,7 @@ abstract final class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.button),
-          borderSide: BorderSide(color: colors.glow, width: 2),
+          borderSide: BorderSide(color: colors.glow, width: SargoshiStroke.focus),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.button),
@@ -126,12 +126,12 @@ abstract final class AppTheme {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.button),
-          borderSide: BorderSide(color: colors.coral, width: 2),
+          borderSide: BorderSide(color: colors.coral, width: SargoshiStroke.focus),
         ),
       ),
       dividerTheme: DividerThemeData(
         color: colors.line,
-        thickness: 1,
+        thickness: SargoshiStroke.hairline,
         space: SargoshiSpace.s16,
       ),
       snackBarTheme: SnackBarThemeData(
@@ -143,9 +143,9 @@ abstract final class AppTheme {
         ),
       ),
       iconTheme: IconThemeData(color: colors.mist),
-      focusColor: colors.glow.withValues(alpha: 0.12),
-      splashColor: colors.glow.withValues(alpha: 0.08),
-      highlightColor: colors.glow.withValues(alpha: 0.08),
+      focusColor: colors.glow.withValues(alpha: SargoshiOpacity.focusedOverlay),
+      splashColor: colors.glow.withValues(alpha: SargoshiOpacity.pressedOverlay),
+      highlightColor: colors.glow.withValues(alpha: SargoshiOpacity.pressedOverlay),
       visualDensity: VisualDensity.standard,
     );
   }
@@ -187,7 +187,7 @@ abstract final class AppTheme {
         dusk: base.paper,
         dusk2: base.paper,
         dusk3: base.parchment,
-        line: base.lightSecondary.withValues(alpha: 0.24),
+        line: base.lightSecondary.withValues(alpha: SargoshiOpacity.subtleOutline),
         moon: base.ink,
         mist: base.lightSecondary,
         ember: base.lightAccentText,
