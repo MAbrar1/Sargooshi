@@ -63,7 +63,8 @@
     "standard": 200,
     "screen": 320,
     "springSheet": "stiffness 400, damping 0.8",
-    "undoSnackbar": 5000
+    "undoSnackbar": 5000,
+    "tier1Screen": 150
   },
   "type": {
     "displayL": [
