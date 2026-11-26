@@ -19,7 +19,7 @@ class WelcomeScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 560),
+                  constraints: const BoxConstraints(maxWidth: SargoshiLayout.welcomeContentMaxWidth),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: SargoshiSpace.s24,
@@ -29,8 +29,8 @@ class WelcomeScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          width: 76,
-                          height: 76,
+                          width: SargoshiLayout.welcomeMark,
+                          height: SargoshiLayout.welcomeMark,
                           decoration: BoxDecoration(
                             color: colors.dusk,
                             borderRadius: BorderRadius.circular(
@@ -41,7 +41,7 @@ class WelcomeScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           child: SgIcon(
                             SgIconName.chats,
-                            size: 38,
+                            size: SargoshiLayout.welcomeMarkIcon,
                             color: colors.glow,
                           ),
                         ),
@@ -114,7 +114,7 @@ class _WelcomePrinciple extends StatelessWidget {
             padding: const EdgeInsets.only(top: SargoshiSpace.s4),
             child: SgIcon(
               icon,
-              size: 22,
+              size: SargoshiLayout.welcomePrincipleIcon,
               color: colors.mint,
             ),
           ),
