@@ -375,18 +375,20 @@ final _componentCases = <({
 
 void mainComponentRegistryCoverage() {
   for (final component in _componentCases) {
-    testWidgets(
-      '${component.tag} ${component.name} renders in the shared system',
-      (tester) async {
-        await tester.binding.setSurfaceSize(const Size(600, 1600));
-        addTearDown(() => tester.binding.setSurfaceSize(null));
-        await tester.pumpWidget(
-          buildGalleryHarness(direction: TextDirection.ltr, textScale: 1),
-        );
-        component.verify(tester);
-        expect(tester.takeException(), isNull);
-      },
-    );
+    for (final direction in TextDirection.values) {
+      testWidgets(
+        '${component.tag} ${component.name} renders at 200 percent in $direction',
+        (tester) async {
+          await tester.binding.setSurfaceSize(const Size(600, 1600));
+          addTearDown(() => tester.binding.setSurfaceSize(null));
+          await tester.pumpWidget(
+            buildGalleryHarness(direction: direction, textScale: 2),
+          );
+          component.verify(tester);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
   }
 
   testWidgets('SG:CMP-24 destructive dialog returns the chosen result',
