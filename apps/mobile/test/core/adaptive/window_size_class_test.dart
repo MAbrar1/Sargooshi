@@ -5,18 +5,18 @@ import 'package:sargoshi/core/adaptive/window_size_class.dart';
 void main() {
   group('WindowSizeClass.fromWidth', () {
     test('compact is strictly below 600 dp', () {
-      expect(WindowSizeClassX.fromWidth(359), WindowSizeClass.compact);
-      expect(WindowSizeClassX.fromWidth(599.99), WindowSizeClass.compact);
+      expect(WindowSizeClasses.fromWidth(359), WindowSizeClass.compact);
+      expect(WindowSizeClasses.fromWidth(599.99), WindowSizeClass.compact);
     });
 
     test('medium includes 600 and stops below 840 dp', () {
-      expect(WindowSizeClassX.fromWidth(600), WindowSizeClass.medium);
-      expect(WindowSizeClassX.fromWidth(839.99), WindowSizeClass.medium);
+      expect(WindowSizeClasses.fromWidth(600), WindowSizeClass.medium);
+      expect(WindowSizeClasses.fromWidth(839.99), WindowSizeClass.medium);
     });
 
     test('expanded starts at 840 dp', () {
-      expect(WindowSizeClassX.fromWidth(840), WindowSizeClass.expanded);
-      expect(WindowSizeClassX.fromWidth(1280), WindowSizeClass.expanded);
+      expect(WindowSizeClasses.fromWidth(840), WindowSizeClass.expanded);
+      expect(WindowSizeClasses.fromWidth(1280), WindowSizeClass.expanded);
     });
 
     test('grid metrics follow the product layout specification', () {
