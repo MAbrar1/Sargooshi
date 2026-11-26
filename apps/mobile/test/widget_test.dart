@@ -48,6 +48,11 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Design system gallery'), findsOneWidget);
+    expect(find.text('Runtime preferences'), findsOneWidget);
+    expect(find.text('Appearance'), findsOneWidget);
+    expect(find.text('App language'), findsOneWidget);
+    expect(find.text('Lite UI'), findsOneWidget);
+    expect(find.text('Performance tier'), findsOneWidget);
     expect(find.text('Debug gallery only — no production operations are wired here.'),
         findsOneWidget);
   });
