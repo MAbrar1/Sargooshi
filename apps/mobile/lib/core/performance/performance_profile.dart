@@ -144,6 +144,19 @@ class PerformanceProfile {
         PerformanceTier.t3 => SargoshiMotion.screen,
       };
 
+  SargoshiPerformanceVisuals get themeVisuals => SargoshiPerformanceVisuals(
+        transitionDuration: transitionDuration,
+        enableGlass: enableGlass,
+        enableSharedElementTransitions: enableSharedElementTransitions,
+        enableSoftShadows: enableSoftShadows,
+        blurSigma: enableGlass ? SargoshiEffects.glassBlurSigma : 0,
+        surfaceElevation: switch (visualTier) {
+          PerformanceTier.t1 => 0,
+          PerformanceTier.t2 => SargoshiElevation.card,
+          PerformanceTier.t3 => SargoshiElevation.glass,
+        },
+      );
+
   static PerformanceProfile resolve({
     required DeviceCapabilities capabilities,
     LiteUiMode liteUiMode = LiteUiMode.auto,
