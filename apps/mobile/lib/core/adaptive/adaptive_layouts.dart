@@ -90,7 +90,7 @@ class SgAdaptivePaneLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final sizeClass = WindowSizeClassX.fromWidth(constraints.maxWidth);
+        final sizeClass = WindowSizeClasses.fromWidth(constraints.maxWidth);
         if (sizeClass.isCompact) return compactPane ?? chatPane;
 
         final canShowInfo = sizeClass.isExpanded &&
@@ -148,7 +148,7 @@ class SgAdaptiveGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final sizeClass = WindowSizeClassX.fromWidth(constraints.maxWidth);
+        final sizeClass = WindowSizeClasses.fromWidth(constraints.maxWidth);
         return GridView.count(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
