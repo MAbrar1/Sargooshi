@@ -370,8 +370,15 @@ class SgTextField extends StatefulWidget {
     this.maxLength,
     this.maxLines = 1,
     this.showVisibilityToggle = true,
+    this.revealTooltip,
+    this.concealTooltip,
     super.key,
-  });
+  }) : assert(
+          (variant != SgTextFieldVariant.pin &&
+                  variant != SgTextFieldVariant.passphrase) ||
+              !showVisibilityToggle ||
+              (revealTooltip != null && concealTooltip != null),
+        );
 
   final String label;
   final TextEditingController? controller;
@@ -384,6 +391,8 @@ class SgTextField extends StatefulWidget {
   final int? maxLength;
   final int maxLines;
   final bool showVisibilityToggle;
+  final String? revealTooltip;
+  final String? concealTooltip;
 
   @override
   State<SgTextField> createState() => _SgTextFieldState();
@@ -444,7 +453,7 @@ class _SgTextFieldState extends State<SgTextField> {
               )
             : _isSecret && widget.showVisibilityToggle
                 ? IconButton(
-                    tooltip: _obscure ? 'Show value' : 'Hide value',
+                    tooltip: _obscure ? widget.revealTooltip! : widget.concealTooltip!,
                     onPressed: () => setState(() => _obscure = !_obscure),
                     icon: SgIcon(
                       _obscure ? SgIconName.hidden : SgIconName.visible,
@@ -1025,15 +1034,22 @@ class SgComposer extends StatefulWidget {
     this.hint = '',
     this.onAttach,
     this.onVoice,
+    this.attachTooltip,
+    this.voiceTooltip,
+    required this.sendTooltip,
     this.enabled = true,
     super.key,
-  });
+  }) : assert(onAttach == null || attachTooltip != null),
+       assert(onVoice == null || voiceTooltip != null);
 
   final ValueChanged<String> onSend;
   final TextEditingController? controller;
   final String hint;
   final VoidCallback? onAttach;
   final VoidCallback? onVoice;
+  final String? attachTooltip;
+  final String? voiceTooltip;
+  final String sendTooltip;
   final bool enabled;
 
   @override
@@ -1098,7 +1114,7 @@ class _SgComposerState extends State<SgComposer> {
             if (widget.onAttach != null)
               SgIconButton(
                 icon: SgIconName.attach,
-                tooltip: 'Attach',
+                tooltip: widget.attachTooltip!,
                 onPressed: widget.enabled ? widget.onAttach : null,
               ),
             Expanded(
@@ -1122,12 +1138,12 @@ class _SgComposerState extends State<SgComposer> {
             if (widget.onVoice != null && value.text.trim().isEmpty)
               SgIconButton(
                 icon: SgIconName.voice,
-                tooltip: 'Record voice message',
+                tooltip: widget.voiceTooltip!,
                 onPressed: widget.enabled ? widget.onVoice : null,
               ),
             SgIconButton(
               icon: SgIconName.send,
-              tooltip: 'Send message',
+              tooltip: widget.sendTooltip,
               selected: value.text.trim().isNotEmpty,
               filled: true,
               onPressed: widget.enabled && value.text.trim().isNotEmpty
@@ -1418,8 +1434,10 @@ class SgBanner extends StatelessWidget {
     this.actionLabel,
     this.onAction,
     this.onDismiss,
+    this.dismissTooltip,
     super.key,
-  }) : assert((actionLabel == null) == (onAction == null));
+  }) : assert((actionLabel == null) == (onAction == null)),
+       assert(onDismiss == null || dismissTooltip != null);
 
   final String title;
   final String message;
@@ -1427,6 +1445,7 @@ class SgBanner extends StatelessWidget {
   final String? actionLabel;
   final VoidCallback? onAction;
   final VoidCallback? onDismiss;
+  final String? dismissTooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -1470,7 +1489,7 @@ class SgBanner extends StatelessWidget {
           if (onDismiss != null)
             SgIconButton(
               icon: SgIconName.delete,
-              tooltip: 'Dismiss',
+              tooltip: dismissTooltip!,
               onPressed: onDismiss,
             ),
         ],
@@ -1536,12 +1555,16 @@ class SgPinPad extends StatefulWidget {
     required this.onDigit,
     required this.onBackspace,
     this.scrambled = false,
+    required this.backspaceTooltip,
+    required this.digitSemanticLabel,
     super.key,
   });
 
   final ValueChanged<int> onDigit;
   final VoidCallback onBackspace;
   final bool scrambled;
+  final String backspaceTooltip;
+  final String Function(int digit) digitSemanticLabel;
 
   @override
   State<SgPinPad> createState() => _SgPinPadState();
@@ -1590,14 +1613,14 @@ class _SgPinPadState extends State<SgPinPad> {
         if (value == -1) return const SizedBox.shrink();
         if (value == -2) {
           return IconButton(
-            tooltip: 'Delete last digit',
+            tooltip: widget.backspaceTooltip,
             onPressed: widget.onBackspace,
             icon: SgIcon(SgIconName.delete, color: colors.moon),
           );
         }
         return Semantics(
           button: true,
-          label: 'Digit $value',
+          label: widget.digitSemanticLabel(value),
           child: Material(
             color: colors.dusk2,
             shape: const CircleBorder(),
