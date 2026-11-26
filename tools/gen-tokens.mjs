@@ -66,7 +66,7 @@ function render(tokens) {
     lines.push('  static const TextStyle ' + camel(name) + ' = TextStyle(',
       "    fontFamily: '" + family + "',", '    fontWeight: FontWeight.w' + weight + ',',
       '    fontSize: ' + size + ',', '    height: ' + (lineHeight / size) + ',');
-    if (family === 'Inter') lines.push("    fontFamilyFallback: ['NotoNaskhArabic'],");
+    if (family !== 'NotoNaskhArabic') lines.push("    fontFamilyFallback: ['NotoNaskhArabic'],");
     lines.push('  );', '');
   });
   lines.push('}', '', 'abstract final class SargoshiBreakpoint {');
