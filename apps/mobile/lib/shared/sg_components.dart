@@ -610,11 +610,14 @@ class SgRadio<T> extends StatelessWidget {
 }
 
 // CMP-12
+enum SgAvatarShape { circle, roundedSquare }
+
 class SgAvatar extends StatelessWidget {
   const SgAvatar({
     required this.initials,
     this.image,
     this.size = SargoshiComponents.avatarDefaultSize,
+    this.shape = SgAvatarShape.circle,
     this.semanticLabel,
     super.key,
   });
@@ -622,6 +625,7 @@ class SgAvatar extends StatelessWidget {
   final String initials;
   final ImageProvider<Object>? image;
   final double size;
+  final SgAvatarShape shape;
   final String? semanticLabel;
 
   @override
@@ -641,21 +645,40 @@ class SgAvatar extends StatelessWidget {
         .map(String.fromCharCode)
         .join()
         .toUpperCase();
+    final borderRadius = BorderRadius.circular(size * 0.28);
+
+    final content = Container(
+      width: size,
+      height: size,
+      color: background,
+      alignment: Alignment.center,
+      child: image == null
+          ? Text(
+              monogram,
+              style: SargoshiType.label.copyWith(color: colors.paper),
+              maxLines: 1,
+            )
+          : Image(
+              image: image!,
+              width: size,
+              height: size,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Text(
+                monogram,
+                style: SargoshiType.label.copyWith(color: colors.paper),
+              ),
+            ),
+    );
 
     return Semantics(
       image: true,
       label: semanticLabel ?? initials,
-      child: CircleAvatar(
-        radius: size / 2,
-        backgroundColor: background,
-        backgroundImage: image,
-        child: image == null
-            ? Text(
-                monogram,
-                style: SargoshiType.label.copyWith(color: colors.paper),
-              )
-            : null,
-      ),
+      child: shape == SgAvatarShape.circle
+          ? ClipOval(child: content)
+          : ClipRRect(
+              borderRadius: borderRadius,
+              child: content,
+            ),
     );
   }
 }
