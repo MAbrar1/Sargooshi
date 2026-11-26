@@ -54,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                           child: const SgLogo(
                             layout: SgLogoLayout.mark,
                             tone: SgLogoTone.gradient,
-                            markSize: 58,
+                            markSize: SargoshiLayout.welcomeMarkSvgSize,
                             semanticLabel: 'Sargoshi brand mark',
                           ),
                         ),
