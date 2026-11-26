@@ -858,63 +858,73 @@ class SgChatBubble extends StatelessWidget {
             ? colors.mist
             : colors.moon;
 
-    return Align(
-      alignment: isSystem
-          ? Alignment.center
-          : isOutgoing
-              ? AlignmentDirectional.centerEnd
-              : AlignmentDirectional.centerStart,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: SargoshiComponents.chatBubbleMaxWidth,
-        ),
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: SargoshiSpace.s4),
-          padding: const EdgeInsets.symmetric(
-            horizontal: SargoshiSpace.s16,
-            vertical: SargoshiSpace.s12,
-          ),
-          decoration: BoxDecoration(
-            color: variant == SgChatBubbleVariant.outgoing ? null : background,
-            gradient: variant == SgChatBubbleVariant.outgoing
-                ? const LinearGradient(colors: SargoshiColors.brandGradient)
-                : null,
-            borderRadius: BorderRadius.circular(SargoshiShape.bubble),
-            border: variant == SgChatBubbleVariant.whisper
-                ? Border.all(color: colors.vaultLilac)
-                : null,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text(
-                  message,
-                  style: SargoshiType.message.copyWith(color: foreground),
-                ),
+    return LayoutBuilder(
+      builder: (context, viewport) {
+        final availableWidth = viewport.maxWidth.isFinite
+            ? viewport.maxWidth
+            : SargoshiComponents.chatBubbleMaxWidth / 0.78;
+        final bubbleWidth = math.min(
+          SargoshiComponents.chatBubbleMaxWidth,
+          availableWidth * 0.78,
+        );
+
+        return Align(
+          alignment: isSystem
+              ? Alignment.center
+              : isOutgoing
+                  ? AlignmentDirectional.centerEnd
+                  : AlignmentDirectional.centerStart,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: bubbleWidth),
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: SargoshiSpace.s4),
+              padding: const EdgeInsets.symmetric(
+                horizontal: SargoshiSpace.s16,
+                vertical: SargoshiSpace.s12,
               ),
-              const SizedBox(height: SargoshiSpace.s4),
-              Row(
-                mainAxisSize: MainAxisSize.min,
+              decoration: BoxDecoration(
+                color: variant == SgChatBubbleVariant.outgoing ? null : background,
+                gradient: variant == SgChatBubbleVariant.outgoing
+                    ? const LinearGradient(colors: SargoshiColors.brandGradient)
+                    : null,
+                borderRadius: BorderRadius.circular(SargoshiShape.bubble),
+                border: variant == SgChatBubbleVariant.whisper
+                    ? Border.all(color: colors.vaultLilac)
+                    : null,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    timestamp,
-                    style: SargoshiType.caption.copyWith(color: colors.mist),
-                  ),
-                  if (status != null) ...[
-                    const SizedBox(width: SargoshiSpace.s8),
-                    Text(
-                      status!,
-                      style: SargoshiType.caption.copyWith(color: colors.mist),
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Text(
+                      message,
+                      style: SargoshiType.message.copyWith(color: foreground),
                     ),
-                  ],
+                  ),
+                  const SizedBox(height: SargoshiSpace.s4),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        timestamp,
+                        style: SargoshiType.caption.copyWith(color: colors.mist),
+                      ),
+                      if (status != null) ...[
+                        const SizedBox(width: SargoshiSpace.s8),
+                        Text(
+                          status!,
+                          style: SargoshiType.caption.copyWith(color: colors.mist),
+                        ),
+                      ],
+                    ],
+                  ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
