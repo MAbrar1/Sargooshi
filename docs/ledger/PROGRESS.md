@@ -5,7 +5,7 @@ CURRENT_PHASE: P00
 ## Session log
 | Date | Phase | Completed | Remaining | Resume |
 |---|---|---|---|---|
-| 2026-11-26 | P00 | Owner verified Flutter/Dart, Java, Android SDK Platform 36, Build-Tools, NDK, all three Android Rust targets, emulator, Docker, Node and Git; initial Flutter app analyzes, widget test passes, debug APK builds, installs and launches | Import and execute the complete authoritative P00 pack/gate on Windows; understand the Flutter Doctor timeout | Synchronize the complete P00 source pack, run the P00 ledger/registry/tree/reality gates on Windows, then record exact results |
+| 2026-11-26 | P00/P01 | Owner verified Android SDK Platform 36, Build-Tools, NDK and all three Rust Android targets; initial Flutter shell analyzes, one widget test passes and debug APK launches. P01 spec extracts restored; full English/Urdu copy keys seeded and CSV/ARB key-placeholder consistency checked; localization CI check added | Complete P00 archive/tooling sync and Windows gate; owner rerun of expanded P01 tests/build; native Urdu review; Android host commit/native bridge and remaining P01 visual/security/test acceptance criteria | Pull main; run P01 localization/token checks, gen-l10n, analyze/test and release build; then reconcile Android host scaffold and finish P00 gate sync |
 
 ## Owner-reported toolchain verification (2026-11-26)
 - Flutter stable 3.47.7; Dart 3.13.5.
@@ -29,7 +29,7 @@ CURRENT_PHASE: P00
 - Theme presets include dark default, light/parchment, AMOLED, Midnight Sky, high contrast, system and Android dynamic colour.
 - Four local variable-font families (Plus Jakarta Sans, Inter, JetBrains Mono, Noto Naskh Arabic) are committed with separate SIL OFL texts. Upstream commit and SHA-256 values are recorded in `docs/compliance/LICENSES.md`.
 - Phosphor icon layer now contains 51 semantic entries: the 46 supplied icon-registry names plus app navigation/undo/redo/visibility symbols. All four weights were verified in upstream registries. Only directional symbols are RTL-mirrored; icon data is constant for tree shaking.
-- English/Urdu ARB resources, generated localization delegates, persisted language selection, first-strong direction/bidi-isolation helpers, Urdu search normalization and optional Eastern Arabic digit conversion are implemented. Urdu copy remains an unreviewed draft.
+- English/Urdu ARB resources, generated localization delegates, persisted language selection, first-strong direction/bidi-isolation helpers, Urdu search normalization and optional Eastern Arabic digit conversion are implemented. The 52-row blueprint copy catalogue is seeded in both locales; a repository check enforces source keys and interpolation placeholders. The Urdu copy is machine-drafted and remains an unreviewed draft. The copy CSV was repaired after detecting malformed quotation in the first GitHub import; the corrected file parses as 52 unique data rows.
 - Shared component catalogue implements the 32 canonical catalogue rows, including the combined checkbox/radio row. It includes button variants, fields, chips, toggles, avatars, badges, list/card/bubble primitives, composer, navigation, sheets/dialogs/snackbars, banners/alerts, PIN pad, progress/stat/skeleton/empty states.
 - Debug component gallery is registered behind `kDebugMode` and can be opened from the welcome screen only in debug builds. It has interactive preview controls for persisted appearance, app language, Lite UI and T1/T2/T3 visual selection.
 - Adaptive size classes use 600/840 dp breakpoints and the specified 4/8/12-column spacing grid. Two-pane and conditional three-pane layouts protect the minimum chat width.
@@ -39,14 +39,14 @@ CURRENT_PHASE: P00
 - Native Urdu review remains OPEN in `docs/ledger/EXTERNAL.md`.
 
 ## P01 remaining
-- Run the generator `--check`, `flutter gen-l10n`, analyzer, complete test suite, and device smoke tests on the owner machine; commit the resulting `pubspec.lock`.
+- Run `node tools/gen-tokens.mjs --check`, `node tools/check-copy-catalog.mjs`, `flutter gen-l10n`, analyzer and the complete expanded test suite on the owner machine; commit the resulting `pubspec.lock`. The Flutter quality workflow has been added, but no CI run has yet been verified.
 - Complete the remaining source-copy catalogue, visual golden tests at 360/412/600/840/1280 dp, accessibility audits, 200% text coverage for every component, and performance profiling.
 - Commit the owner's generated Android platform scaffold, then implement the native Kotlin device-profile channel, edge-to-edge/predictive-back configuration, manifest restrictions, launcher/adaptive icons, splash and platform performance behavior.
 - Review generated font asset names/weights, theme contrast, and component visual states on device.
 - P01 is not complete until all prompt acceptance criteria and phase gates pass.
 
 ## P00 remains open
-The authoritative restored project pack is present in the assistant working copy and its source integrity was checked (blueprint v5: 3,250 lines, SHA-256 `0a8769238c4f43b2a16aa8a907db5b9aa0e6964a97f7a1fb7ff7f39cb4607312`; registry: 350 data rows; ledger: 883 rows). The local archive gate and reality-scanner negative-control test passed there. However, the complete pack and gate scripts are not yet synchronized into the owner's clone/GitHub main, and the full P00 gate has not been run on the owner's Windows machine. Do not change CURRENT_PHASE until that synchronization and gate evidence exist.
+The authoritative restored project pack is present in the assistant working copy and its source integrity was checked (blueprint v5: 3,250 lines, SHA-256 `0a8769238c4f43b2a16aa8a907db5b9aa0e6964a97f7a1fb7ff7f39cb4607312`; registry: 350 data rows; ledger: 883 rows). The local archive gate and reality-scanner negative-control test passed there. However, the complete P00 tooling bundle (ledger, tree/reality/registry checkers and full gate) and all source-pack extracts are not yet synchronized into the owner's clone/GitHub main, and the full P00 gate has not been run on the owner's Windows machine. Do not change CURRENT_PHASE until that synchronization and gate evidence exist.
 
 ## Reality boundary
 Only the initial minimal Flutter shell has owner-reported analyzer, test and debug-emulator evidence. All expanded P01 code is committed but unverified on the owner machine. No release build, Rust compilation, cryptographic implementation, security audit or full P01 completion is claimed.
