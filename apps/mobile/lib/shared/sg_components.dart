@@ -1030,13 +1030,13 @@ class SgReactionBar extends StatelessWidget {
 class SgComposer extends StatefulWidget {
   const SgComposer({
     required this.onSend,
+    required this.sendTooltip,
     this.controller,
     this.hint = '',
     this.onAttach,
     this.onVoice,
     this.attachTooltip,
     this.voiceTooltip,
-    required this.sendTooltip,
     this.enabled = true,
     super.key,
   }) : assert(onAttach == null || attachTooltip != null),
@@ -1554,9 +1554,9 @@ class SgPinPad extends StatefulWidget {
   const SgPinPad({
     required this.onDigit,
     required this.onBackspace,
-    this.scrambled = false,
     required this.backspaceTooltip,
     required this.digitSemanticLabel,
+    this.scrambled = false,
     super.key,
   });
 
