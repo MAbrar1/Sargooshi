@@ -15,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(
-          builder: (context, constraints) {
+          builder: (context, _) {
             return SingleChildScrollView(
               child: Center(
                 child: ConstrainedBox(
