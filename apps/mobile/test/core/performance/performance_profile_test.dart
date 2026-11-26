@@ -18,6 +18,7 @@ DeviceCapabilities capabilities({
   );
 }
 
+// SG:NET-01
 void main() {
   group('hardware tier detection', () {
     test('low RAM flag or less than 3 GB selects T1', () {
