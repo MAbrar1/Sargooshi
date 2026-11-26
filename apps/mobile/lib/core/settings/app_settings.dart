@@ -6,6 +6,8 @@ enum LiteUiMode { auto, on, off }
 
 enum AppLanguage { system, english, urdu }
 
+enum PerformanceTierChoice { auto, t1, t2, t3 }
+
 extension AppLanguageX on AppLanguage {
   Locale? get locale => switch (this) {
         AppLanguage.system => null,
@@ -28,11 +30,17 @@ final appLanguageProvider =
   AppLanguageController.new,
 );
 
+final performanceTierChoiceProvider =
+    AsyncNotifierProvider<PerformanceTierChoiceController, PerformanceTierChoice>(
+  PerformanceTierChoiceController.new,
+);
+
 class AppSettingsStore {
   const AppSettingsStore(this._preferences);
 
   static const _liteUiModeKey = 'sargoshi.settings.lite_ui_mode';
   static const _appLanguageKey = 'sargoshi.settings.app_language';
+  static const _performanceTierKey = 'sargoshi.settings.performance_tier';
 
   final SharedPreferencesAsync _preferences;
 
@@ -58,6 +66,18 @@ class AppSettingsStore {
 
   Future<void> writeAppLanguage(AppLanguage language) {
     return _preferences.setString(_appLanguageKey, language.name);
+  }
+
+  Future<PerformanceTierChoice> readPerformanceTierChoice() async {
+    final stored = await _preferences.getString(_performanceTierKey);
+    return PerformanceTierChoice.values.firstWhere(
+      (choice) => choice.name == stored,
+      orElse: () => PerformanceTierChoice.auto,
+    );
+  }
+
+  Future<void> writePerformanceTierChoice(PerformanceTierChoice choice) {
+    return _preferences.setString(_performanceTierKey, choice.name);
   }
 }
 
@@ -90,6 +110,25 @@ class AppLanguageController extends AsyncNotifier<AppLanguage> {
     try {
       await store.writeAppLanguage(language);
       state = AsyncData(language);
+    } catch (error, stackTrace) {
+      state = AsyncError(error, stackTrace);
+      rethrow;
+    }
+  }
+}
+
+class PerformanceTierChoiceController
+    extends AsyncNotifier<PerformanceTierChoice> {
+  @override
+  Future<PerformanceTierChoice> build() {
+    return ref.watch(appSettingsStoreProvider).readPerformanceTierChoice();
+  }
+
+  Future<void> setChoice(PerformanceTierChoice choice) async {
+    final store = ref.read(appSettingsStoreProvider);
+    try {
+      await store.writePerformanceTierChoice(choice);
+      state = AsyncData(choice);
     } catch (error, stackTrace) {
       state = AsyncError(error, stackTrace);
       rethrow;
