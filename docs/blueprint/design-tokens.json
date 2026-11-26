@@ -23,10 +23,27 @@
     "lightAccentText": "#9A3412"
   },
   "gradient": {
-    "brand": ["#C2410C", "#BE185D"],
-    "vault": ["#4A3FD6", "#2B2397"]
+    "brand": [
+      "#C2410C",
+      "#BE185D"
+    ],
+    "vault": [
+      "#4A3FD6",
+      "#2B2397"
+    ]
   },
-  "space": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64],
+  "space": [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    32,
+    40,
+    48,
+    64
+  ],
   "radius": {
     "button": 14,
     "card": 16,
@@ -48,18 +65,78 @@
     "springSheet": "stiffness 400, damping 0.8"
   },
   "type": {
-    "displayL": ["PlusJakartaSans", 800, 36, 44],
-    "display": ["PlusJakartaSans", 700, 30, 38],
-    "headline": ["PlusJakartaSans", 700, 24, 32],
-    "title": ["PlusJakartaSans", 600, 20, 28],
-    "titleS": ["Inter", 600, 17, 24],
-    "bodyL": ["Inter", 400, 16, 24],
-    "message": ["Inter", 400, 16, 22],
-    "body": ["Inter", 400, 15, 22],
-    "label": ["Inter", 600, 13, 18],
-    "caption": ["Inter", 400, 12, 16],
-    "mono": ["JetBrainsMono", 600, 15, 22],
-    "urduBody": ["NotoNaskhArabic", 400, 17, 30]
+    "displayL": [
+      "PlusJakartaSans",
+      800,
+      36,
+      44
+    ],
+    "display": [
+      "PlusJakartaSans",
+      700,
+      30,
+      38
+    ],
+    "headline": [
+      "PlusJakartaSans",
+      700,
+      24,
+      32
+    ],
+    "title": [
+      "PlusJakartaSans",
+      600,
+      20,
+      28
+    ],
+    "titleS": [
+      "Inter",
+      600,
+      17,
+      24
+    ],
+    "bodyL": [
+      "Inter",
+      400,
+      16,
+      24
+    ],
+    "message": [
+      "Inter",
+      400,
+      16,
+      22
+    ],
+    "body": [
+      "Inter",
+      400,
+      15,
+      22
+    ],
+    "label": [
+      "Inter",
+      600,
+      13,
+      18
+    ],
+    "caption": [
+      "Inter",
+      400,
+      12,
+      16
+    ],
+    "mono": [
+      "JetBrainsMono",
+      600,
+      15,
+      22
+    ],
+    "urduBody": [
+      "NotoNaskhArabic",
+      400,
+      17,
+      30
+    ]
   },
   "breakpoints": {
     "compact": 0,
@@ -68,5 +145,17 @@
   },
   "target": {
     "min": 48
+  },
+  "opacity": {
+    "pressedOverlay": 0.08,
+    "focusedOverlay": 0.12,
+    "disabledContent": 0.38,
+    "subtleOutline": 0.24,
+    "cardOutline": 0.62
+  },
+  "stroke": {
+    "hairline": 1,
+    "ghost": 1.5,
+    "focus": 2
   }
 }
