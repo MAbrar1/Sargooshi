@@ -1,7 +1,10 @@
+import 'dart:ui' show DisplayFeature, DisplayFeatureState, DisplayFeatureType, Rect;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:sargoshi/core/adaptive/adaptive_layouts.dart';
+import 'package:sargoshi/core/adaptive/foldable_layout.dart';
 import 'package:sargoshi/core/theme/app_theme.dart';
 import 'package:sargoshi/shared/sg_components.dart';
 import 'package:sargoshi/shared/sg_icon.dart';
@@ -155,6 +158,152 @@ void main() {
     expect(find.text('Selected conversation'), findsOneWidget);
     expect(find.text('Conversation list'), findsNothing);
   });
+  testWidgets('foldable book posture places list and chat on separate pages',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    final hinge = DisplayFeature(
+      bounds: const Rect.fromLTWH(496, 0, 8, 900),
+      type: DisplayFeatureType.hinge,
+      state: DisplayFeatureState.postureFlat,
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: MediaQuery(
+          data: MediaQueryData(
+            size: const Size(1000, 900),
+            displayFeatures: [hinge],
+          ),
+          child: const SgFoldableLayout(
+            regularLayout: Text('Regular layout'),
+            bookListPane: Text('Book list'),
+            bookChatPane: Text('Book chat'),
+            tabletopVideoPane: Text('Tabletop video'),
+            tabletopControlsPane: Text('Tabletop controls'),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Regular layout'), findsNothing);
+    expect(tester.getTopLeft(find.text('Book list')).dx,
+        lessThan(tester.getTopLeft(find.text('Book chat')).dx));
+  });
+
+  testWidgets('foldable book layout mirrors its pages in RTL',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1000, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    final hinge = DisplayFeature(
+      bounds: const Rect.fromLTWH(496, 0, 8, 900),
+      type: DisplayFeatureType.fold,
+      state: DisplayFeatureState.postureFlat,
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: MediaQuery(
+          data: MediaQueryData(
+            size: const Size(1000, 900),
+            displayFeatures: [hinge],
+          ),
+          child: const Directionality(
+            textDirection: TextDirection.rtl,
+            child: SgFoldableLayout(
+              regularLayout: Text('Regular layout'),
+              bookListPane: Text('Book list'),
+              bookChatPane: Text('Book chat'),
+              tabletopVideoPane: Text('Tabletop video'),
+              tabletopControlsPane: Text('Tabletop controls'),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    expect(tester.getTopLeft(find.text('Book chat')).dx,
+        lessThan(tester.getTopLeft(find.text('Book list')).dx));
+  });
+
+  testWidgets('half-open horizontal hinge uses tabletop video and controls',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    final hinge = DisplayFeature(
+      bounds: const Rect.fromLTWH(0, 440, 900, 20),
+      type: DisplayFeatureType.hinge,
+      state: DisplayFeatureState.postureHalfOpened,
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: MediaQuery(
+          data: MediaQueryData(
+            size: const Size(900, 900),
+            displayFeatures: [hinge],
+          ),
+          child: const SgFoldableLayout(
+            regularLayout: Text('Regular layout'),
+            bookListPane: Text('Book list'),
+            bookChatPane: Text('Book chat'),
+            tabletopVideoPane: Text('Tabletop video'),
+            tabletopControlsPane: Text('Tabletop controls'),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Regular layout'), findsNothing);
+    expect(tester.getCenter(find.text('Tabletop video')).dy,
+        lessThan(tester.getCenter(find.text('Tabletop controls')).dy));
+  });
+
+  testWidgets('camera cutouts are ignored by foldable posture detection',
+      (tester) async {
+    final cutout = DisplayFeature(
+      bounds: const Rect.fromLTWH(0, 0, 32, 900),
+      type: DisplayFeatureType.cutout,
+      state: DisplayFeatureState.unknown,
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: MediaQuery(
+          data: MediaQueryData(
+            size: const Size(390, 844),
+            displayFeatures: [cutout],
+          ),
+          child: const SgFoldableLayout(
+            regularLayout: Text('Regular layout'),
+            bookListPane: Text('Book list'),
+            bookChatPane: Text('Book chat'),
+            tabletopVideoPane: Text('Tabletop video'),
+            tabletopControlsPane: Text('Tabletop controls'),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Regular layout'), findsOneWidget);
+    expect(find.text('Book list'), findsNothing);
+  });
+
 }
 
 void _noopIndex(int _) {}
