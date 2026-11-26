@@ -180,7 +180,8 @@
     "mediumColumns": 8,
     "expandedColumns": 12,
     "listPaneWidth": 340,
-    "infoPaneWidth": 320
+    "infoPaneWidth": 320,
+    "minChatPaneWidth": 420
   },
   "components": {
     "buttonHeight": 48,
