@@ -12,7 +12,7 @@ extension SgBuildContext on BuildContext {
       Theme.of(this).extension<SargoshiColors>() ?? SargoshiColors.defaults;
 }
 
-// SG:CMP-01 / CMP-02 / CMP-03
+// SG:CMP-01 / SG:CMP-02 / SG:CMP-03
 enum SgButtonVariant { primary, tonal, ghost, vault, dangerOutline }
 
 class SgButton extends StatefulWidget {
