@@ -27,7 +27,8 @@ void main() {
   });
 
   test('semantic icon inventory contains the source registry and nav actions', () {
-    expect(SgIconName.values.length, 50);
+    expect(SgIconName.values.length, 51);
+    expect(SgIcon.resolve(SgIconName.visible).codePoint, greaterThan(0));
     expect(SgIcon.directional, containsAll({
       SgIconName.back,
       SgIconName.forward,
