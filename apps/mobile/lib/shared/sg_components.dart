@@ -1,8 +1,10 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
 import '../core/theme/generated/sargoshi_tokens.g.dart';
+import '../core/theme/performance_visuals.dart';
 import 'sg_icon.dart';
 
 extension SgBuildContext on BuildContext {
@@ -78,7 +80,8 @@ class _SgButtonState extends State<SgButton> {
           if (_focused != value) setState(() => _focused = value);
         },
         child: AnimatedContainer(
-          duration: SargoshiMotion.micro,
+          duration: Theme.of(context).extension<SargoshiPerformanceVisuals>()?.transitionDuration ??
+              SargoshiMotion.micro,
           decoration: BoxDecoration(
             color: enabled ? background : colors.dusk2,
             gradient: enabled && gradient != null
@@ -812,10 +815,20 @@ class SgCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.sgColors;
     final edge = alertColor ?? colors.ember;
-    return Material(
-      color: variant == SgCardVariant.surface ? colors.dusk : colors.dusk2,
+    final visuals = Theme.of(context).extension<SargoshiPerformanceVisuals>();
+    final glass = visuals?.enableGlass ?? false;
+    final background =
+        variant == SgCardVariant.surface ? colors.dusk : colors.dusk2;
+    final borderRadius = BorderRadius.circular(SargoshiShape.card);
+
+    final card = Material(
+      color: background.withValues(alpha: glass ? 0.78 : 1),
+      elevation: visuals?.enableSoftShadows == true
+          ? visuals!.surfaceElevation
+          : 0,
+      shadowColor: colors.ink.withValues(alpha: SargoshiOpacity.focusedOverlay),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(SargoshiShape.card),
+        borderRadius: borderRadius,
         side: BorderSide(
           color: variant == SgCardVariant.outlined
               ? colors.line
@@ -841,6 +854,18 @@ class SgCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+
+    if (!glass || visuals == null || visuals.blurSigma <= 0) return card;
+    return ClipRRect(
+      borderRadius: borderRadius,
+      child: BackdropFilter(
+        filter: ui.ImageFilter.blur(
+          sigmaX: visuals.blurSigma,
+          sigmaY: visuals.blurSigma,
+        ),
+        child: card,
       ),
     );
   }
