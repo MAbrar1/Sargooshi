@@ -35,19 +35,19 @@ copy_restore,Restore,"""Restore your chats"" · ""Chats first. Photos and videos
 copy_drill_failed,Drill failed,"""Restore test failed"" / ""We couldn't read part of your backup. Back up again to fix it."" / Back up again"
 copy_ai_settings,AI settings,"""AI features"" · ""Everything runs on this phone unless you choose Cloud."""
 copy_ai_unsupported,AI unsupported,"""Not available on this phone"" · ""This feature needs a newer device or a downloaded language pack."" · Learn more"
-copy_cloud_sheet,Cloud sheet,"""Send to cloud assistant?"" / ""This text will leave your phone: {preview}"" / Send · Cancel
+copy_cloud_sheet,Cloud sheet,"""Send to cloud assistant?"" / ""This text will leave your phone: {preview}"" / Send · Cancel"
 copy_check_in,Check-in,"""Safety check-in"" · ""Tell me when I'm home safe in {time}"" · I'm safe · Add time · ""If you don't confirm, {name} gets your last shared location."""
 copy_errors,Errors,"""No connection. Messages will send when you're back online."" · ""Something went wrong. Try again."" · ""This link has expired."" · ""Update Sargoshi to keep chatting."""
 copy_report,Report,"""Report"" · ""Choose what to include"" · ""We only receive the messages you select."""
-copy_account,Account,"""Delete your account?"" · ""Your chats and backups are removed from our servers. Copies on your own devices and in backups you control stay until you delete them."" / Delete account · Cancel
+copy_account,Account,"""Delete your account?"" · ""Your chats and backups are removed from our servers. Copies on your own devices and in backups you control stay until you delete them."" / Delete account · Cancel"
 copy_lockdown_mode,Lockdown mode,"""Lockdown mode"" · ""Strict privacy in one tap. For high-risk moments."" · Review what changes · Turn on · ""Nothing is deleted. You can turn it off any time."" · ""Lockdown reduces risk. It can’t protect a phone that is already compromised."""
-copy_remote_wipe,Remote wipe,"""Sign out and wipe this device?"" / ""Chats and keys on {device} will be removed the next time it connects. Until then your app lock protects it."" / Sign out and wipe · Cancel
-copy_device_link_scam,Device-link scam,"""Someone is asking to link a device"" / ""This request came right after a code request. If you didn’t start it, deny it."" / Deny · Review
+copy_remote_wipe,Remote wipe,"""Sign out and wipe this device?"" / ""Chats and keys on {device} will be removed the next time it connects. Until then your app lock protects it."" / Sign out and wipe · Cancel"
+copy_device_link_scam,Device-link scam,"""Someone is asking to link a device"" / ""This request came right after a code request. If you didn’t start it, deny it."" / Deny · Review"
 copy_focus_profiles,Focus profiles,"""Focus profiles"" · ""Quiet time that fits your day."" · ""Security alerts always come through."""
-copy_data_usage,Data usage,"""Data usage"" · ""{n} GB this month"" · ""Wi-Fi use is not counted."" · Set monthly cap
-copy_outage,Outage,"""Can’t reach Sargoshi"" / ""This looks like {cause}. Messages will send when you’re back online."" / See options
-copy_otp_guard,OTP guard,"""Send this?"" / ""This looks like a code or password. Never share codes with anyone who asks."" / Send anyway · Cancel
-copy_scam_pack,Scam pack,"""This looks like a {scam type}"" / ""Real {organisation} will never ask for your code or PIN in a chat."" / Why? · Report · Ignore
+copy_data_usage,Data usage,"""Data usage"" · ""{n} GB this month"" · ""Wi-Fi use is not counted."" · Set monthly cap"
+copy_outage,Outage,"""Can’t reach Sargoshi"" / ""This looks like {cause}. Messages will send when you’re back online."" / See options"
+copy_otp_guard,OTP guard,"""Send this?"" / ""This looks like a code or password. Never share codes with anyone who asks."" / Send anyway · Cancel"
+copy_scam_pack,Scam pack,"""This looks like a {scam type}"" / ""Real {organisation} will never ask for your code or PIN in a chat."" / Why? · Report · Ignore"
 copy_simple_mode,Simple mode,"""Good evening"" · ""Tap what you need."" · Messages · Calls · Photos · Help · ""Speak to send"""
 copy_sos,SOS,"""Hold to send SOS"" / ""{name} will get your location and a short audio clip."" / ""This depends on your signal and battery."""
 copy_restrict,Restrict,"""Restrict {name}?"" / ""Their messages go to Requests. They won’t be told."" / Restrict · Cancel"
