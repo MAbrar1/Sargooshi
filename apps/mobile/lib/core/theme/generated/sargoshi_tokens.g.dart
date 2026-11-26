@@ -193,6 +193,17 @@ abstract final class SargoshiLayout {
   static const double welcomeMarkIcon = 38;
   static const double welcomeContentMaxWidth = 560;
   static const double welcomePrincipleIcon = 22;
+  static const double compactMargin = 16;
+  static const double mediumMargin = 24;
+  static const double expandedMargin = 32;
+  static const double compactGutter = 8;
+  static const double mediumGutter = 16;
+  static const double expandedGutter = 16;
+  static const double compactColumns = 4;
+  static const double mediumColumns = 8;
+  static const double expandedColumns = 12;
+  static const double listPaneWidth = 340;
+  static const double infoPaneWidth = 320;
 }
 
 abstract final class SargoshiComponents {
