@@ -245,6 +245,15 @@ abstract final class SargoshiComponents {
   static const double chatBubbleMaxWidth = 560;
 }
 
+abstract final class SargoshiEffects {
+  static const double glassBlurSigma = 12;
+}
+
+abstract final class SargoshiElevation {
+  static const double card = 2;
+  static const double glass = 4;
+}
+
 abstract final class SargoshiType {
   static const TextStyle displayL = TextStyle(
     fontFamily: 'PlusJakartaSans',
