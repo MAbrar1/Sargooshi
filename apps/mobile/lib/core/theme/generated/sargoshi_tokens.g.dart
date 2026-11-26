@@ -192,8 +192,6 @@ abstract final class SargoshiIconSize {
 abstract final class SargoshiLayout {
   static const double welcomeMark = 76;
   static const double welcomeMarkIcon = 38;
-  static const double brandMarkSize = 40;
-  static const double welcomeMarkSvgSize = 58;
   static const double welcomeContentMaxWidth = 560;
   static const double welcomePrincipleIcon = 22;
   static const double compactMargin = 16;
@@ -208,6 +206,8 @@ abstract final class SargoshiLayout {
   static const double listPaneWidth = 340;
   static const double infoPaneWidth = 320;
   static const double minChatPaneWidth = 420;
+  static const double brandMarkSize = 40;
+  static const double welcomeMarkSvgSize = 58;
 }
 
 abstract final class SargoshiComponents {
