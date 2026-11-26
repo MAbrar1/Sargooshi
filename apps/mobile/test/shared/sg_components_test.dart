@@ -383,6 +383,122 @@ void main() {
     expect(find.byTooltip('Record voice'), findsOneWidget);
   });
 
+  testWidgets('SG:CMP-06 filter, assist, input and suggestion chips dispatch selection',
+      (tester) async {
+    final selected = <String, bool>{};
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Scaffold(
+          body: Wrap(
+            children: [
+              SgChip(
+                label: 'Filter chip',
+                variant: SgChipVariant.filter,
+                onSelected: (value) => selected['filter'] = value,
+              ),
+              SgChip(
+                label: 'Assist chip',
+                variant: SgChipVariant.assist,
+                onSelected: (value) => selected['assist'] = value,
+              ),
+              SgChip(
+                label: 'Input chip',
+                variant: SgChipVariant.input,
+                onSelected: (value) => selected['input'] = value,
+              ),
+              SgChip(
+                label: 'Suggestion chip',
+                variant: SgChipVariant.suggestion,
+                onSelected: (value) => selected['suggestion'] = value,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    for (final label in [
+      'Filter chip',
+      'Assist chip',
+      'Input chip',
+      'Suggestion chip',
+    ]) {
+      await tester.tap(find.text(label));
+      await tester.pump();
+    }
+
+    expect(selected, {
+      'filter': true,
+      'assist': true,
+      'input': true,
+      'suggestion': true,
+    });
+  });
+
+  testWidgets('SG:CMP-08 search, PIN, passphrase reveal and error states render',
+      (tester) async {
+    final passphraseController = TextEditingController();
+    addTearDown(passphraseController.dispose);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Scaffold(
+          body: ListView(
+            children: [
+              const SgTextField(
+                label: 'Search',
+                variant: SgTextFieldVariant.search,
+                hint: 'Search privately',
+              ),
+              const SgTextField(
+                label: 'PIN',
+                variant: SgTextFieldVariant.pin,
+                showVisibilityToggle: false,
+                maxLength: 6,
+              ),
+              SgTextField(
+                label: 'Passphrase',
+                controller: passphraseController,
+                variant: SgTextFieldVariant.passphrase,
+                revealTooltip: 'Reveal passphrase',
+                concealTooltip: 'Conceal passphrase',
+              ),
+              const SgTextField(
+                label: 'Username',
+                error: 'That username is unavailable.',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    final fields = tester.widgetList<TextField>(find.byType(TextField)).toList();
+    expect(fields, hasLength(4));
+    expect(fields[0].keyboardType, TextInputType.text);
+    expect(fields[1].keyboardType, TextInputType.number);
+    expect(fields[1].maxLength, 6);
+    expect(fields[2].obscureText, isTrue);
+    expect(find.text('That username is unavailable.'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Reveal passphrase'));
+    await tester.pump();
+    expect(tester.widget<TextField>(find.byType(TextField).at(2)).obscureText,
+        isFalse);
+    await tester.tap(find.byTooltip('Conceal passphrase'));
+    await tester.pump();
+    expect(tester.widget<TextField>(find.byType(TextField).at(2)).obscureText,
+        isTrue);
+  });
+
   mainComponentRegistryCoverage();
 }
 
