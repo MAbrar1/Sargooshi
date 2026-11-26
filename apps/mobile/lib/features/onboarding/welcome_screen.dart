@@ -9,7 +9,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
+    final localizations = AppLocalizations.of(context);
     final colors = Theme.of(context).extension<SargoshiColors>()!;
 
     return Scaffold(
