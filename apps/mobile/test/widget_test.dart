@@ -36,4 +36,20 @@ void main() {
       TextDirection.rtl,
     );
   });
+  testWidgets('debug-only component gallery is reachable from welcome screen',
+      (tester) async {
+    tester.binding.platformDispatcher.localeTestValue = const Locale('en');
+    addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
+
+    await tester.pumpWidget(const ProviderScope(child: SargoshiApp()));
+    expect(find.byTooltip('Open debug component gallery'), findsOneWidget);
+
+    await tester.tap(find.byTooltip('Open debug component gallery'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Design system gallery'), findsOneWidget);
+    expect(find.text('Debug gallery only — no production operations are wired here.'),
+        findsOneWidget);
+  });
+
 }
