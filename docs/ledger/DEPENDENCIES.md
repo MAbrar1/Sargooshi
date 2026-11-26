@@ -1,17 +1,18 @@
 # Dependencies and toolchain baseline
 
-## Owner Windows report (2026-11-26)
+## Owner Windows toolchain report (2026-11-26)
 
 | Tool | Reported version / state |
 |---|---|
 | Flutter | 3.47.7 stable |
 | Dart | 3.13.5 |
-| Java | OpenJDK 25.0.4 (Android Studio JBR; PowerShell PATH was fixed for this session) |
-| Android SDK | Root `C:\\Android\\Sdk`; SDK Platform 37 and Build-Tools 37 reported earlier |
-| Android emulator | Android 17 / API 37, x86_64; AVDs `Pixel_8`, `Pixel_Play_API36` |
-| Rust | 1.96.0 |
-| Cargo | 1.96.0 |
-| rustup | 1.29.0 |
+| Java | OpenJDK 25.0.4 (Android Studio JBR; PATH fixed for the PowerShell session) |
+| Android SDK | Root `C:\Android\Sdk`; Platform 36 confirmed |
+| Android Build-Tools | 35.0.0, 36.0.0, 37.0.0 |
+| Android NDK | 28.2.13676358 and 30.0.16248370 |
+| Emulator | AVDs `Pixel_8`, `Pixel_Play_API36`; Android 17/API 37 x86_64 connected |
+| Rust / Cargo | 1.96.0 |
+| Rust targets | `aarch64-linux-android`, `armv7-linux-androideabi`, `x86_64-linux-android`, `x86_64-pc-windows-msvc` |
 | Node.js | 22.22.3 |
 | npm | 10.9.8 |
 | Git | 2.54.0.windows.1 |
@@ -19,32 +20,26 @@
 | Docker Compose | 5.6.1 |
 | ADB | 37.0.1 |
 
-## Reported Rust targets
+`flutter doctor -v` timed out after 4m30s in its Android toolchain check. Do not record doctor as clean. The owner did build, install and launch the debug APK successfully.
 
-- `aarch64-linux-android`
-- `x86_64-linux-android`
-- `x86_64-pc-windows-msvc`
+## Flutter application dependencies
 
-`armv7-linux-androideabi` is not present in the supplied installed-target output and remains outstanding.
-
-## Initial Flutter app dependencies (resolved locally by owner)
-
+Initial locally resolved dependencies:
 - `flutter_riverpod 2.6.1`
 - `go_router 14.8.1`
 - `flutter_lints 5.0.0`
 
-These are initial compatible constraints, not a completed dependency security/licence/maintenance review. Record transitive package versions from the owner's lockfile after the lockfile is committed.
+P01 additions selected after checking current package metadata:
+- `dynamic_color ^1.9.0` — Material-published dynamic wallpaper/accent colour integration; Apache-2.0. It supports Android S+ wallpaper-derived schemes.
+- `phosphor_icons ^3.0.1` — maintained compatibility fork of the Phosphor Flutter library for Flutter 3.43+ / Dart 3.x final `IconData`. This is used instead of the old upstream `phosphor_flutter 2.1.0`, which pub.dev lists as published two years ago. The fork is MIT-licensed. See DECISIONS.md for the compatibility rationale.
 
-## Verification evidence
-- Owner reports `flutter analyze` passed with no issues.
-- Owner reports `flutter test` passed (one widget test).
-- Owner reports `flutter run` built and launched the debug APK on Android 17/API 37.
-- `flutter doctor -v` previously timed out while checking the Android toolchain. The debug build succeeded, but the doctor timeout remains documented rather than hidden.
+Run `flutter pub get` after pulling the dependency change and commit the resulting `pubspec.lock`. Transitive package versions and hashes should be recorded from that lockfile.
 
-## Outstanding P00 verification
-- Confirm installed Android SDK Platform 36.
-- Confirm Android Build-Tools and an NDK version/path.
-- Install and verify `armv7-linux-androideabi`.
-- Run the full P00 gate from the complete restored project pack on the owner's Windows machine.
+## Owner-run verification
+- `flutter analyze`: PASS — no issues found.
+- `flutter test`: PASS — one widget test passed.
+- `flutter run`: PASS — debug APK built, installed and launched on Android 17/API 37.
+- No release build, Rust build or independent security review has been run.
 
-No release or security certification is implied by a successful debug build.
+## P00 close-out blocker
+The restored source archive's full ledger, spec-data, prompt pack and Node gate tools must be synchronized into the owner clone and the Windows P00 full gate executed. P00 remains open until then.
