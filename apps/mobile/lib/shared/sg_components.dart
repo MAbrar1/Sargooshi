@@ -59,9 +59,16 @@ class _SgButtonState extends State<SgButton> {
         Colors.transparent,
       SgButtonVariant.primary || SgButtonVariant.vault => null,
     };
-    final foreground = widget.variant == SgButtonVariant.dangerOutline
+    final baseForeground = widget.variant == SgButtonVariant.dangerOutline
         ? colors.coral
         : colors.moon;
+    final foreground = baseForeground.withValues(
+      alpha: widget.isLoading
+          ? 1
+          : enabled
+              ? 1
+              : SargoshiOpacity.disabledContent,
+    );
     final borderColor = _focused
         ? colors.glow
         : widget.variant == SgButtonVariant.dangerOutline
@@ -896,7 +903,8 @@ class SgChatBubble extends StatelessWidget {
     final background = switch (variant) {
       SgChatBubbleVariant.incoming => colors.dusk2,
       SgChatBubbleVariant.outgoing => colors.ember,
-      SgChatBubbleVariant.whisper => colors.vaultIndigo,
+      SgChatBubbleVariant.whisper =>
+        colors.vaultIndigo.withValues(alpha: 0.78),
       SgChatBubbleVariant.system => colors.ink,
     };
     final foreground = variant == SgChatBubbleVariant.outgoing
@@ -1179,7 +1187,7 @@ class _SgComposerState extends State<SgComposer> {
                 controller: _controller,
                 enabled: widget.enabled,
                 minLines: 1,
-                maxLines: 5,
+                maxLines: 6,
                 textInputAction: TextInputAction.newline,
                 decoration: InputDecoration(
                   hintText: widget.hint,
