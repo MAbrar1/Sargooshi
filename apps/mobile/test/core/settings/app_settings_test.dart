@@ -35,6 +35,22 @@ void main() {
     expect(AppLanguage.system.locale, isNull);
   });
 
+  test('performance tier selection defaults to Auto and persists an override',
+      () async {
+    final store = AppSettingsStore(SharedPreferencesAsync());
+
+    expect(
+      await store.readPerformanceTierChoice(),
+      PerformanceTierChoice.auto,
+    );
+
+    await store.writePerformanceTierChoice(PerformanceTierChoice.t3);
+    expect(
+      await store.readPerformanceTierChoice(),
+      PerformanceTierChoice.t3,
+    );
+  });
+
   test('invalid persisted enum value is safely restored to its default',
       () async {
     final preferences = SharedPreferencesAsync();
