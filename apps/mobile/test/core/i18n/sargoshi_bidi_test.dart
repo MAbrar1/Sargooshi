@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:sargoshi/core/i18n/sargoshi_bidi.dart';
 
+// SG:LOC-01
 void main() {
   test('direction follows the first strong character, not the first digit', () {
     expect(
