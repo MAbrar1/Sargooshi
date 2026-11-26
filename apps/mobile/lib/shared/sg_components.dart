@@ -446,7 +446,9 @@ class _SgTextFieldState extends State<SgTextField> {
                 ? IconButton(
                     tooltip: _obscure ? 'Show value' : 'Hide value',
                     onPressed: () => setState(() => _obscure = !_obscure),
-                    icon: SgIcon(SgIconName.hidden),
+                    icon: SgIcon(
+                      _obscure ? SgIconName.hidden : SgIconName.visible,
+                    ),
                   )
                 : null,
       ),
@@ -837,11 +839,15 @@ class SgChatBubble extends StatelessWidget {
     final isSystem = variant == SgChatBubbleVariant.system;
     final background = switch (variant) {
       SgChatBubbleVariant.incoming => colors.dusk2,
-      SgChatBubbleVariant.outgoing => colors.dusk3,
+      SgChatBubbleVariant.outgoing => colors.ember,
       SgChatBubbleVariant.whisper => colors.vaultIndigo,
       SgChatBubbleVariant.system => colors.ink,
     };
-    final foreground = isSystem ? colors.mist : colors.moon;
+    final foreground = variant == SgChatBubbleVariant.outgoing
+        ? colors.paper
+        : isSystem
+            ? colors.mist
+            : colors.moon;
 
     return Align(
       alignment: isSystem
@@ -860,7 +866,10 @@ class SgChatBubble extends StatelessWidget {
             vertical: SargoshiSpace.s12,
           ),
           decoration: BoxDecoration(
-            color: background,
+            color: variant == SgChatBubbleVariant.outgoing ? null : background,
+            gradient: variant == SgChatBubbleVariant.outgoing
+                ? const LinearGradient(colors: SargoshiColors.brandGradient)
+                : null,
             borderRadius: BorderRadius.circular(SargoshiShape.bubble),
             border: variant == SgChatBubbleVariant.whisper
                 ? Border.all(color: colors.vaultLilac)
