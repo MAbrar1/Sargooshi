@@ -167,6 +167,20 @@ abstract final class SargoshiMotion {
   static const double springSheetDamping = 0.8;
 }
 
+abstract final class SargoshiOpacity {
+  static const double pressedOverlay = 0.08;
+  static const double focusedOverlay = 0.12;
+  static const double disabledContent = 0.38;
+  static const double subtleOutline = 0.24;
+  static const double cardOutline = 0.62;
+}
+
+abstract final class SargoshiStroke {
+  static const double hairline = 1;
+  static const double ghost = 1.5;
+  static const double focus = 2;
+}
+
 abstract final class SargoshiType {
   static const TextStyle displayL = TextStyle(
     fontFamily: 'PlusJakartaSans',
