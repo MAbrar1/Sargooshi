@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/theme/generated/sargoshi_tokens.g.dart';
 import '../../l10n/generated/app_localizations.dart';
@@ -28,6 +30,15 @@ class WelcomeScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        if (kDebugMode)
+                          Align(
+                            alignment: AlignmentDirectional.centerEnd,
+                            child: IconButton(
+                              tooltip: 'Open debug component gallery',
+                              onPressed: () => context.go('/debug/gallery'),
+                              icon: const Icon(Icons.bug_report_outlined),
+                            ),
+                          ),
                         Container(
                           width: SargoshiLayout.welcomeMark,
                           height: SargoshiLayout.welcomeMark,
