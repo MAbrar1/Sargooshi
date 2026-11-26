@@ -205,6 +205,7 @@ abstract final class SargoshiLayout {
   static const double expandedColumns = 12;
   static const double listPaneWidth = 340;
   static const double infoPaneWidth = 320;
+  static const double minChatPaneWidth = 420;
 }
 
 abstract final class SargoshiComponents {
