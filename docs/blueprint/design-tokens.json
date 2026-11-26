@@ -62,7 +62,8 @@
     "micro": 120,
     "standard": 200,
     "screen": 320,
-    "springSheet": "stiffness 400, damping 0.8"
+    "springSheet": "stiffness 400, damping 0.8",
+    "undoSnackbar": 5000
   },
   "type": {
     "displayL": [
@@ -168,5 +169,39 @@
     "welcomeMarkIcon": 38,
     "welcomeContentMaxWidth": 560,
     "welcomePrincipleIcon": 22
+  },
+  "components": {
+    "buttonHeight": 48,
+    "chipHeight": 32,
+    "segmentedHeight": 36,
+    "textFieldHeight": 56,
+    "searchHeight": 44,
+    "toggleWidth": 46,
+    "toggleHeight": 26,
+    "switchThumb": 20,
+    "sliderTrack": 4,
+    "sliderThumb": 20,
+    "checkboxSize": 24,
+    "badgeHeight": 22,
+    "listTileOneLine": 56,
+    "listTileTwoLine": 72,
+    "listTileThreeLine": 88,
+    "ruleIcon": 15,
+    "reactionBarHeight": 44,
+    "composerMinHeight": 56,
+    "topBarHeight": 64,
+    "largeTopBarHeight": 112,
+    "bottomNavigationHeight": 80,
+    "navigationRailWidth": 72,
+    "fabSize": 56,
+    "dialogMaxWidth": 360,
+    "alertEdge": 5,
+    "pinKeySize": 52,
+    "pinKeyGap": 12,
+    "statRingSize": 88,
+    "statRingStroke": 10,
+    "progressMinThickness": 4,
+    "progressMaxThickness": 10,
+    "emptyIconSize": 80
   }
 }
