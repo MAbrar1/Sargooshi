@@ -20,6 +20,7 @@ void main() {
     expect(await store.readThemePreset(), SargoshiThemePreset.amoled);
   });
 
+  // SG:STG-06
   test('Lite UI setting defaults to Auto and persists each explicit choice',
       () async {
     final store = AppSettingsStore(SharedPreferencesAsync());
