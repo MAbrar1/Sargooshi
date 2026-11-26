@@ -53,10 +53,8 @@
     "fab": 18
   },
   "elevation": {
-    "s0": "ink",
-    "s1": "dusk",
-    "s2": "dusk2",
-    "s3": "dusk3"
+    "card": 2,
+    "glass": 4
   },
   "motion": {
     "micro": 120,
@@ -218,5 +216,8 @@
     "emptyIconSize": 80,
     "avatarDefaultSize": 48,
     "chatBubbleMaxWidth": 560
+  },
+  "effects": {
+    "glassBlurSigma": 12
   }
 }
