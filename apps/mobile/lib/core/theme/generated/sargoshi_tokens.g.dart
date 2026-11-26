@@ -163,6 +163,7 @@ abstract final class SargoshiMotion {
   static const Duration micro = Duration(milliseconds: 120);
   static const Duration standard = Duration(milliseconds: 200);
   static const Duration screen = Duration(milliseconds: 320);
+  static const Duration tier1Screen = Duration(milliseconds: 150);
   static const Duration undoSnackbar = Duration(milliseconds: 5000);
   static const double springSheetStiffness = 400;
   static const double springSheetDamping = 0.8;
