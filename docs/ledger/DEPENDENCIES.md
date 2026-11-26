@@ -30,6 +30,7 @@
 | `go_router` | `^14.8.1` | Declarative route configuration; initial shell compiled on owner's toolchain |
 | `dynamic_color` | `^2.1.0` | Material team package for platform wallpaper/accent-derived color schemes; Android S+ |
 | `phosphor_icons` | `^3.0.1` | Phosphor icon family and six weights; compatibility fork for Flutter 3.43+ where `IconData` became final |
+| `flutter_svg` | `^2.5.1` | Offline rendering of bundled, first-party Sargoshi SVG brand marks; no runtime network loading |
 | `shared_preferences` | `^2.5.6` | Asynchronous non-secret settings (theme/language/performance choices); never use for credentials, message contents, or cryptographic keys |
 | `intl` | `any` | Version constraint supplied by the Flutter localization SDK; keep compatible with `flutter_localizations` |
 | `flutter_lints` | `^5.0.0` | Static analysis baseline |
