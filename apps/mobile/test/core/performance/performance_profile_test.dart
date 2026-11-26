@@ -116,6 +116,33 @@ void main() {
     });
   });
 
+  test('performance profile exports matching runtime theme visuals', () {
+    final lite = PerformanceProfile.resolve(
+      capabilities: capabilities(totalMemoryMb: 8192, systemAi: true),
+      liteUiMode: LiteUiMode.on,
+    );
+    final standard = PerformanceProfile.resolve(
+      capabilities: capabilities(totalMemoryMb: 4096),
+    );
+    final premium = PerformanceProfile.resolve(
+      capabilities: capabilities(totalMemoryMb: 8192, systemAi: true),
+    );
+
+    expect(lite.themeVisuals.enableGlass, isFalse);
+    expect(lite.themeVisuals.enableSoftShadows, isFalse);
+    expect(lite.themeVisuals.surfaceElevation, 0);
+    expect(lite.themeVisuals.transitionDuration.inMilliseconds, 150);
+
+    expect(standard.themeVisuals.enableGlass, isFalse);
+    expect(standard.themeVisuals.enableSoftShadows, isTrue);
+    expect(standard.themeVisuals.surfaceElevation, 2);
+
+    expect(premium.themeVisuals.enableGlass, isTrue);
+    expect(premium.themeVisuals.enableSharedElementTransitions, isTrue);
+    expect(premium.themeVisuals.blurSigma, 12);
+    expect(premium.themeVisuals.surfaceElevation, 4);
+  });
+
   test('native profile parser rejects missing or wrongly typed values', () {
     expect(
       () => DeviceCapabilities.fromPlatformMap(const {}),
