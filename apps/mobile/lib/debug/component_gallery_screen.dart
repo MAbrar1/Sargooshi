@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/performance/performance_profile.dart';
+import '../core/settings/app_settings.dart';
 import '../core/theme/app_theme.dart';
+import '../core/theme/theme_controller.dart';
 import '../core/theme/generated/sargoshi_tokens.g.dart';
 import '../shared/sg_components.dart';
 import '../shared/sg_icon.dart';
@@ -98,6 +102,9 @@ class _DebugComponentGalleryScreenState
               ],
             ),
           ),
+          _section('Runtime preferences', const [
+            _DebugPreferenceControls(),
+          ]),
           _section('Buttons and actions', [
             Wrap(
               spacing: SargoshiSpace.s8,
@@ -413,3 +420,135 @@ class _DebugComponentGalleryScreenState
 void _noop() {}
 void _noopBool(bool value) {}
 void _noopNullableString(String? value) {}
+
+
+class _DebugPreferenceControls extends ConsumerWidget {
+  const _DebugPreferenceControls();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final preset = ref.watch(themePresetProvider).valueOrNull ??
+        SargoshiThemePreset.dark;
+    final language =
+        ref.watch(appLanguageProvider).valueOrNull ?? AppLanguage.system;
+    final liteUi =
+        ref.watch(liteUiModeProvider).valueOrNull ?? LiteUiMode.auto;
+    final tier = ref.watch(performanceTierChoiceProvider).valueOrNull ??
+        PerformanceTierChoice.auto;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _preferenceDropdown<SargoshiThemePreset>(
+          context,
+          title: 'Appearance',
+          value: preset,
+          values: SargoshiThemePreset.values,
+          label: _themeLabel,
+          onChanged: (value) {
+            if (value != null) {
+              ref.read(themePresetProvider.notifier).setPreset(value);
+            }
+          },
+        ),
+        _preferenceDropdown<AppLanguage>(
+          context,
+          title: 'App language',
+          value: language,
+          values: AppLanguage.values,
+          label: _languageLabel,
+          onChanged: (value) {
+            if (value != null) {
+              ref.read(appLanguageProvider.notifier).setLanguage(value);
+            }
+          },
+        ),
+        _preferenceDropdown<LiteUiMode>(
+          context,
+          title: 'Lite UI',
+          value: liteUi,
+          values: LiteUiMode.values,
+          label: _liteUiLabel,
+          onChanged: (value) {
+            if (value != null) {
+              ref.read(liteUiModeProvider.notifier).setMode(value);
+            }
+          },
+        ),
+        _preferenceDropdown<PerformanceTierChoice>(
+          context,
+          title: 'Performance tier',
+          value: tier,
+          values: PerformanceTierChoice.values,
+          label: _tierLabel,
+          onChanged: (value) {
+            if (value != null) {
+              ref.read(performanceTierChoiceProvider.notifier).setChoice(value);
+            }
+          },
+        ),
+        const SizedBox(height: SargoshiSpace.s8),
+        Text(
+          'Preferences are stored locally. Device capability and visual tier '
+          'are kept separate.',
+          style: SargoshiType.caption,
+        ),
+      ],
+    );
+  }
+
+  Widget _preferenceDropdown<T>(
+    BuildContext context, {
+    required String title,
+    required T value,
+    required List<T> values,
+    required String Function(T value) label,
+    required ValueChanged<T?> onChanged,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: SargoshiSpace.s16),
+      child: DropdownButtonFormField<T>(
+        initialValue: value,
+        decoration: InputDecoration(labelText: title),
+        items: values
+            .map(
+              (item) => DropdownMenuItem<T>(
+                value: item,
+                child: Text(label(item)),
+              ),
+            )
+            .toList(growable: false),
+        onChanged: onChanged,
+      ),
+    );
+  }
+
+  String _themeLabel(SargoshiThemePreset value) => switch (value) {
+        SargoshiThemePreset.system => 'System',
+        SargoshiThemePreset.dark => 'Dark',
+        SargoshiThemePreset.light => 'Light / Parchment',
+        SargoshiThemePreset.amoled => 'AMOLED',
+        SargoshiThemePreset.midnightSky => 'Midnight Sky',
+        SargoshiThemePreset.highContrast => 'High contrast',
+        SargoshiThemePreset.dynamic => 'Dynamic',
+      };
+
+  String _languageLabel(AppLanguage value) => switch (value) {
+        AppLanguage.system => 'System language',
+        AppLanguage.english => 'English',
+        AppLanguage.urdu => 'اردو',
+      };
+
+  String _liteUiLabel(LiteUiMode value) => switch (value) {
+        LiteUiMode.auto => 'Auto',
+        LiteUiMode.on => 'On',
+        LiteUiMode.off => 'Off',
+      };
+
+  String _tierLabel(PerformanceTierChoice value) => switch (value) {
+        PerformanceTierChoice.auto => 'Automatic',
+        PerformanceTierChoice.t1 => 'T1 — Lite',
+        PerformanceTierChoice.t2 => 'T2 — Standard',
+        PerformanceTierChoice.t3 => 'T3 — Premium visuals',
+      };
+}
