@@ -4,6 +4,7 @@ import '../theme/generated/sargoshi_tokens.g.dart';
 import '../../shared/sg_components.dart';
 import 'window_size_class.dart';
 
+// SG:NET-01
 class SgAdaptiveScaffold extends StatelessWidget {
   const SgAdaptiveScaffold({
     required this.destinations,
