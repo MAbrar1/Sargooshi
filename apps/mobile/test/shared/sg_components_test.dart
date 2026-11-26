@@ -131,16 +131,6 @@ Widget buildGalleryHarness({
                 onReaction: _noopString,
               ),
               const SgComposer(onSend: _noopString, sendTooltip: 'Send'),
-              const SgNavigationRail(
-                destinations: [
-                  SgNavigationDestination(label: 'Chats', icon: SgIconName.chats),
-                  SgNavigationDestination(label: 'Vault', icon: SgIconName.vault),
-                  SgNavigationDestination(label: 'Calls', icon: SgIconName.calls),
-                  SgNavigationDestination(label: 'You', icon: SgIconName.you),
-                ],
-                selectedIndex: 0,
-                onDestinationSelected: _noopInt,
-              ),
               const SgBottomSheet(child: Text('Sheet content')),
               const SgBanner(
                 title: 'Connection paused',
