@@ -46,8 +46,8 @@ function render(tokens) {
   lines.push('}', '', 'abstract final class SargoshiMotion {');
   Object.entries(tokens.motion).filter(([, value]) => Number.isInteger(value)).forEach(([name, value]) => lines.push('  static const Duration ' + camel(name) + ' = Duration(milliseconds: ' + value + ');'));
   if (typeof tokens.motion.springSheet === 'string') {
-    const stiffness = tokens.motion.springSheet.match(/stiffness\\s+([0-9.]+)/i);
-    const damping = tokens.motion.springSheet.match(/damping\\s+([0-9.]+)/i);
+    const stiffness = tokens.motion.springSheet.match(/stiffness\s+([0-9.]+)/i);
+    const damping = tokens.motion.springSheet.match(/damping\s+([0-9.]+)/i);
     if (!stiffness || !damping) throw new Error('Invalid springSheet token format');
     lines.push('  static const double springSheetStiffness = ' + stiffness[1] + ';');
     lines.push('  static const double springSheetDamping = ' + damping[1] + ';');
