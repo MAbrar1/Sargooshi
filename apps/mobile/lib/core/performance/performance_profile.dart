@@ -162,9 +162,9 @@ class PerformanceProfile {
     LiteUiMode liteUiMode = LiteUiMode.auto,
     PerformanceTierChoice override = PerformanceTierChoice.auto,
   }) {
-    final detected = detectTier(capabilities);
-    final deviceTier = switch (override) {
-      PerformanceTierChoice.auto => detected,
+    final deviceTier = detectTier(capabilities);
+    final requestedTier = switch (override) {
+      PerformanceTierChoice.auto => deviceTier,
       PerformanceTierChoice.t1 => PerformanceTier.t1,
       PerformanceTierChoice.t2 => PerformanceTier.t2,
       PerformanceTierChoice.t3 => PerformanceTier.t3,
@@ -172,11 +172,11 @@ class PerformanceProfile {
 
     final visualTier = switch (liteUiMode) {
       LiteUiMode.on => PerformanceTier.t1,
-      LiteUiMode.off => deviceTier == PerformanceTier.t1 &&
+      LiteUiMode.off => requestedTier == PerformanceTier.t1 &&
               override == PerformanceTierChoice.auto
           ? PerformanceTier.t2
-          : deviceTier,
-      LiteUiMode.auto => deviceTier,
+          : requestedTier,
+      LiteUiMode.auto => requestedTier,
     };
 
     return PerformanceProfile(
