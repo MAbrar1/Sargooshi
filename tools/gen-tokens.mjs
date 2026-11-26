@@ -52,6 +52,10 @@ function render(tokens) {
     lines.push('  static const double springSheetStiffness = ' + stiffness[1] + ';');
     lines.push('  static const double springSheetDamping = ' + damping[1] + ';');
   }
+  lines.push('}', '', 'abstract final class SargoshiOpacity {');
+  Object.entries(tokens.opacity).forEach(([name, value]) => lines.push('  static const double ' + camel(name) + ' = ' + value + ';'));
+  lines.push('}', '', 'abstract final class SargoshiStroke {');
+  Object.entries(tokens.stroke).forEach(([name, value]) => lines.push('  static const double ' + camel(name) + ' = ' + value + ';'));
   lines.push('}', '', 'abstract final class SargoshiType {');
   Object.entries(tokens.type).forEach(([name, spec]) => {
     const [family, weight, size, lineHeight] = spec;
