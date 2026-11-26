@@ -168,7 +168,18 @@
     "welcomeMark": 76,
     "welcomeMarkIcon": 38,
     "welcomeContentMaxWidth": 560,
-    "welcomePrincipleIcon": 22
+    "welcomePrincipleIcon": 22,
+    "compactMargin": 16,
+    "mediumMargin": 24,
+    "expandedMargin": 32,
+    "compactGutter": 8,
+    "mediumGutter": 16,
+    "expandedGutter": 16,
+    "compactColumns": 4,
+    "mediumColumns": 8,
+    "expandedColumns": 12,
+    "listPaneWidth": 340,
+    "infoPaneWidth": 320
   },
   "components": {
     "buttonHeight": 48,
