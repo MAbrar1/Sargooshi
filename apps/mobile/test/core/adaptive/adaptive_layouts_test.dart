@@ -26,6 +26,7 @@ Widget _harness({required double width, required Widget child}) {
   );
 }
 
+// SG:NET-01
 void main() {
   testWidgets('adaptive scaffold uses bottom navigation on compact widths',
       (tester) async {
