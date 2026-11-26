@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../logging/redacting_logger.dart';
 import '../settings/app_settings.dart';
 import '../theme/generated/sargoshi_tokens.g.dart';
 
@@ -81,8 +82,10 @@ abstract final class DeviceProfileChannel {
       }
       return DeviceCapabilities.fromPlatformMap(values);
     } on MissingPluginException {
+      redactingLogger.warning(SargoshiLogEvent.nativeProfileUnavailable);
       return DeviceCapabilities.conservativeFallback;
     } on PlatformException {
+      redactingLogger.warning(SargoshiLogEvent.nativeProfileUnavailable);
       return const DeviceCapabilities(
         lowRamDevice: true,
         memoryClassMb: 0,
@@ -91,6 +94,7 @@ abstract final class DeviceProfileChannel {
         source: DeviceProfileSource.platformFailure,
       );
     } on FormatException {
+      redactingLogger.warning(SargoshiLogEvent.nativeProfileUnavailable);
       return const DeviceCapabilities(
         lowRamDevice: true,
         memoryClassMb: 0,
