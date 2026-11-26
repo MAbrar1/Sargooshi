@@ -12,7 +12,7 @@ extension SgBuildContext on BuildContext {
       Theme.of(this).extension<SargoshiColors>() ?? SargoshiColors.defaults;
 }
 
-// CMP-01 / CMP-02 / CMP-03
+// SG:CMP-01 / CMP-02 / CMP-03
 enum SgButtonVariant { primary, tonal, ghost, vault, dangerOutline }
 
 class SgButton extends StatefulWidget {
@@ -151,7 +151,7 @@ class _SgButtonState extends State<SgButton> {
   }
 }
 
-// CMP-04
+// SG:CMP-04
 class SgIconButton extends StatelessWidget {
   const SgIconButton({
     required this.icon,
@@ -195,7 +195,7 @@ class SgIconButton extends StatelessWidget {
   }
 }
 
-// CMP-05
+// SG:CMP-05
 class SgFab extends StatelessWidget {
   const SgFab({
     required this.icon,
@@ -244,7 +244,7 @@ class SgFab extends StatelessWidget {
   }
 }
 
-// CMP-06
+// SG:CMP-06
 enum SgChipVariant { filter, assist, input, suggestion }
 
 class SgChip extends StatelessWidget {
@@ -314,7 +314,7 @@ class SgChip extends StatelessWidget {
   }
 }
 
-// CMP-07
+// SG:CMP-07
 class SgSegmentedControl<T> extends StatelessWidget {
   const SgSegmentedControl({
     required this.values,
@@ -356,7 +356,7 @@ class SgSegmentedControl<T> extends StatelessWidget {
   }
 }
 
-// CMP-08
+// SG:CMP-08
 enum SgTextFieldVariant { filled, search, pin, passphrase }
 
 class SgTextField extends StatefulWidget {
@@ -467,7 +467,7 @@ class _SgTextFieldState extends State<SgTextField> {
   }
 }
 
-// CMP-09
+// SG:CMP-09
 class SgToggle extends StatelessWidget {
   const SgToggle({
     required this.title,
@@ -507,7 +507,7 @@ class SgToggle extends StatelessWidget {
   }
 }
 
-// CMP-10
+// SG:CMP-10
 class SgSlider extends StatelessWidget {
   const SgSlider({
     required this.value,
@@ -550,7 +550,7 @@ class SgSlider extends StatelessWidget {
   }
 }
 
-// CMP-11
+// SG:CMP-11
 class SgCheckbox extends StatelessWidget {
   const SgCheckbox({
     required this.value,
@@ -611,7 +611,7 @@ class SgRadio<T> extends StatelessWidget {
   }
 }
 
-// CMP-12
+// SG:CMP-12
 enum SgAvatarShape { circle, roundedSquare }
 
 class SgAvatar extends StatelessWidget {
@@ -685,7 +685,7 @@ class SgAvatar extends StatelessWidget {
   }
 }
 
-// CMP-13
+// SG:CMP-13
 enum SgBadgeVariant { count, dot }
 
 class SgBadge extends StatelessWidget {
@@ -744,7 +744,7 @@ class SgBadge extends StatelessWidget {
   }
 }
 
-// CMP-14
+// SG:CMP-14
 class SgListTile extends StatelessWidget {
   const SgListTile({
     required this.title,
@@ -791,7 +791,7 @@ class SgListTile extends StatelessWidget {
   }
 }
 
-// CMP-15
+// SG:CMP-15
 enum SgCardVariant { surface, outlined, alert }
 
 class SgCard extends StatelessWidget {
@@ -870,7 +870,7 @@ class SgCard extends StatelessWidget {
   }
 }
 
-// CMP-16
+// SG:CMP-16
 enum SgChatBubbleVariant { incoming, outgoing, whisper, system }
 
 class SgChatBubble extends StatelessWidget {
@@ -976,7 +976,7 @@ class SgChatBubble extends StatelessWidget {
   }
 }
 
-// CMP-17
+// SG:CMP-17
 class SgRuleBadge extends StatelessWidget {
   const SgRuleBadge({
     required this.label,
@@ -1019,7 +1019,7 @@ class SgRuleBadge extends StatelessWidget {
   }
 }
 
-// CMP-18
+// SG:CMP-18
 class SgReaction {
   const SgReaction({
     required this.emoji,
@@ -1083,7 +1083,7 @@ class SgReactionBar extends StatelessWidget {
   }
 }
 
-// CMP-19
+// SG:CMP-19
 class SgComposer extends StatefulWidget {
   const SgComposer({
     required this.onSend,
@@ -1214,7 +1214,7 @@ class _SgComposerState extends State<SgComposer> {
   }
 }
 
-// CMP-20
+// SG:CMP-20
 class SgTopAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SgTopAppBar({
     required this.title,
@@ -1248,7 +1248,7 @@ class SgTopAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 }
 
-// CMP-21
+// SG:CMP-21
 class SgNavigationDestination {
   const SgNavigationDestination({
     required this.label,
@@ -1297,7 +1297,7 @@ class SgBottomNavigation extends StatelessWidget {
   }
 }
 
-// CMP-22
+// SG:CMP-22
 class SgNavigationRail extends StatelessWidget {
   const SgNavigationRail({
     required this.destinations,
@@ -1338,7 +1338,7 @@ class SgNavigationRail extends StatelessWidget {
   }
 }
 
-// CMP-23
+// SG:CMP-23
 class SgBottomSheet extends StatelessWidget {
   const SgBottomSheet({
     required this.child,
@@ -1411,7 +1411,7 @@ class SgBottomSheet extends StatelessWidget {
   }
 }
 
-// CMP-24
+// SG:CMP-24
 abstract final class SgDialog {
   static Future<bool?> confirmDestructive({
     required BuildContext context,
@@ -1452,7 +1452,7 @@ abstract final class SgDialog {
   }
 }
 
-// CMP-25
+// SG:CMP-25
 abstract final class SgSnackbar {
   static ScaffoldFeatureController<SnackBar, SnackBarClosedReason> show({
     required BuildContext context,
@@ -1480,7 +1480,7 @@ abstract final class SgSnackbar {
   }
 }
 
-// CMP-26
+// SG:CMP-26
 enum SgBannerVariant { info, warning }
 
 class SgBanner extends StatelessWidget {
@@ -1555,7 +1555,7 @@ class SgBanner extends StatelessWidget {
   }
 }
 
-// CMP-27
+// SG:CMP-27
 enum SgAlertSeverity { info, notice, warning, critical }
 
 class SgAlertCard extends StatelessWidget {
@@ -1606,7 +1606,7 @@ class SgAlertCard extends StatelessWidget {
   }
 }
 
-// CMP-28
+// SG:CMP-28
 class SgPinPad extends StatefulWidget {
   const SgPinPad({
     required this.onDigit,
@@ -1698,7 +1698,7 @@ class _SgPinPadState extends State<SgPinPad> {
   }
 }
 
-// CMP-29
+// SG:CMP-29
 class SgStatRing extends StatelessWidget {
   const SgStatRing({
     required this.value,
@@ -1744,7 +1744,7 @@ class SgStatRing extends StatelessWidget {
   }
 }
 
-// CMP-30
+// SG:CMP-30
 enum SgProgressVariant { linear, ring, segmented }
 
 class SgProgress extends StatelessWidget {
@@ -1814,7 +1814,7 @@ class SgProgress extends StatelessWidget {
   }
 }
 
-// CMP-31
+// SG:CMP-31
 enum SgSkeletonVariant { listRow, gridCell, card }
 
 class SgSkeleton extends StatelessWidget {
@@ -1884,7 +1884,7 @@ class SgSkeleton extends StatelessWidget {
   }
 }
 
-// CMP-32
+// SG:CMP-32
 class SgEmptyState extends StatelessWidget {
   const SgEmptyState({
     required this.icon,
