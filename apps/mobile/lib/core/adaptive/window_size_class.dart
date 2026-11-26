@@ -4,11 +4,7 @@ import '../theme/generated/sargoshi_tokens.g.dart';
 
 enum WindowSizeClass { compact, medium, expanded }
 
-extension WindowSizeClassX on WindowSizeClass {
-  bool get isCompact => this == WindowSizeClass.compact;
-  bool get isMedium => this == WindowSizeClass.medium;
-  bool get isExpanded => this == WindowSizeClass.expanded;
-
+abstract final class WindowSizeClasses {
   static WindowSizeClass fromWidth(double width) {
     if (width < SargoshiBreakpoint.medium) {
       return WindowSizeClass.compact;
@@ -22,6 +18,12 @@ extension WindowSizeClassX on WindowSizeClass {
   static WindowSizeClass of(BuildContext context) {
     return fromWidth(MediaQuery.sizeOf(context).width);
   }
+}
+
+extension WindowSizeClassMetrics on WindowSizeClass {
+  bool get isCompact => this == WindowSizeClass.compact;
+  bool get isMedium => this == WindowSizeClass.medium;
+  bool get isExpanded => this == WindowSizeClass.expanded;
 
   double get margin => switch (this) {
         WindowSizeClass.compact => SargoshiLayout.compactMargin,
