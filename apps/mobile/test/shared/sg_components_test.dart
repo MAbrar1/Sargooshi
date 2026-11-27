@@ -384,7 +384,8 @@ void main() {
     expect(fill.a, closeTo(0.78, 0.01));
   });
 
-  testWidgets('chat header dispatches navigation, identity and call actions', (tester) async {
+  testWidgets('chat header dispatches navigation, identity and call actions',
+      (tester) async {
     var back = 0;
     var identity = 0;
     var voice = 0;
@@ -423,7 +424,8 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('chat header stays bounded at 200 percent text in RTL and LTR', (tester) async {
+  testWidgets('chat header stays bounded at 200 percent text in RTL and LTR',
+      (tester) async {
     await tester.binding.setSurfaceSize(const Size(360, 800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
