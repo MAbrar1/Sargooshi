@@ -86,7 +86,6 @@ class SgFoldableLayout extends StatelessWidget {
     return switch (posture.posture) {
       SgFoldablePosture.none => regularLayout,
       SgFoldablePosture.book => _buildBookLayout(
-          context,
           hingeWidth: feature?.bounds.width ?? 0,
         ),
       SgFoldablePosture.tabletop => _buildTabletopLayout(
@@ -95,25 +94,17 @@ class SgFoldableLayout extends StatelessWidget {
     };
   }
 
-  Widget _buildBookLayout(
-    BuildContext context, {
+  Widget _buildBookLayout({
     required double hingeWidth,
   }) {
-    final gap = SizedBox(width: hingeWidth);
-    final direction = Directionality.of(context);
-
+    // Row already lays out children according to the ambient TextDirection.
+    // Keep logical order here so RTL mirrors the pages exactly once.
     return Row(
-      children: direction == TextDirection.ltr
-          ? [
-              Expanded(child: bookListPane),
-              gap,
-              Expanded(child: bookChatPane),
-            ]
-          : [
-              Expanded(child: bookChatPane),
-              gap,
-              Expanded(child: bookListPane),
-            ],
+      children: [
+        Expanded(child: bookListPane),
+        SizedBox(width: hingeWidth),
+        Expanded(child: bookChatPane),
+      ],
     );
   }
 
