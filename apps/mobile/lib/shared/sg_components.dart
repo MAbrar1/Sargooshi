@@ -1391,7 +1391,7 @@ class SgBottomSheet extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: colors.dusk,
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(SargoshiShape.sheet),
         ),
       ),
