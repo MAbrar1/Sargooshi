@@ -1043,6 +1043,134 @@ class SgChatDateChip extends StatelessWidget {
   }
 }
 
+/// Reusable header anatomy for a private chat. The caller owns routing and call
+/// implementations; this widget exposes explicit callbacks only.
+/// Trust copy is descriptive UI and must not imply cryptographic verification.
+class SgChatHeader extends StatelessWidget {
+  const SgChatHeader({
+    required this.name,
+    required this.initials,
+    required this.onBack,
+    this.subtitle = 'End-to-end encrypted',
+    this.avatar,
+    this.verified = false,
+    this.onTapIdentity,
+    this.onVoiceCall,
+    this.onVideoCall,
+    this.voiceCallTooltip = 'Voice call',
+    this.videoCallTooltip = 'Video call',
+    super.key,
+  })  : assert(onVoiceCall == null || voiceCallTooltip.isNotEmpty),
+        assert(onVideoCall == null || videoCallTooltip.isNotEmpty);
+
+  final String name;
+  final String initials;
+  final String subtitle;
+  final ImageProvider<Object>? avatar;
+  final bool verified;
+  final VoidCallback onBack;
+  final VoidCallback? onTapIdentity;
+  final VoidCallback? onVoiceCall;
+  final VoidCallback? onVideoCall;
+  final String voiceCallTooltip;
+  final String videoCallTooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.sgColors;
+    return Material(
+      color: colors.ink,
+      child: SizedBox(
+        height: SargoshiComponents.topBarHeight,
+        child: Row(
+          children: [
+            SgIconButton(
+              icon: SgIconName.back,
+              tooltip: 'Back',
+              onPressed: onBack,
+            ),
+            Expanded(
+              child: Semantics(
+                button: onTapIdentity != null,
+                child: InkWell(
+                  onTap: onTapIdentity,
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                      start: SargoshiSpace.s4,
+                      end: SargoshiSpace.s8,
+                    ),
+                    child: Row(
+                      children: [
+                        SgAvatar(
+                          initials: initials,
+                          image: avatar,
+                          size: 38,
+                          semanticLabel: name,
+                        ),
+                        const SizedBox(width: SargoshiSpace.s12),
+                        Expanded(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Flexible(
+                                    child: Text(
+                                      name,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: SargoshiType.title.copyWith(
+                                        color: colors.moon,
+                                      ),
+                                    ),
+                                  ),
+                                  if (verified) ...[
+                                    const SizedBox(width: SargoshiSpace.s4),
+                                    SgIcon(
+                                      SgIconName.verified,
+                                      size: SargoshiIconSize.small,
+                                      color: colors.glow,
+                                    ),
+                                  ],
+                                ],
+                              ),
+                              Text(
+                                subtitle,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: SargoshiType.caption.copyWith(
+                                  color: colors.mist,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            if (onVoiceCall != null)
+              SgIconButton(
+                icon: SgIconName.calls,
+                tooltip: voiceCallTooltip,
+                onPressed: onVoiceCall,
+              ),
+            if (onVideoCall != null)
+              SgIconButton(
+                icon: SgIconName.camera,
+                tooltip: videoCallTooltip,
+                onPressed: onVideoCall,
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // SG:CMP-17
 class SgRuleBadge extends StatelessWidget {
   const SgRuleBadge({
