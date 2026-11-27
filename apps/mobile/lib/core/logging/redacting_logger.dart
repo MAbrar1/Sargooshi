@@ -59,7 +59,7 @@ class RedactingLogger {
       SargoshiLogLevel.warning => 900,
       SargoshiLogLevel.error => 1000,
     };
-    _sink('sargoshi.' + level.name + '.' + event.name, severity);
+    _sink('sargoshi.${level.name}.${event.name}', severity);
   }
 }
 
