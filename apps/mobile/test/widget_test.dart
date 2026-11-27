@@ -6,8 +6,8 @@ import 'package:sargoshi/app/sargoshi_app.dart';
 import 'package:sargoshi/core/settings/app_settings.dart';
 import 'support/memory_app_settings_preferences.dart';
 
-Widget _testApp() {
-  return ProviderScope(
+Widget _testApp({bool disableAnimations = false}) {
+  final app = ProviderScope(
     overrides: [
       appSettingsStoreProvider.overrideWithValue(
         createMemoryAppSettingsStore(),
@@ -15,6 +15,12 @@ Widget _testApp() {
     ],
     child: const SargoshiApp(),
   );
+
+  // Route/shell tests validate content and navigation, not continuous motion.
+  // Animation-specific behavior is covered by sg_brand_pulse_test.dart.
+  return disableAnimations
+      ? TickerMode(enabled: false, child: app)
+      : app;
 }
 
 void main() {
@@ -54,7 +60,7 @@ void main() {
     tester.binding.platformDispatcher.localeTestValue = const Locale('en');
     addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
 
-    await tester.pumpWidget(_testApp());
+    await tester.pumpWidget(_testApp(disableAnimations: true));
     expect(find.byTooltip('Open debug component gallery'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Open debug component gallery'));
