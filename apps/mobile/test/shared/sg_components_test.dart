@@ -415,7 +415,10 @@ void main() {
         tester.widget<Text>(find.text('Today — 27 Nov')).textAlign,
         TextAlign.center,
       );
-      expect(tester.getSize(find.byType(SgChatDateChip)).height, greaterThan(32));
+      expect(
+        tester.getSize(find.byType(SgChatDateChip)).height,
+        greaterThan(32),
+      );
       expect(tester.takeException(), isNull);
     }
   });
