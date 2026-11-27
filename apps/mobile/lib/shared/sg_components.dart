@@ -1003,6 +1003,50 @@ class SgChatBubble extends StatelessWidget {
   }
 }
 
+
+/// A localized day/date separator for the reusable chat timeline.
+///
+/// The caller owns date formatting and localization; this widget only applies
+/// the canonical centered Dusk 2 pill treatment.
+class SgChatDateChip extends StatelessWidget {
+  const SgChatDateChip({
+    required this.label,
+    super.key,
+  });
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.sgColors;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: SargoshiSpace.s12),
+      child: Center(
+        child: Container(
+          constraints: const BoxConstraints(
+            minHeight: SargoshiComponents.chipHeight,
+          ),
+          padding: const EdgeInsets.symmetric(
+            horizontal: SargoshiSpace.s12,
+            vertical: SargoshiSpace.s4,
+          ),
+          decoration: BoxDecoration(
+            color: colors.dusk2,
+            borderRadius: BorderRadius.circular(SargoshiShape.chip),
+            border: Border.all(color: colors.line),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: SargoshiType.caption.copyWith(color: colors.mist),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 // SG:CMP-17
 class SgRuleBadge extends StatelessWidget {
   const SgRuleBadge({
