@@ -50,8 +50,14 @@ void main() {
 
   testWidgets('Urdu language preference selects Urdu copy and RTL direction',
       (tester) async {
+    tester.binding.platformDispatcher.localeTestValue = const Locale('ur');
+    addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
+
     await tester.pumpWidget(_testApp(language: AppLanguage.urdu));
-    // The preference provider loads asynchronously from the injected store.
+    // Both the persisted preference and Flutter's platform locale are set to
+    // Urdu; pump the async provider rebuild before asserting localized widgets.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 10));
     await tester.pump();
 
     expect(find.text('سرگوشی'), findsOneWidget);
@@ -83,13 +89,22 @@ void main() {
     expect(find.text('Lite UI'), findsOneWidget);
     expect(find.text('Performance tier'), findsOneWidget);
 
-    // The gallery is intentionally scrollable; bring its footer into the
-    // viewport before asserting against the lazily-built list child.
+    // Scroll the gallery's own ListView. The footer is a lazy child and does
+    // not exist in the element tree until the list reaches that position.
+    final galleryList = find.byKey(
+      const ValueKey<String>('debug-component-gallery-scroll'),
+    );
+    final galleryScrollable = find.descendant(
+      of: galleryList,
+      matching: find.byType(Scrollable),
+    ).first;
+    final scrollPosition =
+        tester.state<ScrollableState>(galleryScrollable).position;
+    scrollPosition.jumpTo(scrollPosition.maxScrollExtent);
+    await tester.pump();
     final galleryFooter = find.text(
       'Debug gallery only — no production operations are wired here.',
     );
-    await tester.ensureVisible(galleryFooter);
-    await tester.pump();
     expect(galleryFooter, findsOneWidget);
   });
 
