@@ -75,7 +75,7 @@ class SgIcon extends StatelessWidget {
   final bool emptyState;
   final String? semanticLabel;
 
-  static const Map<SgIconName, IconData> _regular = {
+  static final Map<SgIconName, IconData> _regular = {
     SgIconName.chats: IconData(
       PhosphorIconsRegular.chatCircleDots.codePoint,
       fontFamily: 'PhosphorRegular',
@@ -384,7 +384,7 @@ class SgIcon extends StatelessWidget {
     ),
   };
 
-  static const Map<SgIconName, IconData> _fill = {
+  static final Map<SgIconName, IconData> _fill = {
     SgIconName.chats: IconData(
       PhosphorIconsFill.chatCircleDots.codePoint,
       fontFamily: 'PhosphorFill',
@@ -693,7 +693,7 @@ class SgIcon extends StatelessWidget {
     ),
   };
 
-  static const Map<SgIconName, IconData> _bold = {
+  static final Map<SgIconName, IconData> _bold = {
     SgIconName.chats: IconData(
       PhosphorIconsBold.chatCircleDots.codePoint,
       fontFamily: 'PhosphorBold',
@@ -1002,7 +1002,7 @@ class SgIcon extends StatelessWidget {
     ),
   };
 
-  static const Map<SgIconName, IconData> _duotone = {
+  static final Map<SgIconName, IconData> _duotone = {
     SgIconName.chats: IconData(
       PhosphorIconsDuotone.chatCircleDots.codePoint,
       fontFamily: 'PhosphorDuotone',
