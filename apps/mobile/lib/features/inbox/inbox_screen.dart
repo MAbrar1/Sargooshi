@@ -141,8 +141,7 @@ class _InboxScreenState extends State<InboxScreen> {
     showDialog<void>(
       context: context,
       builder: (dialogContext) {
-        final colors = Theme.of(dialogContext)
-                .extension<SargoshiColors>() ??
+        final colors = Theme.of(dialogContext).extension<SargoshiColors>() ??
             SargoshiColors.defaults;
 
         return AlertDialog(
@@ -262,7 +261,7 @@ class _InboxScreenState extends State<InboxScreen> {
                     end: SargoshiSpace.s8,
                   ),
                   child: ChoiceChip(
-                    key: ValueKey<String>('inbox-filter-' + filter.name),
+                    key: ValueKey<String>('inbox-filter-${filter.name}'),
                     label: Text(_filterLabel(l10n, filter)),
                     selected: selected,
                     showCheckmark: false,
@@ -271,9 +270,10 @@ class _InboxScreenState extends State<InboxScreen> {
                     side: BorderSide(
                       color: selected ? colors.glow : colors.line,
                     ),
-                    labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: selected ? colors.glow : colors.mist,
-                        ),
+                    labelStyle:
+                        Theme.of(context).textTheme.labelMedium?.copyWith(
+                              color: selected ? colors.glow : colors.mist,
+                            ),
                     onSelected: (_) {
                       setState(() => _selectedFilter = filter);
                     },
@@ -410,7 +410,7 @@ class _ConversationTile extends StatelessWidget {
       button: true,
       label: [conversation.name, conversation.message].join('. '),
       child: InkWell(
-        key: ValueKey<String>('inbox-conversation-' + conversation.id),
+        key: ValueKey<String>('inbox-conversation-${conversation.id}'),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -442,13 +442,15 @@ class _ConversationTile extends StatelessWidget {
                             conversation.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style:
-                                Theme.of(context).textTheme.titleSmall?.copyWith(
-                                      color: colors.moon,
-                                      fontWeight: conversation.unreadCount > 0
-                                          ? FontWeight.w700
-                                          : FontWeight.w600,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  color: colors.moon,
+                                  fontWeight: conversation.unreadCount > 0
+                                      ? FontWeight.w700
+                                      : FontWeight.w600,
+                                ),
                           ),
                         ),
                         const SizedBox(width: SargoshiSpace.s8),

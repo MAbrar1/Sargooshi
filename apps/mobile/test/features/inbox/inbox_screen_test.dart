@@ -45,8 +45,8 @@ void main() {
     expect(find.text('Family Circle'), findsNothing);
   });
 
-
-  testWidgets('search normalizes Arabic and Urdu letter variants', (tester) async {
+  testWidgets('search normalizes Arabic and Urdu letter variants',
+      (tester) async {
     await tester.pumpWidget(_testInboxApp());
 
     await tester.enterText(

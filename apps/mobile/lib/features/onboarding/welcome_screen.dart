@@ -97,7 +97,8 @@ class WelcomeScreen extends StatelessWidget {
                         SizedBox(
                           width: double.infinity,
                           child: FilledButton.icon(
-                            key: const ValueKey<String>('welcome-inbox-preview'),
+                            key:
+                                const ValueKey<String>('welcome-inbox-preview'),
                             onPressed: () => context.push('/inbox'),
                             icon: SgIcon(
                               SgIconName.chats,
