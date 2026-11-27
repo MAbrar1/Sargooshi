@@ -75,6 +75,7 @@ class _DebugComponentGalleryScreenState
         ],
       ),
       body: ListView(
+        key: const ValueKey<String>('debug-component-gallery-scroll'),
         padding: const EdgeInsets.all(SargoshiSpace.s24),
         children: [
           Text(
