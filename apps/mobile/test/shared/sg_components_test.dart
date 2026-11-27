@@ -438,8 +438,8 @@ void main() {
             data: const MediaQueryData(textScaler: TextScaler.linear(2)),
             child: Directionality(
               textDirection: direction,
-              child: Scaffold(
-                body: const SgChatHeader(
+              child: const Scaffold(
+                body: SgChatHeader(
                   name: 'A long contact name for responsive testing',
                   initials: 'LT',
                   subtitle: 'A long trust description that must truncate',
