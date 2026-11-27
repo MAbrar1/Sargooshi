@@ -22,7 +22,7 @@ void main() {
     );
 
     expect(find.text('Mark'), findsOneWidget);
-    expect(find.byType(CustomPaint), findsOneWidget);
+    expect(find.byKey(const ValueKey('sargoshi-brand-pulse-arcs')), findsOneWidget);
     await tester.pump(const Duration(milliseconds: 120));
     expect(find.text('Mark'), findsOneWidget);
   });
@@ -45,7 +45,7 @@ void main() {
     );
 
     expect(find.text('Static mark'), findsOneWidget);
-    expect(find.byType(CustomPaint), findsNothing);
+    expect(find.byKey(const ValueKey('sargoshi-brand-pulse-arcs')), findsNothing);
   });
 
   testWidgets('changing animation preference stops and restarts animation',
