@@ -1,18 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sargoshi/core/settings/app_settings.dart';
 import 'package:sargoshi/core/theme/app_theme.dart';
+import '../../support/memory_app_settings_preferences.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
-
-  setUp(() {
-    SharedPreferences.setMockInitialValues({});
-  });
-
-  test('theme preset defaults to dark and persists a selected appearance', () async {
-    final store = AppSettingsStore(SharedPreferencesAsync());
+  test('theme preset defaults to dark and persists a selected appearance',
+      () async {
+    final store = createMemoryAppSettingsStore();
 
     expect(await store.readThemePreset(), SargoshiThemePreset.dark);
 
@@ -23,7 +18,7 @@ void main() {
   // SG:STG-06
   test('Lite UI setting defaults to Auto and persists each explicit choice',
       () async {
-    final store = AppSettingsStore(SharedPreferencesAsync());
+    final store = createMemoryAppSettingsStore();
 
     expect(await store.readLiteUiMode(), LiteUiMode.auto);
 
@@ -37,7 +32,7 @@ void main() {
   // SG:STL-01
   test('app language defaults to System and persists Urdu selection',
       () async {
-    final store = AppSettingsStore(SharedPreferencesAsync());
+    final store = createMemoryAppSettingsStore();
 
     expect(await store.readAppLanguage(), AppLanguage.system);
 
@@ -49,7 +44,7 @@ void main() {
 
   test('performance tier selection defaults to Auto and persists an override',
       () async {
-    final store = AppSettingsStore(SharedPreferencesAsync());
+    final store = createMemoryAppSettingsStore();
 
     expect(
       await store.readPerformanceTierChoice(),
@@ -65,11 +60,12 @@ void main() {
 
   test('invalid persisted enum value is safely restored to its default',
       () async {
-    final preferences = SharedPreferencesAsync();
-    await preferences.setString('sargoshi.settings.lite_ui_mode', 'unknown');
-    await preferences.setString('sargoshi.settings.app_language', 'unknown');
-
-    final store = AppSettingsStore(preferences);
+    final store = createMemoryAppSettingsStore(
+      initialValues: {
+        'sargoshi.settings.lite_ui_mode': 'unknown',
+        'sargoshi.settings.app_language': 'unknown',
+      },
+    );
 
     expect(await store.readLiteUiMode(), LiteUiMode.auto);
     expect(await store.readAppLanguage(), AppLanguage.system);
