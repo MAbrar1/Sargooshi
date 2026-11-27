@@ -66,7 +66,7 @@ class _DebugComponentGalleryScreenState
           Padding(
             padding: const EdgeInsetsDirectional.only(end: SargoshiSpace.s16),
             child: Center(
-              child: SgRuleBadge(
+              child: const SgRuleBadge(
                 label: 'DEBUG ONLY',
                 icon: SgIconName.verified,
               ),
@@ -489,7 +489,7 @@ class _DebugPreferenceControls extends ConsumerWidget {
           },
         ),
         const SizedBox(height: SargoshiSpace.s8),
-        Text(
+        const Text(
           'Preferences are stored locally. Device capability and visual tier '
           'are kept separate.',
           style: SargoshiType.caption,
