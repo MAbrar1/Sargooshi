@@ -261,6 +261,7 @@ class _DebugComponentGalleryScreenState
               variant: SgCardVariant.outlined,
               child: Text('Outlined surface'),
             ),
+            const SgChatDateChip(label: 'Today — 27 Nov'),
             SgCard(
               variant: SgCardVariant.alert,
               alertColor: colors.amber,
