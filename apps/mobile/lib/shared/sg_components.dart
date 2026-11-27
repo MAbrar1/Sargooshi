@@ -1079,8 +1079,8 @@ class SgChatHeader extends StatelessWidget {
     final colors = context.sgColors;
     return Material(
       color: colors.ink,
-      child: SizedBox(
-        height: SargoshiComponents.topBarHeight,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: SargoshiSpace.s8),
         child: Row(
           children: [
             SgIconButton(
