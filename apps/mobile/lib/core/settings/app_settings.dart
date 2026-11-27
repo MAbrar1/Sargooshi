@@ -21,7 +21,7 @@ extension AppLanguageX on AppLanguage {
 }
 
 final appSettingsStoreProvider = Provider<AppSettingsStore>(
-  (ref) => AppSettingsStore(SharedPreferencesAsync()),
+  (ref) => AppSettingsStore(SharedPreferencesSettingsPreferences()),
 );
 
 final liteUiModeProvider =
@@ -38,6 +38,28 @@ final performanceTierChoiceProvider =
     AsyncNotifierProvider<PerformanceTierChoiceController, PerformanceTierChoice>(
   PerformanceTierChoiceController.new,
 );
+
+/// Minimal asynchronous contract used by the settings domain.
+abstract interface class AppSettingsPreferences {
+  Future<String?> getString(String key);
+  Future<void> setString(String key, String value);
+}
+
+/// Production adapter backed by the platform's asynchronous preferences API.
+class SharedPreferencesSettingsPreferences
+    implements AppSettingsPreferences {
+  SharedPreferencesSettingsPreferences([SharedPreferencesAsync? preferences])
+      : _preferences = preferences ?? SharedPreferencesAsync();
+
+  final AppSettingsPreferences _preferences;
+
+  @override
+  Future<String?> getString(String key) => _preferences.getString(key);
+
+  @override
+  Future<void> setString(String key, String value) =>
+      _preferences.setString(key, value);
+}
 
 class AppSettingsStore {
   const AppSettingsStore(this._preferences);
