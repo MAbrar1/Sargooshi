@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/performance/performance_profile.dart';
 import '../core/settings/app_settings.dart';
 import '../core/theme/app_theme.dart';
+import '../core/theme/generated/sargoshi_tokens.g.dart';
 import '../core/theme/theme_controller.dart';
 import '../l10n/generated/app_localizations.dart';
 import 'router.dart';
@@ -23,9 +24,12 @@ class SargoshiApp extends ConsumerWidget {
     final performance = ref.watch(performanceProfileProvider);
 
     ThemeData withPerformance(ThemeData theme) {
-      final extensions = theme.extensions.values.toList()
-        ..add(performance.themeVisuals);
-      return theme.copyWith(extensions: extensions);
+      return theme.copyWith(
+        extensions: <ThemeExtension<dynamic>>[
+          theme.extension<SargoshiColors>()!,
+          performance.themeVisuals,
+        ],
+      );
     }
 
     return dynamic_color.DynamicColorBuilder(
