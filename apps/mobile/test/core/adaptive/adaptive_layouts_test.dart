@@ -175,11 +175,11 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: const MediaQuery(
-          data: const MediaQueryData(
+          data: MediaQueryData(
             size: Size(1000, 900),
             displayFeatures: [hinge],
           ),
-          child: const SgFoldableLayout(
+          child: SgFoldableLayout(
             regularLayout: Text('Regular layout'),
             bookListPane: Text('Book list'),
             bookChatPane: Text('Book chat'),
@@ -251,11 +251,11 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: const MediaQuery(
-          data: const MediaQueryData(
+          data: MediaQueryData(
             size: Size(900, 900),
             displayFeatures: [hinge],
           ),
-          child: const SgFoldableLayout(
+          child: SgFoldableLayout(
             regularLayout: Text('Regular layout'),
             bookListPane: Text('Book list'),
             bookChatPane: Text('Book chat'),
@@ -285,11 +285,11 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: const MediaQuery(
-          data: const MediaQueryData(
+          data: MediaQueryData(
             size: Size(390, 844),
             displayFeatures: [cutout],
           ),
-          child: const SgFoldableLayout(
+          child: SgFoldableLayout(
             regularLayout: Text('Regular layout'),
             bookListPane: Text('Book list'),
             bookChatPane: Text('Book chat'),
