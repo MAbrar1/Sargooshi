@@ -98,12 +98,13 @@ void main() {
       of: galleryList,
       matching: find.byType(Scrollable),
     ).first;
-    final scrollPosition =
-        tester.state<ScrollableState>(galleryScrollable).position;
-    scrollPosition.jumpTo(scrollPosition.maxScrollExtent);
-    await tester.pump();
     final galleryFooter = find.text(
       'Debug gallery only — no production operations are wired here.',
+    );
+    await tester.scrollUntilVisible(
+      galleryFooter,
+      320,
+      scrollable: galleryScrollable,
     );
     expect(galleryFooter, findsOneWidget);
   });
