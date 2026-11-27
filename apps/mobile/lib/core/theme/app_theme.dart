@@ -27,7 +27,7 @@ abstract final class AppTheme {
       dynamicScheme: isDynamic ? dynamicScheme : null,
     );
     final scheme = isDynamic
-        ? dynamicScheme!
+        ? dynamicScheme
         : _resolveScheme(
             colors: colors,
             brightness: brightness,
