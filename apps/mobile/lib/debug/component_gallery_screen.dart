@@ -262,6 +262,15 @@ class _DebugComponentGalleryScreenState
               child: Text('Outlined surface'),
             ),
             const SgChatDateChip(label: 'Today — 27 Nov'),
+            SgChatHeader(
+              name: 'Sargoshi Contact',
+              initials: 'SC',
+              verified: true,
+              onBack: () => _recordAction('Chat header back'),
+              onTapIdentity: () => _recordAction('Chat identity tapped'),
+              onVoiceCall: () => _recordAction('Voice call preview'),
+              onVideoCall: () => _recordAction('Video call preview'),
+            ),
             SgCard(
               variant: SgCardVariant.alert,
               alertColor: colors.amber,
