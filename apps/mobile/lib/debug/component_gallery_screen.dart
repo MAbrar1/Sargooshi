@@ -65,8 +65,8 @@ class _DebugComponentGalleryScreenState
         actions: [
           Padding(
             padding: const EdgeInsetsDirectional.only(end: SargoshiSpace.s16),
-            child: Center(
-              child: const SgRuleBadge(
+            child: const Center(
+              child: SgRuleBadge(
                 label: 'DEBUG ONLY',
                 icon: SgIconName.verified,
               ),
