@@ -23,7 +23,7 @@ Widget _harness({required double width, required Widget child}) {
       preset: SargoshiThemePreset.dark,
     ),
     home: MediaQuery(
-      data: MediaQueryData(size: Size(width, 900)),
+      data: const MediaQueryData(size: Size(width, 900)),
       child: child,
     ),
   );
@@ -43,7 +43,7 @@ void main() {
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
-          body: const Text('Compact content'),
+          body: Text('Compact content'),
         ),
       ),
     );
@@ -64,7 +64,7 @@ void main() {
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
-          body: const Text('Medium content'),
+          body: Text('Medium content'),
         ),
       ),
     );
@@ -87,7 +87,7 @@ void main() {
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
-          body: const Text('Expanded content'),
+          body: Text('Expanded content'),
         ),
       ),
     );
@@ -164,7 +164,7 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     const hinge = DisplayFeature(
-      bounds: const Rect.fromLTWH(496, 0, 8, 900),
+      bounds: Rect.fromLTWH(496, 0, 8, 900),
       type: DisplayFeatureType.hinge,
       state: DisplayFeatureState.postureFlat,
     );
@@ -175,7 +175,7 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: MediaQuery(
-          data: MediaQueryData(
+          data: const MediaQueryData(
             size: const Size(1000, 900),
             displayFeatures: [hinge],
           ),
@@ -201,7 +201,7 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     const hinge = DisplayFeature(
-      bounds: const Rect.fromLTWH(496, 0, 8, 900),
+      bounds: Rect.fromLTWH(496, 0, 8, 900),
       type: DisplayFeatureType.fold,
       state: DisplayFeatureState.postureFlat,
     );
@@ -212,7 +212,7 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: MediaQuery(
-          data: MediaQueryData(
+          data: const MediaQueryData(
             size: const Size(1000, 900),
             displayFeatures: [hinge],
           ),
@@ -240,7 +240,7 @@ void main() {
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     const hinge = DisplayFeature(
-      bounds: const Rect.fromLTWH(0, 440, 900, 20),
+      bounds: Rect.fromLTWH(0, 440, 900, 20),
       type: DisplayFeatureType.hinge,
       state: DisplayFeatureState.postureHalfOpened,
     );
@@ -251,7 +251,7 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: MediaQuery(
-          data: MediaQueryData(
+          data: const MediaQueryData(
             size: const Size(900, 900),
             displayFeatures: [hinge],
           ),
@@ -274,7 +274,7 @@ void main() {
   testWidgets('camera cutouts are ignored by foldable posture detection',
       (tester) async {
     const cutout = DisplayFeature(
-      bounds: const Rect.fromLTWH(0, 0, 32, 900),
+      bounds: Rect.fromLTWH(0, 0, 32, 900),
       type: DisplayFeatureType.cutout,
       state: DisplayFeatureState.unknown,
     );
@@ -285,7 +285,7 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: MediaQuery(
-          data: MediaQueryData(
+          data: const MediaQueryData(
             size: const Size(390, 844),
             displayFeatures: [cutout],
           ),
