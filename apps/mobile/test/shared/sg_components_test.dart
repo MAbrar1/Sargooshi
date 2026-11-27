@@ -384,6 +384,26 @@ void main() {
     expect(fill.a, closeTo(0.78, 0.01));
   });
 
+
+  testWidgets('chat bubble reply preview truncates and preserves message context',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(brightness: Brightness.dark, preset: SargoshiThemePreset.dark),
+        home: const Scaffold(
+          body: SgChatBubble(
+            message: 'Reply content', timestamp: '09:40', variant: SgChatBubbleVariant.incoming,
+            replyToName: 'Contact',
+            replyToMessage: 'A very long original message that should be safely truncated in its preview',
+          ),
+        ),
+      ),
+    );
+    expect(find.text('Contact'), findsOneWidget);
+    expect(find.text('Reply content'), findsOneWidget);
+    expect(tester.widget<Text>(find.textContaining('A very long original message')).maxLines, 2);
+    expect(tester.takeException(), isNull);
+  });
   testWidgets('chat header dispatches navigation, identity and call actions',
       (tester) async {
     var back = 0;
