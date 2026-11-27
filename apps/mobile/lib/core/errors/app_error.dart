@@ -30,5 +30,5 @@ class AppError {
   factory AppError.unexpected() => const AppError(AppErrorCode.unexpected);
 
   @override
-  String toString() => 'AppError(' + code.name + ')';
+  String toString() => 'AppError(${code.name})';
 }
