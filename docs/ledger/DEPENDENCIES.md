@@ -47,10 +47,14 @@ Four variable-font families are bundled locally; there is no runtime font downlo
 
 Exact upstream revision, licence-file locations and SHA-256 values are recorded in `docs/compliance/LICENSES.md`.
 
-## Owner-run verification
-- `flutter analyze`: PASS — no issues found on the original shell, before current P01 dependency and code expansion.
-- `flutter test`: PASS — original welcome test only, before current P01 tests.
-- `flutter run`: PASS — original debug APK built, installed and launched on Android 17/API 37.
-- Current full P01 changes and new tests still require owner-run verification. No release build, Rust build or independent security review has been run.
+## Owner-run verification (2026-11-27)
+- `flutter gen-l10n`: PASS using the checked-in `l10n.yaml`.
+- `dart format`: PASS — 38 Dart files checked, 0 changed after formatting.
+- `flutter analyze`: PASS — no issues found.
+- `flutter test --reporter expanded --concurrency=1`: PASS — 127 tests.
+- GitHub Actions run #118 for commit `5093bb9`: PASS — generated tokens, copy catalogue, dependency resolution, gen-l10n, formatting, analysis and tests.
+- The previously reported emulator launch applies to the initial shell only. No current-code emulator smoke run or release APK is verified.
+- `pubspec.lock` was generated locally but was still untracked in the last supplied status; commit it with the Android scaffold after reviewing the local diff.
+- No Rust build or independent security review has been run.
 
-After dependency changes, run `flutter pub get`, commit `pubspec.lock`, then run analyze and tests. No new dependency set is considered verified until those checks pass.
+After any dependency change, keep `pubspec.lock` committed and rerun analysis/tests. No release build or production behavior is implied by the Flutter quality pass.
