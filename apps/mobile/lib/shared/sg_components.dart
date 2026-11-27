@@ -1370,7 +1370,7 @@ class SgBottomSheet extends StatelessWidget {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: const BorderRadius.vertical(
+        borderRadius: BorderRadius.vertical(
           top: Radius.circular(SargoshiShape.sheet),
         ),
       ),
