@@ -521,7 +521,8 @@ final _componentCases = <({
     expect(find.text('Ghost'), findsOneWidget);
   }),
   (tag: 'SG:CMP-04', name: 'icon button', verify: (tester) {
-    expect(find.byType(SgIconButton), findsOneWidget);
+    // Composite components (for example the composer) also use this primitive.
+    expect(find.byType(SgIconButton), findsWidgets);
   }),
   (tag: 'SG:CMP-05', name: 'floating action button', verify: (tester) {
     expect(find.byType(SgFab), findsOneWidget);
