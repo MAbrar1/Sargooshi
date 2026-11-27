@@ -384,6 +384,79 @@ void main() {
     expect(fill.a, closeTo(0.78, 0.01));
   });
 
+  testWidgets('chat header dispatches navigation, identity and call actions', (tester) async {
+    var back = 0;
+    var identity = 0;
+    var voice = 0;
+    var video = 0;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.build(
+          brightness: Brightness.dark,
+          preset: SargoshiThemePreset.dark,
+        ),
+        home: Scaffold(
+          body: SgChatHeader(
+            name: 'Sargoshi Contact',
+            initials: 'SC',
+            verified: true,
+            onBack: () => back++,
+            onTapIdentity: () => identity++,
+            onVoiceCall: () => voice++,
+            onVideoCall: () => video++,
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Sargoshi Contact'), findsOneWidget);
+    expect(find.text('End-to-end encrypted'), findsOneWidget);
+    await tester.tap(find.byTooltip('Back'));
+    await tester.tap(find.text('Sargoshi Contact'));
+    await tester.tap(find.byTooltip('Voice call'));
+    await tester.tap(find.byTooltip('Video call'));
+    expect(back, 1);
+    expect(identity, 1);
+    expect(voice, 1);
+    expect(video, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('chat header stays bounded at 200 percent text in RTL and LTR', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    for (final direction in TextDirection.values) {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: AppTheme.build(
+            brightness: Brightness.dark,
+            preset: SargoshiThemePreset.dark,
+          ),
+          home: MediaQuery(
+            data: const MediaQueryData(textScaler: TextScaler.linear(2)),
+            child: Directionality(
+              textDirection: direction,
+              child: Scaffold(
+                body: SgChatHeader(
+                  name: 'A long contact name for responsive testing',
+                  initials: 'LT',
+                  subtitle: 'A long trust description that must truncate',
+                  onBack: _noop,
+                  onVoiceCall: _noop,
+                  onVideoCall: _noop,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+      expect(find.byType(SgChatHeader), findsOneWidget);
+    }
+  });
+
   testWidgets(
       'chat date chip stays centered and readable at 200 percent in LTR and RTL',
       (tester) async {
