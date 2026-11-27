@@ -6,11 +6,18 @@ import 'package:sargoshi/app/sargoshi_app.dart';
 import 'package:sargoshi/core/settings/app_settings.dart';
 import 'support/memory_app_settings_preferences.dart';
 
-Widget _testApp({bool disableAnimations = false}) {
+Widget _testApp({
+  bool disableAnimations = false,
+  AppLanguage language = AppLanguage.system,
+}) {
   final app = ProviderScope(
     overrides: [
       appSettingsStoreProvider.overrideWithValue(
-        createMemoryAppSettingsStore(),
+        createMemoryAppSettingsStore(
+          initialValues: language == AppLanguage.system
+              ? const {}
+              : {'sargoshi.settings.app_language': language.name},
+        ),
       ),
     ],
     child: const SargoshiApp(),
@@ -41,12 +48,11 @@ void main() {
     );
   });
 
-  testWidgets('Urdu locale selects Urdu copy and right-to-left direction',
+  testWidgets('Urdu language preference selects Urdu copy and RTL direction',
       (tester) async {
-    tester.binding.platformDispatcher.localeTestValue = const Locale('ur');
-    addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
-
-    await tester.pumpWidget(_testApp());
+    await tester.pumpWidget(_testApp(language: AppLanguage.urdu));
+    // The preference provider loads asynchronously from the injected store.
+    await tester.pump();
 
     expect(find.text('سرگوشی'), findsOneWidget);
     expect(find.text('آہستگی سے کہیے۔'), findsOneWidget);
@@ -79,14 +85,12 @@ void main() {
 
     // The gallery is intentionally scrollable; bring its footer into the
     // viewport before asserting against the lazily-built list child.
-    await tester.scrollUntilVisible(
-      find.text('Debug gallery only — no production operations are wired here.'),
-      320,
+    final galleryFooter = find.text(
+      'Debug gallery only — no production operations are wired here.',
     );
-    expect(
-      find.text('Debug gallery only — no production operations are wired here.'),
-      findsOneWidget,
-    );
+    await tester.ensureVisible(galleryFooter);
+    await tester.pump();
+    expect(galleryFooter, findsOneWidget);
   });
 
 }
