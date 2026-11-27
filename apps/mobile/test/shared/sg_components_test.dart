@@ -439,7 +439,7 @@ void main() {
             child: Directionality(
               textDirection: direction,
               child: Scaffold(
-                body: SgChatHeader(
+                body: const SgChatHeader(
                   name: 'A long contact name for responsive testing',
                   initials: 'LT',
                   subtitle: 'A long trust description that must truncate',
