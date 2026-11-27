@@ -212,7 +212,7 @@ void main() {
           preset: SargoshiThemePreset.dark,
         ),
         home: const MediaQuery(
-          data: const MediaQueryData(
+          data: MediaQueryData(
             size: Size(1000, 900),
             displayFeatures: [hinge],
           ),
