@@ -105,7 +105,8 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.byType(SvgPicture), findsOneWidget);
-      expect(find.bySemanticsLabel('Sargoshi — Say it softly.'), findsOneWidget);
+      expect(
+          find.bySemanticsLabel('Sargoshi — Say it softly.'), findsOneWidget);
     }
   });
 }

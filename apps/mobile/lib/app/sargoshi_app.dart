@@ -17,10 +17,10 @@ class SargoshiApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
-    final preset = ref.watch(themePresetProvider).valueOrNull ??
-        SargoshiThemePreset.dark;
-    final language = ref.watch(appLanguageProvider).valueOrNull ??
-        AppLanguage.system;
+    final preset =
+        ref.watch(themePresetProvider).valueOrNull ?? SargoshiThemePreset.dark;
+    final language =
+        ref.watch(appLanguageProvider).valueOrNull ?? AppLanguage.system;
     final performance = ref.watch(performanceProfileProvider);
 
     ThemeData withPerformance(ThemeData theme) {

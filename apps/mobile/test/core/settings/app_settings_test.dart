@@ -30,8 +30,7 @@ void main() {
   });
 
   // SG:STL-01
-  test('app language defaults to System and persists Urdu selection',
-      () async {
+  test('app language defaults to System and persists Urdu selection', () async {
     final store = createMemoryAppSettingsStore();
 
     expect(await store.readAppLanguage(), AppLanguage.system);

@@ -23,7 +23,8 @@ class WelcomeScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: SargoshiLayout.welcomeContentMaxWidth),
+                  constraints: const BoxConstraints(
+                      maxWidth: SargoshiLayout.welcomeContentMaxWidth),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: SargoshiSpace.s24,
@@ -72,9 +73,10 @@ class WelcomeScreen extends StatelessWidget {
                         const SizedBox(height: SargoshiSpace.s8),
                         Text(
                           localizations.brandTagline,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                color: colors.glow,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    color: colors.glow,
+                                  ),
                         ),
                         const SizedBox(height: SargoshiSpace.s32),
                         _WelcomePrinciple(

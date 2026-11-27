@@ -25,9 +25,7 @@ Widget _testApp({
 
   // Route/shell tests validate content and navigation, not continuous motion.
   // Animation-specific behavior is covered by sg_brand_pulse_test.dart.
-  return disableAnimations
-      ? TickerMode(enabled: false, child: app)
-      : app;
+  return disableAnimations ? TickerMode(enabled: false, child: app) : app;
 }
 
 void main() {
@@ -94,10 +92,12 @@ void main() {
     final galleryList = find.byKey(
       const ValueKey<String>('debug-component-gallery-scroll'),
     );
-    final galleryScrollable = find.descendant(
-      of: galleryList,
-      matching: find.byType(Scrollable),
-    ).first;
+    final galleryScrollable = find
+        .descendant(
+          of: galleryList,
+          matching: find.byType(Scrollable),
+        )
+        .first;
     final galleryFooter = find.text(
       'Debug gallery only — no production operations are wired here.',
     );
@@ -108,5 +108,4 @@ void main() {
     );
     expect(galleryFooter, findsOneWidget);
   });
-
 }

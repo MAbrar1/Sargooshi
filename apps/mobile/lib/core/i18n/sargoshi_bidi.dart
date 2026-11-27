@@ -45,7 +45,8 @@ abstract final class SargoshiBidi {
         .replaceAll('\u0643', '\u06A9') // Arabic kaf -> Urdu kaf
         .replaceAll('\u0647', '\u06C1') // Arabic heh -> Urdu heh goal
         .replaceAll('\u0629', '\u06C1') // ta marbuta -> Urdu heh goal
-        .replaceAll('\u06BE', '\u06C1') // do-chashmee heh -> heh goal for search
+        .replaceAll(
+            '\u06BE', '\u06C1') // do-chashmee heh -> heh goal for search
         .replaceAll('\u06C2', '\u06C1'); // heh with hamza above -> heh goal
   }
 

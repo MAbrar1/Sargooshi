@@ -195,8 +195,7 @@ class PerformanceProfile {
     if (capabilities.lowRamDevice || capabilities.totalMemoryMb < 3072) {
       return PerformanceTier.t1;
     }
-    if (capabilities.totalMemoryMb >= 8192 &&
-        capabilities.systemAiAvailable) {
+    if (capabilities.totalMemoryMb >= 8192 && capabilities.systemAiAvailable) {
       return PerformanceTier.t3;
     }
     return PerformanceTier.t2;
@@ -212,9 +211,8 @@ final performanceProfileProvider = Provider<PerformanceProfile>((ref) {
       DeviceCapabilities.conservativeFallback;
   final liteUiMode =
       ref.watch(liteUiModeProvider).valueOrNull ?? LiteUiMode.auto;
-  final override =
-      ref.watch(performanceTierChoiceProvider).valueOrNull ??
-          PerformanceTierChoice.auto;
+  final override = ref.watch(performanceTierChoiceProvider).valueOrNull ??
+      PerformanceTierChoice.auto;
 
   return PerformanceProfile.resolve(
     capabilities: capabilities,

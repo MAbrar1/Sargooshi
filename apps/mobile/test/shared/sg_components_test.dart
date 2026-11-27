@@ -32,174 +32,174 @@ Widget buildGalleryHarness({
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-              const SgButton(label: 'Primary', onPressed: _noop),
-              const SizedBox(height: 8),
-              const SgButton(
-                label: 'Tonal',
-                variant: SgButtonVariant.tonal,
-                onPressed: _noop,
-              ),
-              const SizedBox(height: 8),
-              const SgButton(
-                label: 'Ghost',
-                variant: SgButtonVariant.ghost,
-                onPressed: _noop,
-              ),
-              const SgIconButton(
-                icon: SgIconName.settings,
-                tooltip: 'Settings',
-                onPressed: _noop,
-              ),
-              const SgFab(
-                icon: SgIconName.chats,
-                tooltip: 'Start chat',
-                onPressed: _noop,
-              ),
-              const SgChip(
-                label: 'Unread',
-                variant: SgChipVariant.filter,
-              ),
-              SgSegmentedControl<int>(
-                values: const [0, 1],
-                selected: 0,
-                labelFor: (value) => value == 0 ? 'All' : 'Unread',
-                onSelectionChanged: _noopInt,
-              ),
-              const SgTextField(
-                label: 'Passphrase',
-                variant: SgTextFieldVariant.passphrase,
-                revealTooltip: 'Show passphrase',
-                concealTooltip: 'Hide passphrase',
-              ),
-              const SgToggle(
-                title: 'App lock',
-                description: 'Protect this app',
-                value: true,
-                onChanged: _noopBool,
-              ),
-              const SgSlider(
-                value: 40,
-                label: 'Media quality',
-                onChanged: _noopDouble,
-              ),
-              const SgCheckbox(
-                value: true,
-                title: 'Remember this device',
-                onChanged: _noopNullableBool,
-              ),
-              const SgRadio<String>(
-                value: 'dark',
-                groupValue: 'dark',
-                title: 'Dark theme',
-                onChanged: _noopNullableString,
-              ),
-              const SgAvatar(initials: 'SA'),
-              const Row(
-                children: [
-                  SgBadge.count(count: 12),
-                  SizedBox(width: 8),
-                  SgBadge.dot(),
-                ],
-              ),
-              const SgListTile(
-                title: 'Privacy',
-                subtitle: 'Manage your private settings',
-                lines: 2,
-              ),
-              const SgCard(child: Text('Surface card')),
-              const SgCard(
-                variant: SgCardVariant.outlined,
-                child: Text('Outlined card'),
-              ),
-              const SgChatBubble(
-                message: 'Hello there',
-                timestamp: '09:30',
-                variant: SgChatBubbleVariant.incoming,
-              ),
-              const SgChatBubble(
-                message: 'A private reply',
-                timestamp: '09:31',
-                variant: SgChatBubbleVariant.outgoing,
-              ),
-              const SgChatBubble(
-                message: 'A quiet whisper',
-                timestamp: '09:32',
-                variant: SgChatBubbleVariant.whisper,
-              ),
-              const SgChatBubble(
-                message: 'System update',
-                timestamp: '09:33',
-                variant: SgChatBubbleVariant.system,
-              ),
-              const SgRuleBadge(
-                label: 'Forwarding disabled',
-                icon: SgIconName.hidden,
-              ),
-              const SgReactionBar(
-                reactions: [
-                  SgReaction(emoji: '👍', count: 2, selected: true),
-                  SgReaction(emoji: '❤️', count: 1),
-                ],
-                onReaction: _noopString,
-              ),
-              const SgComposer(onSend: _noopString, sendTooltip: 'Send'),
-              const SgBottomSheet(child: Text('Sheet content')),
-              const SgBanner(
-                title: 'Connection paused',
-                message: 'Messages will send when your connection returns.',
-                variant: SgBannerVariant.info,
-              ),
-              const SgAlertCard(
-                title: 'Security notice',
-                message: 'Review your active devices.',
-                severity: SgAlertSeverity.warning,
-              ),
-              SgPinPad(
-                onDigit: _noopInt,
-                onBackspace: _noop,
-                backspaceTooltip: 'Delete last digit',
-                digitSemanticLabel: (digit) => 'Digit $digit',
-              ),
-              const SgStatRing(
-                value: 0.75,
-                valueLabel: '75%',
-                label: 'Complete',
-              ),
-              const SgProgress(value: 0.65, label: 'Upload'),
-              const SgProgress(
-                value: 0.65,
-                variant: SgProgressVariant.ring,
-              ),
-              const SgProgress(
-                value: 0.65,
-                variant: SgProgressVariant.segmented,
-              ),
-              const SgSkeleton(variant: SgSkeletonVariant.listRow),
-              const SgSkeleton(
-                variant: SgSkeletonVariant.gridCell,
-                width: 96,
-              ),
-              const SgSkeleton(variant: SgSkeletonVariant.card),
-              const SgEmptyState(
-                icon: SgIconName.chats,
-                title: 'No conversations',
-                message: 'Start a private conversation.',
-                actionLabel: 'Start chat',
-                onAction: _noop,
-              ),
-              SgBottomNavigation(
-                destinations: destinations,
-                selectedIndex: 0,
-                onDestinationSelected: _noopInt,
-              ),
-              SizedBox(
-                height: 360,
-                child: SgNavigationRail(
+                const SgButton(label: 'Primary', onPressed: _noop),
+                const SizedBox(height: 8),
+                const SgButton(
+                  label: 'Tonal',
+                  variant: SgButtonVariant.tonal,
+                  onPressed: _noop,
+                ),
+                const SizedBox(height: 8),
+                const SgButton(
+                  label: 'Ghost',
+                  variant: SgButtonVariant.ghost,
+                  onPressed: _noop,
+                ),
+                const SgIconButton(
+                  icon: SgIconName.settings,
+                  tooltip: 'Settings',
+                  onPressed: _noop,
+                ),
+                const SgFab(
+                  icon: SgIconName.chats,
+                  tooltip: 'Start chat',
+                  onPressed: _noop,
+                ),
+                const SgChip(
+                  label: 'Unread',
+                  variant: SgChipVariant.filter,
+                ),
+                SgSegmentedControl<int>(
+                  values: const [0, 1],
+                  selected: 0,
+                  labelFor: (value) => value == 0 ? 'All' : 'Unread',
+                  onSelectionChanged: _noopInt,
+                ),
+                const SgTextField(
+                  label: 'Passphrase',
+                  variant: SgTextFieldVariant.passphrase,
+                  revealTooltip: 'Show passphrase',
+                  concealTooltip: 'Hide passphrase',
+                ),
+                const SgToggle(
+                  title: 'App lock',
+                  description: 'Protect this app',
+                  value: true,
+                  onChanged: _noopBool,
+                ),
+                const SgSlider(
+                  value: 40,
+                  label: 'Media quality',
+                  onChanged: _noopDouble,
+                ),
+                const SgCheckbox(
+                  value: true,
+                  title: 'Remember this device',
+                  onChanged: _noopNullableBool,
+                ),
+                const SgRadio<String>(
+                  value: 'dark',
+                  groupValue: 'dark',
+                  title: 'Dark theme',
+                  onChanged: _noopNullableString,
+                ),
+                const SgAvatar(initials: 'SA'),
+                const Row(
+                  children: [
+                    SgBadge.count(count: 12),
+                    SizedBox(width: 8),
+                    SgBadge.dot(),
+                  ],
+                ),
+                const SgListTile(
+                  title: 'Privacy',
+                  subtitle: 'Manage your private settings',
+                  lines: 2,
+                ),
+                const SgCard(child: Text('Surface card')),
+                const SgCard(
+                  variant: SgCardVariant.outlined,
+                  child: Text('Outlined card'),
+                ),
+                const SgChatBubble(
+                  message: 'Hello there',
+                  timestamp: '09:30',
+                  variant: SgChatBubbleVariant.incoming,
+                ),
+                const SgChatBubble(
+                  message: 'A private reply',
+                  timestamp: '09:31',
+                  variant: SgChatBubbleVariant.outgoing,
+                ),
+                const SgChatBubble(
+                  message: 'A quiet whisper',
+                  timestamp: '09:32',
+                  variant: SgChatBubbleVariant.whisper,
+                ),
+                const SgChatBubble(
+                  message: 'System update',
+                  timestamp: '09:33',
+                  variant: SgChatBubbleVariant.system,
+                ),
+                const SgRuleBadge(
+                  label: 'Forwarding disabled',
+                  icon: SgIconName.hidden,
+                ),
+                const SgReactionBar(
+                  reactions: [
+                    SgReaction(emoji: '👍', count: 2, selected: true),
+                    SgReaction(emoji: '❤️', count: 1),
+                  ],
+                  onReaction: _noopString,
+                ),
+                const SgComposer(onSend: _noopString, sendTooltip: 'Send'),
+                const SgBottomSheet(child: Text('Sheet content')),
+                const SgBanner(
+                  title: 'Connection paused',
+                  message: 'Messages will send when your connection returns.',
+                  variant: SgBannerVariant.info,
+                ),
+                const SgAlertCard(
+                  title: 'Security notice',
+                  message: 'Review your active devices.',
+                  severity: SgAlertSeverity.warning,
+                ),
+                SgPinPad(
+                  onDigit: _noopInt,
+                  onBackspace: _noop,
+                  backspaceTooltip: 'Delete last digit',
+                  digitSemanticLabel: (digit) => 'Digit $digit',
+                ),
+                const SgStatRing(
+                  value: 0.75,
+                  valueLabel: '75%',
+                  label: 'Complete',
+                ),
+                const SgProgress(value: 0.65, label: 'Upload'),
+                const SgProgress(
+                  value: 0.65,
+                  variant: SgProgressVariant.ring,
+                ),
+                const SgProgress(
+                  value: 0.65,
+                  variant: SgProgressVariant.segmented,
+                ),
+                const SgSkeleton(variant: SgSkeletonVariant.listRow),
+                const SgSkeleton(
+                  variant: SgSkeletonVariant.gridCell,
+                  width: 96,
+                ),
+                const SgSkeleton(variant: SgSkeletonVariant.card),
+                const SgEmptyState(
+                  icon: SgIconName.chats,
+                  title: 'No conversations',
+                  message: 'Start a private conversation.',
+                  actionLabel: 'Start chat',
+                  onAction: _noop,
+                ),
+                SgBottomNavigation(
                   destinations: destinations,
                   selectedIndex: 0,
                   onDestinationSelected: _noopInt,
                 ),
-              ),
+                SizedBox(
+                  height: 360,
+                  child: SgNavigationRail(
+                    destinations: destinations,
+                    selectedIndex: 0,
+                    onDestinationSelected: _noopInt,
+                  ),
+                ),
               ],
             ),
           ),
@@ -318,7 +318,8 @@ void main() {
     await tester.pump();
     expect(selectedDigit, 1);
   });
-  testWidgets('SG:CMP-01 disabled buttons stay inert and loading shows progress',
+  testWidgets(
+      'SG:CMP-01 disabled buttons stay inert and loading shows progress',
       (tester) async {
     var actions = 0;
     await tester.pumpWidget(
@@ -382,7 +383,8 @@ void main() {
     expect(fill.a, closeTo(0.78, 0.01));
   });
 
-  testWidgets('SG:CMP-19 composer exposes attach, voice, six-line input and send',
+  testWidgets(
+      'SG:CMP-19 composer exposes attach, voice, six-line input and send',
       (tester) async {
     final controller = TextEditingController();
     addTearDown(controller.dispose);
@@ -427,7 +429,8 @@ void main() {
     expect(find.byTooltip('Record voice'), findsOneWidget);
   });
 
-  testWidgets('SG:CMP-06 filter, assist, input and suggestion chips dispatch selection',
+  testWidgets(
+      'SG:CMP-06 filter, assist, input and suggestion chips dispatch selection',
       (tester) async {
     final selected = <String, bool>{};
     await tester.pumpWidget(
@@ -483,7 +486,8 @@ void main() {
     });
   });
 
-  testWidgets('SG:CMP-08 search, PIN, passphrase reveal and error states render',
+  testWidgets(
+      'SG:CMP-08 search, PIN, passphrase reveal and error states render',
       (tester) async {
     final passphraseController = TextEditingController();
     addTearDown(passphraseController.dispose);
@@ -525,7 +529,8 @@ void main() {
       ),
     );
 
-    final fields = tester.widgetList<TextField>(find.byType(TextField)).toList();
+    final fields =
+        tester.widgetList<TextField>(find.byType(TextField)).toList();
     expect(fields, hasLength(4));
     expect(fields[0].keyboardType, TextInputType.text);
     expect(fields[1].keyboardType, TextInputType.number);
@@ -546,104 +551,223 @@ void main() {
   mainComponentRegistryCoverage();
 }
 
-
 final _componentCases = <({
   String tag,
   String name,
   void Function(WidgetTester tester) verify,
 })>[
-  (tag: 'SG:CMP-01', name: 'primary button', verify: (tester) {
-    expect(find.text('Primary'), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-02', name: 'tonal button', verify: (tester) {
-    expect(find.text('Tonal'), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-03', name: 'ghost button', verify: (tester) {
-    expect(find.text('Ghost'), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-04', name: 'icon button', verify: (tester) {
-    // Composite components (for example the composer) also use this primitive.
-    expect(find.byType(SgIconButton), findsWidgets);
-  }),
-  (tag: 'SG:CMP-05', name: 'floating action button', verify: (tester) {
-    expect(find.byType(SgFab), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-06', name: 'chip', verify: (tester) {
-    expect(find.byType(SgChip), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-07', name: 'segmented control', verify: (tester) {
-    expect(find.byType(SgSegmentedControl<int>), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-08', name: 'text field', verify: (tester) {
-    expect(find.byType(SgTextField), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-09', name: 'toggle', verify: (tester) {
-    expect(find.byType(SgToggle), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-10', name: 'slider', verify: (tester) {
-    expect(find.byType(SgSlider), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-11', name: 'checkbox and radio', verify: (tester) {
-    expect(find.byType(SgCheckbox), findsOneWidget);
-    expect(find.byType(SgRadio<String>), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-12', name: 'avatar', verify: (tester) {
-    expect(find.byType(SgAvatar), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-13', name: 'badge', verify: (tester) {
-    expect(find.byType(SgBadge), findsNWidgets(2));
-  }),
-  (tag: 'SG:CMP-14', name: 'list tile', verify: (tester) {
-    expect(find.byType(SgListTile), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-15', name: 'card', verify: (tester) {
-    expect(find.byType(SgCard), findsNWidgets(3));
-  }),
-  (tag: 'SG:CMP-16', name: 'chat bubble', verify: (tester) {
-    expect(find.byType(SgChatBubble), findsNWidgets(4));
-  }),
-  (tag: 'SG:CMP-17', name: 'rule badge', verify: (tester) {
-    expect(find.byType(SgRuleBadge), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-18', name: 'reaction bar', verify: (tester) {
-    expect(find.byType(SgReactionBar), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-19', name: 'composer', verify: (tester) {
-    expect(find.byType(SgComposer), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-20', name: 'top app bar', verify: (tester) {
-    expect(find.byType(SgTopAppBar), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-21', name: 'bottom navigation', verify: (tester) {
-    expect(find.byType(SgBottomNavigation), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-22', name: 'navigation rail', verify: (tester) {
-    expect(find.byType(SgNavigationRail), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-23', name: 'bottom sheet', verify: (tester) {
-    expect(find.byType(SgBottomSheet), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-26', name: 'banner', verify: (tester) {
-    expect(find.byType(SgBanner), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-27', name: 'alert card', verify: (tester) {
-    expect(find.byType(SgAlertCard), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-28', name: 'PIN pad', verify: (tester) {
-    expect(find.byType(SgPinPad), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-29', name: 'stat ring', verify: (tester) {
-    expect(find.byType(SgStatRing), findsOneWidget);
-  }),
-  (tag: 'SG:CMP-30', name: 'progress variants', verify: (tester) {
-    expect(find.byType(SgProgress), findsNWidgets(3));
-  }),
-  (tag: 'SG:CMP-31', name: 'skeleton variants', verify: (tester) {
-    expect(find.byType(SgSkeleton), findsNWidgets(3));
-  }),
-  (tag: 'SG:CMP-32', name: 'empty state', verify: (tester) {
-    expect(find.byType(SgEmptyState), findsOneWidget);
-  }),
+  (
+    tag: 'SG:CMP-01',
+    name: 'primary button',
+    verify: (tester) {
+      expect(find.text('Primary'), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-02',
+    name: 'tonal button',
+    verify: (tester) {
+      expect(find.text('Tonal'), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-03',
+    name: 'ghost button',
+    verify: (tester) {
+      expect(find.text('Ghost'), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-04',
+    name: 'icon button',
+    verify: (tester) {
+      // Composite components (for example the composer) also use this primitive.
+      expect(find.byType(SgIconButton), findsWidgets);
+    }
+  ),
+  (
+    tag: 'SG:CMP-05',
+    name: 'floating action button',
+    verify: (tester) {
+      expect(find.byType(SgFab), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-06',
+    name: 'chip',
+    verify: (tester) {
+      expect(find.byType(SgChip), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-07',
+    name: 'segmented control',
+    verify: (tester) {
+      expect(find.byType(SgSegmentedControl<int>), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-08',
+    name: 'text field',
+    verify: (tester) {
+      expect(find.byType(SgTextField), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-09',
+    name: 'toggle',
+    verify: (tester) {
+      expect(find.byType(SgToggle), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-10',
+    name: 'slider',
+    verify: (tester) {
+      expect(find.byType(SgSlider), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-11',
+    name: 'checkbox and radio',
+    verify: (tester) {
+      expect(find.byType(SgCheckbox), findsOneWidget);
+      expect(find.byType(SgRadio<String>), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-12',
+    name: 'avatar',
+    verify: (tester) {
+      expect(find.byType(SgAvatar), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-13',
+    name: 'badge',
+    verify: (tester) {
+      expect(find.byType(SgBadge), findsNWidgets(2));
+    }
+  ),
+  (
+    tag: 'SG:CMP-14',
+    name: 'list tile',
+    verify: (tester) {
+      expect(find.byType(SgListTile), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-15',
+    name: 'card',
+    verify: (tester) {
+      expect(find.byType(SgCard), findsNWidgets(3));
+    }
+  ),
+  (
+    tag: 'SG:CMP-16',
+    name: 'chat bubble',
+    verify: (tester) {
+      expect(find.byType(SgChatBubble), findsNWidgets(4));
+    }
+  ),
+  (
+    tag: 'SG:CMP-17',
+    name: 'rule badge',
+    verify: (tester) {
+      expect(find.byType(SgRuleBadge), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-18',
+    name: 'reaction bar',
+    verify: (tester) {
+      expect(find.byType(SgReactionBar), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-19',
+    name: 'composer',
+    verify: (tester) {
+      expect(find.byType(SgComposer), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-20',
+    name: 'top app bar',
+    verify: (tester) {
+      expect(find.byType(SgTopAppBar), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-21',
+    name: 'bottom navigation',
+    verify: (tester) {
+      expect(find.byType(SgBottomNavigation), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-22',
+    name: 'navigation rail',
+    verify: (tester) {
+      expect(find.byType(SgNavigationRail), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-23',
+    name: 'bottom sheet',
+    verify: (tester) {
+      expect(find.byType(SgBottomSheet), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-26',
+    name: 'banner',
+    verify: (tester) {
+      expect(find.byType(SgBanner), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-27',
+    name: 'alert card',
+    verify: (tester) {
+      expect(find.byType(SgAlertCard), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-28',
+    name: 'PIN pad',
+    verify: (tester) {
+      expect(find.byType(SgPinPad), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-29',
+    name: 'stat ring',
+    verify: (tester) {
+      expect(find.byType(SgStatRing), findsOneWidget);
+    }
+  ),
+  (
+    tag: 'SG:CMP-30',
+    name: 'progress variants',
+    verify: (tester) {
+      expect(find.byType(SgProgress), findsNWidgets(3));
+    }
+  ),
+  (
+    tag: 'SG:CMP-31',
+    name: 'skeleton variants',
+    verify: (tester) {
+      expect(find.byType(SgSkeleton), findsNWidgets(3));
+    }
+  ),
+  (
+    tag: 'SG:CMP-32',
+    name: 'empty state',
+    verify: (tester) {
+      expect(find.byType(SgEmptyState), findsOneWidget);
+    }
+  ),
 ];
 
 void mainComponentRegistryCoverage() {
@@ -699,8 +823,7 @@ void mainComponentRegistryCoverage() {
     expect(result, isFalse);
   });
 
-  testWidgets('SG:CMP-25 snackbar undo invokes its action',
-      (tester) async {
+  testWidgets('SG:CMP-25 snackbar undo invokes its action', (tester) async {
     var undoCount = 0;
     await tester.pumpWidget(
       MaterialApp(

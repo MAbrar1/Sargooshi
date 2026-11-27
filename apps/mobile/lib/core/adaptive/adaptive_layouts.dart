@@ -99,11 +99,11 @@ class SgAdaptivePaneLayout extends StatelessWidget {
         final canShowInfo = sizeClass.isExpanded &&
             infoPane != null &&
             constraints.maxWidth >=
-                listWidth + infoWidth + SargoshiLayout.minChatPaneWidth +
+                listWidth +
+                    infoWidth +
+                    SargoshiLayout.minChatPaneWidth +
                     2 * SargoshiStroke.hairline;
-        final resolvedInfoWidth = canShowInfo
-            ? infoWidth
-            : 0.0;
+        final resolvedInfoWidth = canShowInfo ? infoWidth : 0.0;
 
         return Row(
           children: [

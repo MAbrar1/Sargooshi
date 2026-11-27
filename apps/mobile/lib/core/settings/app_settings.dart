@@ -34,8 +34,8 @@ final appLanguageProvider =
   AppLanguageController.new,
 );
 
-final performanceTierChoiceProvider =
-    AsyncNotifierProvider<PerformanceTierChoiceController, PerformanceTierChoice>(
+final performanceTierChoiceProvider = AsyncNotifierProvider<
+    PerformanceTierChoiceController, PerformanceTierChoice>(
   PerformanceTierChoiceController.new,
 );
 
@@ -46,8 +46,7 @@ abstract interface class AppSettingsPreferences {
 }
 
 /// Production adapter backed by the platform's asynchronous preferences API.
-class SharedPreferencesSettingsPreferences
-    implements AppSettingsPreferences {
+class SharedPreferencesSettingsPreferences implements AppSettingsPreferences {
   SharedPreferencesSettingsPreferences([SharedPreferencesAsync? preferences])
       : _preferences = preferences ?? SharedPreferencesAsync();
 

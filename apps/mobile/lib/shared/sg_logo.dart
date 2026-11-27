@@ -25,7 +25,8 @@ class SgLogo extends StatelessWidget {
 
   String _assetFor(SgLogoTone resolvedTone) {
     return switch (resolvedTone) {
-      SgLogoTone.adaptive || SgLogoTone.gradient =>
+      SgLogoTone.adaptive ||
+      SgLogoTone.gradient =>
         'assets/brand/sargoshi-mark-gradient.svg',
       SgLogoTone.onLight => 'assets/brand/sargoshi-mark-ink.svg',
       SgLogoTone.onDark => 'assets/brand/sargoshi-mark-white.svg',

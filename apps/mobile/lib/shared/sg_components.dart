@@ -55,7 +55,8 @@ class _SgButtonState extends State<SgButton> {
     };
     final background = switch (widget.variant) {
       SgButtonVariant.tonal => colors.dusk2,
-      SgButtonVariant.ghost || SgButtonVariant.dangerOutline =>
+      SgButtonVariant.ghost ||
+      SgButtonVariant.dangerOutline =>
         Colors.transparent,
       SgButtonVariant.primary || SgButtonVariant.vault => null,
     };
@@ -421,7 +422,8 @@ class _SgTextFieldState extends State<SgTextField> {
     final keyboardType = switch (widget.variant) {
       SgTextFieldVariant.pin => TextInputType.number,
       SgTextFieldVariant.passphrase => TextInputType.visiblePassword,
-      SgTextFieldVariant.filled || SgTextFieldVariant.search =>
+      SgTextFieldVariant.filled ||
+      SgTextFieldVariant.search =>
         TextInputType.text,
     };
 
@@ -462,7 +464,9 @@ class _SgTextFieldState extends State<SgTextField> {
               )
             : _isSecret && widget.showVisibilityToggle
                 ? IconButton(
-                    tooltip: _obscure ? widget.revealTooltip! : widget.concealTooltip!,
+                    tooltip: _obscure
+                        ? widget.revealTooltip!
+                        : widget.concealTooltip!,
                     onPressed: () => setState(() => _obscure = !_obscure),
                     icon: SgIcon(
                       _obscure ? SgIconName.hidden : SgIconName.visible,
@@ -651,11 +655,8 @@ class SgAvatar extends StatelessWidget {
     ];
     final hash = initials.runes.fold<int>(0, (sum, rune) => sum + rune);
     final background = palette[hash % palette.length];
-    final monogram = initials.runes
-        .take(2)
-        .map(String.fromCharCode)
-        .join()
-        .toUpperCase();
+    final monogram =
+        initials.runes.take(2).map(String.fromCharCode).join().toUpperCase();
     final borderRadius = BorderRadius.circular(size * 0.28);
 
     final content = Container(
@@ -800,7 +801,8 @@ class SgListTile extends StatelessWidget {
               ),
         trailing: trailing,
         minTileHeight: height,
-        contentPadding: const EdgeInsets.symmetric(horizontal: SargoshiSpace.s16),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: SargoshiSpace.s16),
       ),
     );
   }
@@ -837,9 +839,8 @@ class SgCard extends StatelessWidget {
 
     final card = Material(
       color: background.withValues(alpha: glass ? 0.78 : 1),
-      elevation: visuals?.enableSoftShadows == true
-          ? visuals!.surfaceElevation
-          : 0,
+      elevation:
+          visuals?.enableSoftShadows == true ? visuals!.surfaceElevation : 0,
       shadowColor: colors.ink.withValues(alpha: SargoshiOpacity.focusedOverlay),
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
@@ -919,8 +920,7 @@ class SgChatBubble extends StatelessWidget {
     final background = switch (variant) {
       SgChatBubbleVariant.incoming => colors.dusk2,
       SgChatBubbleVariant.outgoing => colors.ember,
-      SgChatBubbleVariant.whisper =>
-        colors.vaultIndigo.withValues(alpha: 0.78),
+      SgChatBubbleVariant.whisper => colors.vaultIndigo.withValues(alpha: 0.78),
       SgChatBubbleVariant.system => colors.ink,
     };
     final foreground = variant == SgChatBubbleVariant.outgoing
@@ -954,7 +954,8 @@ class SgChatBubble extends StatelessWidget {
                 vertical: SargoshiSpace.s12,
               ),
               decoration: BoxDecoration(
-                color: variant == SgChatBubbleVariant.outgoing ? null : background,
+                color:
+                    variant == SgChatBubbleVariant.outgoing ? null : background,
                 gradient: variant == SgChatBubbleVariant.outgoing
                     ? const LinearGradient(colors: SargoshiColors.brandGradient)
                     : null,
@@ -979,13 +980,15 @@ class SgChatBubble extends StatelessWidget {
                     children: [
                       Text(
                         timestamp,
-                        style: SargoshiType.caption.copyWith(color: colors.mist),
+                        style:
+                            SargoshiType.caption.copyWith(color: colors.mist),
                       ),
                       if (status != null) ...[
                         const SizedBox(width: SargoshiSpace.s8),
                         Text(
                           status!,
-                          style: SargoshiType.caption.copyWith(color: colors.mist),
+                          style:
+                              SargoshiType.caption.copyWith(color: colors.mist),
                         ),
                       ],
                     ],
@@ -1120,8 +1123,8 @@ class SgComposer extends StatefulWidget {
     this.voiceTooltip,
     this.enabled = true,
     super.key,
-  }) : assert(onAttach == null || attachTooltip != null),
-       assert(onVoice == null || voiceTooltip != null);
+  })  : assert(onAttach == null || attachTooltip != null),
+        assert(onVoice == null || voiceTooltip != null);
 
   final ValueChanged<String> onSend;
   final TextEditingController? controller;
@@ -1227,9 +1230,8 @@ class _SgComposerState extends State<SgComposer> {
               tooltip: widget.sendTooltip,
               selected: value.text.trim().isNotEmpty,
               filled: true,
-              onPressed: widget.enabled && value.text.trim().isNotEmpty
-                  ? _send
-                  : null,
+              onPressed:
+                  widget.enabled && value.text.trim().isNotEmpty ? _send : null,
             ),
           ],
         ),
@@ -1343,9 +1345,8 @@ class SgNavigationRail extends StatelessWidget {
       onDestinationSelected: onDestinationSelected,
       extended: extended,
       minWidth: SargoshiComponents.navigationRailWidth,
-      labelType: extended
-          ? NavigationRailLabelType.none
-          : NavigationRailLabelType.all,
+      labelType:
+          extended ? NavigationRailLabelType.none : NavigationRailLabelType.all,
       destinations: destinations
           .map(
             (destination) => NavigationRailDestination(
@@ -1517,8 +1518,8 @@ class SgBanner extends StatelessWidget {
     this.onDismiss,
     this.dismissTooltip,
     super.key,
-  }) : assert((actionLabel == null) == (onAction == null)),
-       assert(onDismiss == null || dismissTooltip != null);
+  })  : assert((actionLabel == null) == (onAction == null)),
+        assert(onDismiss == null || dismissTooltip != null);
 
   final String title;
   final String message;
@@ -1531,7 +1532,8 @@ class SgBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.sgColors;
-    final accent = variant == SgBannerVariant.warning ? colors.amber : colors.sky;
+    final accent =
+        variant == SgBannerVariant.warning ? colors.amber : colors.sky;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(SargoshiSpace.s16),

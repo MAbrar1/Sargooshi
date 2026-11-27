@@ -1,4 +1,5 @@
-import 'dart:ui' show DisplayFeature, DisplayFeatureState, DisplayFeatureType, Rect;
+import 'dart:ui'
+    show DisplayFeature, DisplayFeatureState, DisplayFeatureType, Rect;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -195,8 +196,7 @@ void main() {
         lessThan(tester.getTopLeft(find.text('Book chat')).dx));
   });
 
-  testWidgets('foldable book layout mirrors its pages in RTL',
-      (tester) async {
+  testWidgets('foldable book layout mirrors its pages in RTL', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1000, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
@@ -303,7 +303,6 @@ void main() {
     expect(find.text('Regular layout'), findsOneWidget);
     expect(find.text('Book list'), findsNothing);
   });
-
 }
 
 void _noopIndex(int _) {}

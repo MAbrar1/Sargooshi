@@ -7,7 +7,8 @@ import 'package:sargoshi/shared/sg_icon.dart';
 void main() {
   test('every canonical icon exposes all required weights', () {
     for (final name in SgIconName.values) {
-      expect(SgIcon.resolve(name).codePoint, greaterThan(0), reason: '$name regular');
+      expect(SgIcon.resolve(name).codePoint, greaterThan(0),
+          reason: '$name regular');
       expect(
         SgIcon.resolve(name, selected: true).fontFamily,
         'PhosphorFill',
@@ -26,16 +27,19 @@ void main() {
     }
   });
 
-  test('semantic icon inventory contains the source registry and nav actions', () {
+  test('semantic icon inventory contains the source registry and nav actions',
+      () {
     expect(SgIconName.values.length, 51);
     expect(SgIcon.resolve(SgIconName.visible).codePoint, greaterThan(0));
-    expect(SgIcon.directional, containsAll({
-      SgIconName.back,
-      SgIconName.forward,
-      SgIconName.send,
-      SgIconName.undo,
-      SgIconName.redo,
-    }));
+    expect(
+        SgIcon.directional,
+        containsAll({
+          SgIconName.back,
+          SgIconName.forward,
+          SgIconName.send,
+          SgIconName.undo,
+          SgIconName.redo,
+        }));
     expect(SgIcon.directional, isNot(contains(SgIconName.vault)));
   });
 
@@ -54,9 +58,11 @@ void main() {
       ),
     );
 
-    final icons = tester.widgetList<PhosphorIcon>(
-      find.byType(PhosphorIcon),
-    ).toList();
+    final icons = tester
+        .widgetList<PhosphorIcon>(
+          find.byType(PhosphorIcon),
+        )
+        .toList();
 
     expect(icons, hasLength(2));
     expect(

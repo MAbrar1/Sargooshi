@@ -53,10 +53,9 @@ class SargoshiPerformanceVisuals
     return SargoshiPerformanceVisuals(
       transitionDuration: Duration(milliseconds: milliseconds),
       enableGlass: t < 0.5 ? enableGlass : other.enableGlass,
-      enableSharedElementTransitions:
-          t < 0.5
-              ? enableSharedElementTransitions
-              : other.enableSharedElementTransitions,
+      enableSharedElementTransitions: t < 0.5
+          ? enableSharedElementTransitions
+          : other.enableSharedElementTransitions,
       enableSoftShadows: t < 0.5 ? enableSoftShadows : other.enableSoftShadows,
       blurSigma: blurSigma + (other.blurSigma - blurSigma) * t,
       surfaceElevation:

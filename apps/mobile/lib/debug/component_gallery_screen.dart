@@ -220,8 +220,7 @@ class _DebugComponentGalleryScreenState
             SgCheckbox(
               value: _checked,
               title: 'Remember selection',
-              onChanged: (value) =>
-                  setState(() => _checked = value ?? false),
+              onChanged: (value) => setState(() => _checked = value ?? false),
             ),
             const SgRadio<String>(
               value: 'system',
@@ -322,9 +321,12 @@ class _DebugComponentGalleryScreenState
               height: 360,
               child: SgNavigationRail(
                 destinations: const [
-                  SgNavigationDestination(label: 'Chats', icon: SgIconName.chats),
-                  SgNavigationDestination(label: 'Vault', icon: SgIconName.vault),
-                  SgNavigationDestination(label: 'Calls', icon: SgIconName.calls),
+                  SgNavigationDestination(
+                      label: 'Chats', icon: SgIconName.chats),
+                  SgNavigationDestination(
+                      label: 'Vault', icon: SgIconName.vault),
+                  SgNavigationDestination(
+                      label: 'Calls', icon: SgIconName.calls),
                   SgNavigationDestination(label: 'You', icon: SgIconName.you),
                 ],
                 selectedIndex: _navigationIndex,
@@ -428,18 +430,16 @@ void _noop() {}
 void _noopBool(bool value) {}
 void _noopNullableString(String? value) {}
 
-
 class _DebugPreferenceControls extends ConsumerWidget {
   const _DebugPreferenceControls();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final preset = ref.watch(themePresetProvider).valueOrNull ??
-        SargoshiThemePreset.dark;
+    final preset =
+        ref.watch(themePresetProvider).valueOrNull ?? SargoshiThemePreset.dark;
     final language =
         ref.watch(appLanguageProvider).valueOrNull ?? AppLanguage.system;
-    final liteUi =
-        ref.watch(liteUiModeProvider).valueOrNull ?? LiteUiMode.auto;
+    final liteUi = ref.watch(liteUiModeProvider).valueOrNull ?? LiteUiMode.auto;
     final tier = ref.watch(performanceTierChoiceProvider).valueOrNull ??
         PerformanceTierChoice.auto;
 
@@ -454,7 +454,10 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _themeLabel,
           onChanged: (value) {
             if (value != null) {
-              _save(context, () => ref.read(themePresetProvider.notifier).setPreset(value));
+              _save(
+                  context,
+                  () =>
+                      ref.read(themePresetProvider.notifier).setPreset(value));
             }
           },
         ),
@@ -466,7 +469,11 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _languageLabel,
           onChanged: (value) {
             if (value != null) {
-              _save(context, () => ref.read(appLanguageProvider.notifier).setLanguage(value));
+              _save(
+                  context,
+                  () => ref
+                      .read(appLanguageProvider.notifier)
+                      .setLanguage(value));
             }
           },
         ),
@@ -478,7 +485,8 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _liteUiLabel,
           onChanged: (value) {
             if (value != null) {
-              _save(context, () => ref.read(liteUiModeProvider.notifier).setMode(value));
+              _save(context,
+                  () => ref.read(liteUiModeProvider.notifier).setMode(value));
             }
           },
         ),
@@ -490,7 +498,11 @@ class _DebugPreferenceControls extends ConsumerWidget {
           label: _tierLabel,
           onChanged: (value) {
             if (value != null) {
-              _save(context, () => ref.read(performanceTierChoiceProvider.notifier).setChoice(value));
+              _save(
+                  context,
+                  () => ref
+                      .read(performanceTierChoiceProvider.notifier)
+                      .setChoice(value));
             }
           },
         ),

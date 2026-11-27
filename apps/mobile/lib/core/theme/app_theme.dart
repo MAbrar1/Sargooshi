@@ -19,7 +19,8 @@ abstract final class AppTheme {
     ColorScheme? dynamicScheme,
   }) {
     const base = SargoshiColors.defaults;
-    final isDynamic = preset == SargoshiThemePreset.dynamic && dynamicScheme != null;
+    final isDynamic =
+        preset == SargoshiThemePreset.dynamic && dynamicScheme != null;
     final colors = _resolveColors(
       base: base,
       preset: preset,
@@ -71,14 +72,17 @@ abstract final class AppTheme {
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.card),
-          side: BorderSide(color: colors.line.withValues(alpha: SargoshiOpacity.cardOutline)),
+          side: BorderSide(
+              color:
+                  colors.line.withValues(alpha: SargoshiOpacity.cardOutline)),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           foregroundColor: colors.paper,
           backgroundColor: colors.ember,
-          disabledForegroundColor: colors.mist.withValues(alpha: SargoshiOpacity.disabledContent),
+          disabledForegroundColor:
+              colors.mist.withValues(alpha: SargoshiOpacity.disabledContent),
           disabledBackgroundColor: colors.dusk2,
           minimumSize: const Size(0, SargoshiBreakpoint.minInteractiveTarget),
           padding: const EdgeInsets.symmetric(horizontal: SargoshiSpace.s20),
@@ -117,7 +121,8 @@ abstract final class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.button),
-          borderSide: BorderSide(color: colors.glow, width: SargoshiStroke.focus),
+          borderSide:
+              BorderSide(color: colors.glow, width: SargoshiStroke.focus),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.button),
@@ -125,7 +130,8 @@ abstract final class AppTheme {
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(SargoshiShape.button),
-          borderSide: BorderSide(color: colors.coral, width: SargoshiStroke.focus),
+          borderSide:
+              BorderSide(color: colors.coral, width: SargoshiStroke.focus),
         ),
       ),
       dividerTheme: DividerThemeData(
@@ -143,8 +149,10 @@ abstract final class AppTheme {
       ),
       iconTheme: IconThemeData(color: colors.mist),
       focusColor: colors.glow.withValues(alpha: SargoshiOpacity.focusedOverlay),
-      splashColor: colors.glow.withValues(alpha: SargoshiOpacity.pressedOverlay),
-      highlightColor: colors.glow.withValues(alpha: SargoshiOpacity.pressedOverlay),
+      splashColor:
+          colors.glow.withValues(alpha: SargoshiOpacity.pressedOverlay),
+      highlightColor:
+          colors.glow.withValues(alpha: SargoshiOpacity.pressedOverlay),
       visualDensity: VisualDensity.standard,
     );
   }
@@ -155,8 +163,11 @@ abstract final class AppTheme {
       SargoshiThemePreset.dark ||
       SargoshiThemePreset.amoled ||
       SargoshiThemePreset.midnightSky ||
-      SargoshiThemePreset.highContrast => ThemeMode.dark,
-      SargoshiThemePreset.system || SargoshiThemePreset.dynamic => ThemeMode.system,
+      SargoshiThemePreset.highContrast =>
+        ThemeMode.dark,
+      SargoshiThemePreset.system ||
+      SargoshiThemePreset.dynamic =>
+        ThemeMode.system,
     };
   }
 
@@ -186,7 +197,8 @@ abstract final class AppTheme {
         dusk: base.paper,
         dusk2: base.paper,
         dusk3: base.parchment,
-        line: base.lightSecondary.withValues(alpha: SargoshiOpacity.subtleOutline),
+        line: base.lightSecondary
+            .withValues(alpha: SargoshiOpacity.subtleOutline),
         moon: base.ink,
         mist: base.lightSecondary,
         ember: base.lightAccentText,
@@ -210,11 +222,11 @@ abstract final class AppTheme {
     required Brightness brightness,
     required SargoshiThemePreset preset,
   }) {
-    final isLight = brightness == Brightness.light || preset == SargoshiThemePreset.light;
+    final isLight =
+        brightness == Brightness.light || preset == SargoshiThemePreset.light;
     final highContrast = preset == SargoshiThemePreset.highContrast;
-    final primary = preset == SargoshiThemePreset.midnightSky
-        ? colors.sky
-        : colors.ember;
+    final primary =
+        preset == SargoshiThemePreset.midnightSky ? colors.sky : colors.ember;
 
     final base = ColorScheme.fromSeed(
       seedColor: primary,
