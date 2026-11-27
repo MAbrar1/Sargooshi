@@ -51,7 +51,7 @@ class SharedPreferencesSettingsPreferences
   SharedPreferencesSettingsPreferences([SharedPreferencesAsync? preferences])
       : _preferences = preferences ?? SharedPreferencesAsync();
 
-  final AppSettingsPreferences _preferences;
+  final SharedPreferencesAsync _preferences;
 
   @override
   Future<String?> getString(String key) => _preferences.getString(key);
@@ -69,7 +69,7 @@ class AppSettingsStore {
   static const _performanceTierKey = 'sargoshi.settings.performance_tier';
   static const _themePresetKey = 'sargoshi.settings.theme_preset';
 
-  final SharedPreferencesAsync _preferences;
+  final AppSettingsPreferences _preferences;
 
   Future<SargoshiThemePreset> readThemePreset() async {
     final stored = await _preferences.getString(_themePresetKey);
