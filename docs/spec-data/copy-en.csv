@@ -51,3 +51,20 @@ copy_scam_pack,Scam pack,"""This looks like a {scam type}"" / ""Real {organisati
 copy_simple_mode,Simple mode,"""Good evening"" · ""Tap what you need."" · Messages · Calls · Photos · Help · ""Speak to send"""
 copy_sos,SOS,"""Hold to send SOS"" / ""{name} will get your location and a short audio clip."" / ""This depends on your signal and battery."""
 copy_restrict,Restrict,"""Restrict {name}?"" / ""Their messages go to Requests. They won’t be told."" / Restrict · Cancel"
+welcomeExploreInbox,Welcome action,Explore inbox preview
+inboxTitle,Inbox title,Messages
+inboxPreviewTag,Inbox preview notice,LOCAL PREVIEW
+inboxPreviewDescription,Inbox preview notice,You're viewing sample conversations. Nothing is sent or received.
+inboxSearchHint,Inbox search,Search people or messages
+inboxClearSearch,Inbox search,Clear search
+inboxFilterAll,Inbox filters,All
+inboxFilterUnread,Inbox filters,Unread
+inboxFilterPeople,Inbox filters,People
+inboxFilterGroups,Inbox filters,Groups
+inboxNoResultsTitle,Inbox empty state,Nothing matched
+inboxNoResultsBody,Inbox empty state,"Try a different name, message or filter."
+inboxPreviewOnlyNotice,Conversation preview dialog,Sample content only. Messaging is not connected yet.
+inboxClose,Conversation preview dialog,Close
+inboxYesterday,Conversation time label,Yesterday
+inboxMondayShort,Conversation time label,Mon
+inboxUnreadCount,Conversation unread badge,{count} unread

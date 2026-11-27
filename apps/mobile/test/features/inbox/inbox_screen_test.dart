@@ -45,6 +45,20 @@ void main() {
     expect(find.text('Family Circle'), findsNothing);
   });
 
+
+  testWidgets('search normalizes Arabic and Urdu letter variants', (tester) async {
+    await tester.pumpWidget(_testInboxApp());
+
+    await tester.enterText(
+      find.byKey(const ValueKey<String>('inbox-search')),
+      'الله',
+    );
+    await tester.pump();
+
+    expect(find.text('Family Circle'), findsOneWidget);
+    expect(find.text('Ayesha Khan'), findsNothing);
+  });
+
   testWidgets('unread filter only shows conversations with unread messages',
       (tester) async {
     await tester.pumpWidget(_testInboxApp());
@@ -97,7 +111,13 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Ayesha Khan'), findsOneWidget);
+    expect(
+      find.descendant(
+        of: find.byType(AlertDialog),
+        matching: find.text('Ayesha Khan'),
+      ),
+      findsOneWidget,
+    );
     expect(
       find.text('Sample content only. Messaging is not connected yet.'),
       findsOneWidget,
