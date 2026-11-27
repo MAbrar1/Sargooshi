@@ -15,8 +15,7 @@ class SgAdaptiveScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.extendedRailLabels = true,
     super.key,
-  }) : assert(destinations.length == 4),
-       assert(selectedIndex >= 0 && selectedIndex < 4);
+  });
 
   final List<SgNavigationDestination> destinations;
   final int selectedIndex;
@@ -28,6 +27,9 @@ class SgAdaptiveScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(destinations.length == 4);
+    assert(selectedIndex >= 0 && selectedIndex < 4);
+
     return LayoutBuilder(
       builder: (context, constraints) {
         final sizeClass = WindowSizeClasses.fromWidth(constraints.maxWidth);
