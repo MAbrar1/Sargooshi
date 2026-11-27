@@ -43,7 +43,7 @@ class SgAdaptiveScaffold extends StatelessWidget {
                     onDestinationSelected: onDestinationSelected,
                     extended: expanded && extendedRailLabels,
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     width: SargoshiStroke.hairline,
                     thickness: SargoshiStroke.hairline,
                     color: Theme.of(context).dividerColor,
@@ -109,13 +109,13 @@ class SgAdaptivePaneLayout extends StatelessWidget {
               width: listWidth,
               child: listPane,
             ),
-            VerticalDivider(
+            const VerticalDivider(
               width: SargoshiStroke.hairline,
               thickness: SargoshiStroke.hairline,
             ),
             Expanded(child: chatPane),
             if (canShowInfo) ...[
-              VerticalDivider(
+              const VerticalDivider(
                 width: SargoshiStroke.hairline,
                 thickness: SargoshiStroke.hairline,
               ),
