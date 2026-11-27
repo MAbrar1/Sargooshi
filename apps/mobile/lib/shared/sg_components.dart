@@ -1003,7 +1003,6 @@ class SgChatBubble extends StatelessWidget {
   }
 }
 
-
 /// A localized day/date separator for the reusable chat timeline.
 ///
 /// The caller owns date formatting and localization; this widget only applies
