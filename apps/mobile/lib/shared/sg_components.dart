@@ -903,13 +903,17 @@ class SgChatBubble extends StatelessWidget {
     required this.timestamp,
     required this.variant,
     this.status,
+    this.replyToName,
+    this.replyToMessage,
     super.key,
-  });
+  }) : assert((replyToName == null) == (replyToMessage == null));
 
   final String message;
   final String timestamp;
   final SgChatBubbleVariant variant;
   final String? status;
+  final String? replyToName;
+  final String? replyToMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -967,6 +971,13 @@ class SgChatBubble extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
+                  if (widget.replyToName != null && widget.replyToMessage != null)
+                    _SgReplyPreview(
+                      name: widget.replyToName!,
+                      message: widget.replyToMessage!,
+                      outgoing: isOutgoing,
+                      colors: colors,
+                    ),
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: Text(
@@ -1007,6 +1018,44 @@ class SgChatBubble extends StatelessWidget {
 ///
 /// The caller owns date formatting and localization; this widget only applies
 /// the canonical centered Dusk 2 pill treatment.
+
+class _SgReplyPreview extends StatelessWidget {
+  const _SgReplyPreview({
+    required this.name,
+    required this.message,
+    required this.outgoing,
+    required this.colors,
+  });
+
+  final String name;
+  final String message;
+  final bool outgoing;
+  final SargoshiColors colors;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: SargoshiSpace.s8),
+      padding: const EdgeInsetsDirectional.only(start: SargoshiSpace.s8),
+      decoration: BoxDecoration(
+        border: BorderDirectional(
+          start: BorderSide(color: outgoing ? colors.paper : colors.glow, width: 2),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(name, maxLines: 1, overflow: TextOverflow.ellipsis,
+            style: SargoshiType.label.copyWith(color: outgoing ? colors.paper : colors.glow)),
+          Text(message, maxLines: 2, overflow: TextOverflow.ellipsis,
+            style: SargoshiType.caption.copyWith(color: outgoing ? colors.paper : colors.mist)),
+        ],
+      ),
+    );
+  }
+}
+
 class SgChatDateChip extends StatelessWidget {
   const SgChatDateChip({required this.label, super.key});
 
