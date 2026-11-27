@@ -62,7 +62,9 @@ jobs:
 
       - name: Check Dart formatting
         working-directory: apps/mobile
-        run: dart format --output=none --set-exit-if-changed lib test
+        run: |
+          find lib test -type f -name '*.dart' ! -path 'lib/core/theme/generated/sargoshi_tokens.g.dart' -print0 |
+            xargs -0 dart format --output=none --set-exit-if-changed
 
       - name: Analyze Dart sources
         working-directory: apps/mobile
