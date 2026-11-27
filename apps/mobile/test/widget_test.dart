@@ -76,8 +76,17 @@ void main() {
     expect(find.text('App language'), findsOneWidget);
     expect(find.text('Lite UI'), findsOneWidget);
     expect(find.text('Performance tier'), findsOneWidget);
-    expect(find.text('Debug gallery only — no production operations are wired here.'),
-        findsOneWidget);
+
+    // The gallery is intentionally scrollable; bring its footer into the
+    // viewport before asserting against the lazily-built list child.
+    await tester.scrollUntilVisible(
+      find.text('Debug gallery only — no production operations are wired here.'),
+      320,
+    );
+    expect(
+      find.text('Debug gallery only — no production operations are wired here.'),
+      findsOneWidget,
+    );
   });
 
 }
