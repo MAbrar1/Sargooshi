@@ -971,10 +971,10 @@ class SgChatBubble extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  if (widget.replyToName != null && widget.replyToMessage != null)
+                  if (replyToName != null && replyToMessage != null)
                     _SgReplyPreview(
-                      name: widget.replyToName!,
-                      message: widget.replyToMessage!,
+                      name: replyToName!,
+                      message: replyToMessage!,
                       outgoing: isOutgoing,
                       colors: colors,
                     ),
