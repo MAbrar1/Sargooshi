@@ -59,7 +59,11 @@ void main() {
     ).toList();
 
     expect(icons, hasLength(2));
-    expect(icons[0].icon?.matchTextDirection, isTrue);
-    expect(icons[1].icon?.matchTextDirection, isFalse);
+    expect(
+      find.byKey(const ValueKey<String>('sg-icon-rtl-directional')),
+      findsOneWidget,
+    );
+    expect(icons[0].icon, PhosphorIconsRegular.arrowLeft);
+    expect(icons[1].icon, PhosphorIconsRegular.vault);
   });
 }
