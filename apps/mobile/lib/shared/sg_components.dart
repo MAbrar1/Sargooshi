@@ -737,16 +737,22 @@ class SgBadge extends StatelessWidget {
         minWidth: SargoshiComponents.badgeHeight,
       ),
       padding: const EdgeInsets.symmetric(horizontal: SargoshiSpace.s8),
-      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: color ?? colors.ember,
         borderRadius: BorderRadius.circular(SargoshiShape.chip),
       ),
-      child: Text(
-        count > maxCount ? '$maxCount+' : count.toString(),
-        style: SargoshiType.caption.copyWith(
-          color: colors.paper,
-          fontWeight: FontWeight.w700,
+      // Keep the label centered without expanding to the maximum width passed
+      // by parents such as ListTile.trailing.
+      child: Center(
+        widthFactor: 1,
+        heightFactor: 1,
+        child: Text(
+          count > maxCount ? '$maxCount+' : count.toString(),
+          textAlign: TextAlign.center,
+          style: SargoshiType.caption.copyWith(
+            color: colors.paper,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
     );
