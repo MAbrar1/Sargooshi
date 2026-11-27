@@ -216,7 +216,7 @@ void main() {
             size: Size(1000, 900),
             displayFeatures: [hinge],
           ),
-          child: const Directionality(
+          child: Directionality(
             textDirection: TextDirection.rtl,
             child: SgFoldableLayout(
               regularLayout: Text('Regular layout'),
