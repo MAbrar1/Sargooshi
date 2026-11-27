@@ -43,7 +43,7 @@ class SgAdaptiveScaffold extends StatelessWidget {
                     onDestinationSelected: onDestinationSelected,
                     extended: expanded && extendedRailLabels,
                   ),
-                  const VerticalDivider(
+                  VerticalDivider(
                     width: SargoshiStroke.hairline,
                     thickness: SargoshiStroke.hairline,
                     color: Theme.of(context).dividerColor,
