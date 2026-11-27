@@ -79,17 +79,17 @@ class WelcomeScreen extends StatelessWidget {
                         const SizedBox(height: SargoshiSpace.s32),
                         _WelcomePrinciple(
                           icon: SgIconName.privateLock,
-                          message: localizations.copyWelcome1,
+                          message: localizations.copy_welcome_1,
                         ),
                         const SizedBox(height: SargoshiSpace.s16),
                         _WelcomePrinciple(
                           icon: SgIconName.translate,
-                          message: localizations.copyWelcome2,
+                          message: localizations.copy_welcome_2,
                         ),
                         const SizedBox(height: SargoshiSpace.s16),
                         _WelcomePrinciple(
                           icon: SgIconName.contacts,
-                          message: localizations.copyWelcome3,
+                          message: localizations.copy_welcome_3,
                         ),
                         const SizedBox(height: SargoshiSpace.s24),
                       ],
