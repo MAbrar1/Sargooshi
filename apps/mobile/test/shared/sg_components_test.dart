@@ -239,6 +239,47 @@ void main() {
     );
   }
 
+  testWidgets('count badge shrink-wraps in a trailing list-tile slot',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    for (final direction in TextDirection.values) {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: AppTheme.build(
+            brightness: Brightness.dark,
+            preset: SargoshiThemePreset.dark,
+          ),
+          home: MediaQuery(
+            data: const MediaQueryData(
+              textScaler: TextScaler.linear(2),
+            ),
+            child: Directionality(
+              textDirection: direction,
+              child: const Scaffold(
+                body: SingleChildScrollView(
+                  child: SgListTile(
+                    title: 'Private conversation',
+                    subtitle: 'Last message preview',
+                    lines: 2,
+                    leading: SgAvatar(initials: 'SA'),
+                    trailing: SgBadge.count(count: 2),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(tester.takeException(), isNull);
+      final badgeSize = tester.getSize(find.byType(SgBadge));
+      expect(badgeSize.width, lessThan(80));
+      expect(badgeSize.height, greaterThanOrEqualTo(24));
+    }
+  });
+
   testWidgets('primary action and PIN keypad return user selections',
       (tester) async {
     var buttonPressed = false;
