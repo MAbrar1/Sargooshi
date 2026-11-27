@@ -3,6 +3,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:sargoshi/app/sargoshi_app.dart';
+import 'package:sargoshi/core/settings/app_settings.dart';
+import 'support/memory_app_settings_preferences.dart';
+
+Widget _testApp() {
+  return ProviderScope(
+    overrides: [
+      appSettingsStoreProvider.overrideWithValue(
+        createMemoryAppSettingsStore(),
+      ),
+    ],
+    child: const SargoshiApp(),
+  );
+}
 
 void main() {
   testWidgets('English welcome copy renders from generated resources',
@@ -10,7 +23,7 @@ void main() {
     tester.binding.platformDispatcher.localeTestValue = const Locale('en');
     addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
 
-    await tester.pumpWidget(const ProviderScope(child: SargoshiApp()));
+    await tester.pumpWidget(_testApp());
 
     expect(find.text('Sargoshi'), findsOneWidget);
     expect(find.text('Say it softly.'), findsOneWidget);
@@ -27,7 +40,7 @@ void main() {
     tester.binding.platformDispatcher.localeTestValue = const Locale('ur');
     addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
 
-    await tester.pumpWidget(const ProviderScope(child: SargoshiApp()));
+    await tester.pumpWidget(_testApp());
 
     expect(find.text('سرگوشی'), findsOneWidget);
     expect(find.text('آہستگی سے کہیے۔'), findsOneWidget);
@@ -41,11 +54,15 @@ void main() {
     tester.binding.platformDispatcher.localeTestValue = const Locale('en');
     addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
 
-    await tester.pumpWidget(const ProviderScope(child: SargoshiApp()));
+    await tester.pumpWidget(_testApp());
     expect(find.byTooltip('Open debug component gallery'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Open debug component gallery'));
-    await tester.pumpAndSettle();
+
+    // The welcome screen pulse and gallery loading indicator are intentionally
+    // repeating animations, so pump the finite route transition explicitly.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
 
     expect(find.text('Design system gallery'), findsOneWidget);
     expect(find.text('Runtime preferences'), findsOneWidget);
