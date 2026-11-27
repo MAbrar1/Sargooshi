@@ -185,7 +185,7 @@ class SgIconButton extends StatelessWidget {
       onPressed: onPressed,
       isSelected: selected,
       style: IconButton.styleFrom(
-        minimumSize: Size(
+        minimumSize: const Size(
           SargoshiBreakpoint.minInteractiveTarget,
           SargoshiBreakpoint.minInteractiveTarget,
         ),
@@ -354,7 +354,7 @@ class SgSegmentedControl<T> extends StatelessWidget {
         onSelectionChanged: (selection) {
           if (selection.isNotEmpty) onSelectionChanged(selection.first);
         },
-        style: ButtonStyle(
+        style: const ButtonStyle(
           textStyle: WidgetStatePropertyAll(SargoshiType.label),
           visualDensity: VisualDensity.compact,
         ),
@@ -505,7 +505,7 @@ class SgToggle extends StatelessWidget {
         trailing: Switch.adaptive(
           value: value,
           onChanged: onChanged,
-          activeColor: vault ? colors.vaultLilac : colors.mint,
+          activeThumbColor: vault ? colors.vaultLilac : colors.mint,
           activeTrackColor: vault ? colors.vaultIndigo : colors.ember,
           inactiveTrackColor: colors.dusk3,
         ),
@@ -1076,7 +1076,7 @@ class SgReactionBar extends StatelessWidget {
                           vertical: SargoshiSpace.s8,
                         ),
                         child: Text(
-                          reaction.emoji + ' ' + reaction.count.toString(),
+                          '${reaction.emoji} ${reaction.count}',
                           style: SargoshiType.label,
                         ),
                       ),
@@ -1367,7 +1367,7 @@ class SgBottomSheet extends StatelessWidget {
       isScrollControlled: isScrollControlled,
       backgroundColor: Colors.transparent,
       useSafeArea: true,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(SargoshiShape.sheet),
         ),
