@@ -75,7 +75,7 @@ class SgIcon extends StatelessWidget {
   final bool emptyState;
   final String? semanticLabel;
 
-  static final Map<SgIconName, IconData> _regular = {
+  static const Map<SgIconName, IconData> _regular = {
     SgIconName.chats: PhosphorIconsRegular.chatCircleDots,
     SgIconName.vault: PhosphorIconsRegular.vault,
     SgIconName.calls: PhosphorIconsRegular.phone,
@@ -129,7 +129,7 @@ class SgIcon extends StatelessWidget {
     SgIconName.redo: PhosphorIconsRegular.arrowClockwise,
   };
 
-  static final Map<SgIconName, IconData> _fill = {
+  static const Map<SgIconName, IconData> _fill = {
     SgIconName.chats: PhosphorIconsFill.chatCircleDots,
     SgIconName.vault: PhosphorIconsFill.vault,
     SgIconName.calls: PhosphorIconsFill.phone,
@@ -183,7 +183,7 @@ class SgIcon extends StatelessWidget {
     SgIconName.redo: PhosphorIconsFill.arrowClockwise,
   };
 
-  static final Map<SgIconName, IconData> _bold = {
+  static const Map<SgIconName, IconData> _bold = {
     SgIconName.chats: PhosphorIconsBold.chatCircleDots,
     SgIconName.vault: PhosphorIconsBold.vault,
     SgIconName.calls: PhosphorIconsBold.phone,
@@ -237,7 +237,7 @@ class SgIcon extends StatelessWidget {
     SgIconName.redo: PhosphorIconsBold.arrowClockwise,
   };
 
-  static final Map<SgIconName, IconData> _duotone = {
+  static const Map<SgIconName, IconData> _duotone = {
     SgIconName.chats: PhosphorIconsDuotone.chatCircleDots,
     SgIconName.vault: PhosphorIconsDuotone.vault,
     SgIconName.calls: PhosphorIconsDuotone.phone,
