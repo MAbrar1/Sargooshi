@@ -27,9 +27,11 @@ Widget buildGalleryHarness({
         textDirection: direction,
         child: Scaffold(
           appBar: const SgTopAppBar(title: 'Component review'),
-          body: ListView(
+          body: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
-            children: [
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
               const SgButton(label: 'Primary', onPressed: _noop),
               const SizedBox(height: 8),
               const SgButton(
@@ -198,7 +200,8 @@ Widget buildGalleryHarness({
                   onDestinationSelected: _noopInt,
                 ),
               ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
