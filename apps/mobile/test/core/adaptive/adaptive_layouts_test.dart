@@ -23,7 +23,7 @@ Widget _harness({required double width, required Widget child}) {
       preset: SargoshiThemePreset.dark,
     ),
     home: MediaQuery(
-      data: const MediaQueryData(size: Size(width, 900)),
+      data: MediaQueryData(size: Size(width, 900)),
       child: child,
     ),
   );
@@ -174,9 +174,9 @@ void main() {
           brightness: Brightness.dark,
           preset: SargoshiThemePreset.dark,
         ),
-        home: MediaQuery(
+        home: const MediaQuery(
           data: const MediaQueryData(
-            size: const Size(1000, 900),
+            size: Size(1000, 900),
             displayFeatures: [hinge],
           ),
           child: const SgFoldableLayout(
@@ -211,9 +211,9 @@ void main() {
           brightness: Brightness.dark,
           preset: SargoshiThemePreset.dark,
         ),
-        home: MediaQuery(
+        home: const MediaQuery(
           data: const MediaQueryData(
-            size: const Size(1000, 900),
+            size: Size(1000, 900),
             displayFeatures: [hinge],
           ),
           child: const Directionality(
@@ -250,9 +250,9 @@ void main() {
           brightness: Brightness.dark,
           preset: SargoshiThemePreset.dark,
         ),
-        home: MediaQuery(
+        home: const MediaQuery(
           data: const MediaQueryData(
-            size: const Size(900, 900),
+            size: Size(900, 900),
             displayFeatures: [hinge],
           ),
           child: const SgFoldableLayout(
@@ -284,9 +284,9 @@ void main() {
           brightness: Brightness.dark,
           preset: SargoshiThemePreset.dark,
         ),
-        home: MediaQuery(
+        home: const MediaQuery(
           data: const MediaQueryData(
-            size: const Size(390, 844),
+            size: Size(390, 844),
             displayFeatures: [cutout],
           ),
           child: const SgFoldableLayout(
