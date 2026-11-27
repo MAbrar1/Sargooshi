@@ -131,6 +131,7 @@ Widget buildGalleryHarness({
                   timestamp: '09:33',
                   variant: SgChatBubbleVariant.system,
                 ),
+                const SgChatDateChip(label: 'Today — 27 Nov'),
                 const SgRuleBadge(
                   label: 'Forwarding disabled',
                   icon: SgIconName.hidden,
@@ -381,6 +382,42 @@ void main() {
     );
     final fill = (bubble.decoration! as BoxDecoration).color!;
     expect(fill.a, closeTo(0.78, 0.01));
+  });
+
+  testWidgets(
+      'chat date chip stays centered and readable at 200 percent in LTR and RTL',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
+    for (final direction in TextDirection.values) {
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: AppTheme.build(
+            brightness: Brightness.dark,
+            preset: SargoshiThemePreset.dark,
+          ),
+          home: MediaQuery(
+            data: const MediaQueryData(textScaler: TextScaler.linear(2)),
+            child: Directionality(
+              textDirection: direction,
+              child: const Scaffold(
+                body: SgChatDateChip(label: 'Today — 27 Nov'),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      expect(find.byType(SgChatDateChip), findsOneWidget);
+      expect(find.text('Today — 27 Nov'), findsOneWidget);
+      expect(
+        tester.widget<Text>(find.text('Today — 27 Nov')).textAlign,
+        TextAlign.center,
+      );
+      expect(tester.getSize(find.byType(SgChatDateChip)).height, greaterThan(32));
+      expect(tester.takeException(), isNull);
+    }
   });
 
   testWidgets(
