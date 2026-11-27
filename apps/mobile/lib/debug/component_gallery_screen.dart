@@ -316,16 +316,21 @@ class _DebugComponentGalleryScreenState
               onDestinationSelected: (value) =>
                   setState(() => _navigationIndex = value),
             ),
-            SgNavigationRail(
-              destinations: const [
-                SgNavigationDestination(label: 'Chats', icon: SgIconName.chats),
-                SgNavigationDestination(label: 'Vault', icon: SgIconName.vault),
-                SgNavigationDestination(label: 'Calls', icon: SgIconName.calls),
-                SgNavigationDestination(label: 'You', icon: SgIconName.you),
-              ],
-              selectedIndex: _navigationIndex,
-              onDestinationSelected: (value) =>
-                  setState(() => _navigationIndex = value),
+            // A NavigationRail is intended for a bounded-height app shell.
+            // Give the gallery preview the same finite vertical constraint.
+            SizedBox(
+              height: 360,
+              child: SgNavigationRail(
+                destinations: const [
+                  SgNavigationDestination(label: 'Chats', icon: SgIconName.chats),
+                  SgNavigationDestination(label: 'Vault', icon: SgIconName.vault),
+                  SgNavigationDestination(label: 'Calls', icon: SgIconName.calls),
+                  SgNavigationDestination(label: 'You', icon: SgIconName.you),
+                ],
+                selectedIndex: _navigationIndex,
+                onDestinationSelected: (value) =>
+                    setState(() => _navigationIndex = value),
+              ),
             ),
             SgButton(
               label: 'Open bottom sheet',
