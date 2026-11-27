@@ -39,11 +39,11 @@ void main() {
     await tester.pumpWidget(
       _harness(
         width: 500,
-        child: SgAdaptiveScaffold(
+        child: const SgAdaptiveScaffold(
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
-          body: Text('Compact content'),
+          body: const Text('Compact content'),
         ),
       ),
     );
@@ -60,11 +60,11 @@ void main() {
     await tester.pumpWidget(
       _harness(
         width: 700,
-        child: SgAdaptiveScaffold(
+        child: const SgAdaptiveScaffold(
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
-          body: Text('Medium content'),
+          body: const Text('Medium content'),
         ),
       ),
     );
@@ -83,11 +83,11 @@ void main() {
     await tester.pumpWidget(
       _harness(
         width: 1100,
-        child: SgAdaptiveScaffold(
+        child: const SgAdaptiveScaffold(
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
-          body: Text('Expanded content'),
+          body: const Text('Expanded content'),
         ),
       ),
     );
@@ -163,7 +163,7 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1000, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
-    final hinge = DisplayFeature(
+    const hinge = DisplayFeature(
       bounds: const Rect.fromLTWH(496, 0, 8, 900),
       type: DisplayFeatureType.hinge,
       state: DisplayFeatureState.postureFlat,
@@ -200,7 +200,7 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1000, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
-    final hinge = DisplayFeature(
+    const hinge = DisplayFeature(
       bounds: const Rect.fromLTWH(496, 0, 8, 900),
       type: DisplayFeatureType.fold,
       state: DisplayFeatureState.postureFlat,
@@ -239,7 +239,7 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(900, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
-    final hinge = DisplayFeature(
+    const hinge = DisplayFeature(
       bounds: const Rect.fromLTWH(0, 440, 900, 20),
       type: DisplayFeatureType.hinge,
       state: DisplayFeatureState.postureHalfOpened,
@@ -273,7 +273,7 @@ void main() {
 
   testWidgets('camera cutouts are ignored by foldable posture detection',
       (tester) async {
-    final cutout = DisplayFeature(
+    const cutout = DisplayFeature(
       bounds: const Rect.fromLTWH(0, 0, 32, 900),
       type: DisplayFeatureType.cutout,
       state: DisplayFeatureState.unknown,
