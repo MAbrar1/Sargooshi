@@ -26,7 +26,7 @@ CURRENT_PHASE: P00
 
 ## P01 implementation in progress (new work not yet owner-verified)
 - Canonical design tokens live in `docs/blueprint/design-tokens.json`; `tools/gen-tokens.mjs` generates Dart theme tokens and supports stale-output `--check`.
-- Theme presets include dark default, light/parchment, AMOLED, Midnight Sky, high contrast, system and Android dynamic colour.
+- Theme presets include dark default, light/parchment, AMOLED, Midnight Sky, high contrast, system and Android dynamic colour. The dynamic-colour dependency is pinned to 1.9.0 to avoid the separate `material_ui` ColorScheme introduced in dynamic_color 2.0.
 - Four local variable-font families (Plus Jakarta Sans, Inter, JetBrains Mono, Noto Naskh Arabic) are committed with separate SIL OFL texts. Upstream commit and SHA-256 values are recorded in `docs/compliance/LICENSES.md`.
 - Phosphor icon layer now contains 51 semantic entries:
 - Brand marks are committed as local gradient, light and dark SVG assets. `SgLogo` provides mark-only, horizontal and stacked lockups with adaptive/light/dark treatments and semantic labels; welcome uses the brand mark. Brand dimensions are tokenized in `design-tokens.json` and generated Dart tokens. Widget tests cover all lockup variants and both brightnesses. The outlined wordmark is currently composed from bundled typography rather than the blueprint's full outlined horizontal/stacked lockup SVGs; exact lockup asset integration remains a visual-fidelity follow-up. Adaptive launcher layers, notification glyph, Android 12 splash and device-specific startup integration remain outstanding; a reusable three-arc staggered pulse widget now exists and is integrated on welcome, but still requires owner test execution and visual review.
