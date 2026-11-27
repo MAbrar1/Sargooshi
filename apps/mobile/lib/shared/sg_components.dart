@@ -1040,16 +1040,23 @@ class _SgReplyPreview extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(start: SargoshiSpace.s8),
       decoration: BoxDecoration(
         border: BorderDirectional(
-          start: BorderSide(color: outgoing ? colors.paper : colors.glow, width: 2),
+          start: BorderSide(
+              color: outgoing ? colors.paper : colors.glow, width: 2),
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(name, maxLines: 1, overflow: TextOverflow.ellipsis,
-            style: SargoshiType.label.copyWith(color: outgoing ? colors.paper : colors.glow)),
-          Text(message, maxLines: 2, overflow: TextOverflow.ellipsis,
-            style: SargoshiType.caption.copyWith(color: outgoing ? colors.paper : colors.mist)),
+          Text(name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: SargoshiType.label
+                  .copyWith(color: outgoing ? colors.paper : colors.glow)),
+          Text(message,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: SargoshiType.caption
+                  .copyWith(color: outgoing ? colors.paper : colors.mist)),
         ],
       ),
     );
