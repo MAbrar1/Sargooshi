@@ -6,6 +6,7 @@ import '../../core/theme/generated/sargoshi_tokens.g.dart';
 import '../../l10n/generated/app_localizations.dart';
 import '../../shared/sg_icon.dart';
 import '../../shared/sg_logo.dart';
+import '../../shared/sg_brand_pulse.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -40,22 +41,27 @@ class WelcomeScreen extends StatelessWidget {
                               icon: const Icon(Icons.bug_report_outlined),
                             ),
                           ),
-                        Container(
-                          width: SargoshiLayout.welcomeMark,
-                          height: SargoshiLayout.welcomeMark,
-                          decoration: BoxDecoration(
-                            color: colors.dusk,
-                            borderRadius: BorderRadius.circular(
-                              SargoshiShape.card,
+                        Center(
+                          child: SgBrandPulse(
+                            size: SargoshiLayout.welcomeMark,
+                            child: Container(
+                              width: SargoshiLayout.welcomeMark,
+                              height: SargoshiLayout.welcomeMark,
+                              decoration: BoxDecoration(
+                                color: colors.dusk,
+                                borderRadius: BorderRadius.circular(
+                                  SargoshiShape.card,
+                                ),
+                                border: Border.all(color: colors.line),
+                              ),
+                              alignment: Alignment.center,
+                              child: const SgLogo(
+                                layout: SgLogoLayout.mark,
+                                tone: SgLogoTone.gradient,
+                                markSize: SargoshiLayout.welcomeMarkSvgSize,
+                                semanticLabel: 'Sargoshi brand mark',
+                              ),
                             ),
-                            border: Border.all(color: colors.line),
-                          ),
-                          alignment: Alignment.center,
-                          child: const SgLogo(
-                            layout: SgLogoLayout.mark,
-                            tone: SgLogoTone.gradient,
-                            markSize: SargoshiLayout.welcomeMarkSvgSize,
-                            semanticLabel: 'Sargoshi brand mark',
                           ),
                         ),
                         const SizedBox(height: SargoshiSpace.s32),
