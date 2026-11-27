@@ -18,7 +18,7 @@ abstract final class AppTheme {
     required SargoshiThemePreset preset,
     ColorScheme? dynamicScheme,
   }) {
-    final base = SargoshiColors.defaults;
+    const base = SargoshiColors.defaults;
     final isDynamic = preset == SargoshiThemePreset.dynamic && dynamicScheme != null;
     final colors = _resolveColors(
       base: base,
