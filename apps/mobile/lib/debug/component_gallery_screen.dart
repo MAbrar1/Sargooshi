@@ -63,9 +63,9 @@ class _DebugComponentGalleryScreenState
       appBar: AppBar(
         title: const Text('Sargoshi components'),
         actions: [
-          Padding(
-            padding: const EdgeInsetsDirectional.only(end: SargoshiSpace.s16),
-            child: const Center(
+          const Padding(
+            padding: EdgeInsetsDirectional.only(end: SargoshiSpace.s16),
+            child: Center(
               child: SgRuleBadge(
                 label: 'DEBUG ONLY',
                 icon: SgIconName.verified,
