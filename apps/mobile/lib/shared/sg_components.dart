@@ -605,15 +605,17 @@ class SgRadio<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RadioListTile<T>(
-      value: value,
+    return RadioGroup<T>(
       groupValue: groupValue,
       onChanged: onChanged,
-      title: Text(title),
-      subtitle: description == null ? null : Text(description!),
-      contentPadding: EdgeInsets.zero,
-      visualDensity: VisualDensity.compact,
-      minTileHeight: SargoshiBreakpoint.minInteractiveTarget,
+      child: RadioListTile<T>(
+        value: value,
+        title: Text(title),
+        subtitle: description == null ? null : Text(description!),
+        contentPadding: EdgeInsets.zero,
+        visualDensity: VisualDensity.compact,
+        minTileHeight: SargoshiBreakpoint.minInteractiveTarget,
+      ),
     );
   }
 }
@@ -1368,7 +1370,7 @@ class SgBottomSheet extends StatelessWidget {
       backgroundColor: Colors.transparent,
       useSafeArea: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
+        borderRadius: const BorderRadius.vertical(
           top: Radius.circular(SargoshiShape.sheet),
         ),
       ),
