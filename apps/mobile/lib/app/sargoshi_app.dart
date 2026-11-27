@@ -23,12 +23,9 @@ class SargoshiApp extends ConsumerWidget {
     final performance = ref.watch(performanceProfileProvider);
 
     ThemeData withPerformance(ThemeData theme) {
-      return theme.copyWith(
-        extensions: <ThemeExtension<dynamic>>[
-          ...theme.extensions.values,
-          performance.themeVisuals,
-        ],
-      );
+      final extensions = theme.extensions.values.toList()
+        ..add(performance.themeVisuals);
+      return theme.copyWith(extensions: extensions);
     }
 
     return dynamic_color.DynamicColorBuilder(
