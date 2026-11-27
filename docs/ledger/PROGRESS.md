@@ -2,59 +2,70 @@
 
 CURRENT_PHASE: P00
 
+## Verified checkpoint — 2026-11-27
+
+- GitHub `main` contains commit `5093bb9363bd406b230cbd59802fb0798ad89887` (`style(mobile): format Dart sources and tests`).
+- Owner-reported Windows verification after pulling the gallery layout fix: `flutter gen-l10n` passed; `dart format` checked 38 Dart files with 0 changes; `flutter analyze` reported no issues; `flutter test --reporter expanded --concurrency=1` passed all 127 tests.
+- GitHub Actions run #118 for commit `5093bb9` passed every step: generated-token check, localization catalogue, dependency resolution, localization generation, formatter, analyzer and tests.
+- No current-code `flutter run`, release APK, Rust build or P01 full gate has been verified after this checkpoint.
+- The owner-generated Android host scaffold and `pubspec.lock` were still untracked locally in the last supplied `git status`; neither is present on GitHub `main`. The IDE `.iml` file must stay out of version control.
+- Current repository is intentionally still marked P00. Do not advance the phase based only on clean Flutter tests and CI.
+
 ## Session log
-| 2026-11-27 | P01 repair 4 | Owner rerun now has only one analyzer error and eight info diagnostics, all confined to the adaptive test file. Fixed the final invalid const expression in the runtime-width test fixture and consolidated foldable fixture const context so nested MediaQueryData/Size/widget values are constant without redundant explicit const. | Owner rerun required to confirm clean analyzer; then run the expanded test suite, which has not yet been reached in the latest run | Pull main; flutter analyze; if clean run flutter test --reporter expanded; then flutter run |
-| 2026-11-27 | P01 repair 3 | Owner rerun reduced analysis from 219 issues to 17 info-level lint findings with zero errors and warnings. Cleared all remaining reported const infos in the gallery, bottom-sheet component and adaptive/foldable widget fixtures. | Owner rerun required to confirm `flutter analyze` returns clean and expanded `flutter test` passes; no P01 build/test completion claimed yet | Pull main; run `flutter analyze`, then `flutter test --reporter expanded`; only then `flutter run` |
-| 2026-11-27 | P01 repair 2 | Owner's clean rerun passed token and copy-catalogue checks and removed `material_ui`; analysis narrowed to one adaptive const-expression error, 204 repeated icon `codePoint` const-argument warnings, and lint infos. Corrected the adaptive divider (runtime theme color cannot be const), replaced all 204 reconstructed Phosphor `IconData` wrappers with the package's canonical const glyph objects, restored immutable const icon maps, and made Sargoshi directional icons mirror with an explicit RTL transform. Updated the icon test, moved scaffold assertions into runtime build validation, restored const widget tests, migrated deprecated `RadioListTile` usage to `RadioGroup`, and cleared identified const/style infos. | Owner rerun still required; confirm analyzer is clean and expanded widget tests compile/pass. Gradle daemon stop command previously failed because the new PowerShell session had no `JAVA_HOME`; Flutter clean and dependency resolution nevertheless completed. | Pull main; set Android Studio JBR as `JAVA_HOME`; run analyzer and full tests before launching emulator |
-| 2026-11-27 | P01 repair | Owner supplied the first expanded P01 run: token and copy-catalogue checks passed, but analyze reported 240 issues and tests/build failed. Root causes identified and patched on main: four Phosphor maps incorrectly used constant evaluation for codePoint (204 repeated errors); dynamic_color 2.x brought a second material_ui ColorScheme type; welcome referenced non-existent camelCase getters instead of ARB resource identifiers; adaptive-scaffold list-length assertions were evaluated from const constructors; theme extensions were spread with an incompatible generic collection; two pulse tests counted Flutter's internal CustomPaints. Obsolete synthetic-package warning removed. | Owner must rerun the P01 checks; verify expanded tests/build. | Pull main; set JAVA_HOME, clean, pub get, gen-l10n, token/copy checks, analyze, tests |
-| 2026-11-27 | P01 repair 2 | Owner's clean rerun passed token and copy-catalogue checks and removed `material_ui`; analysis narrowed to one adaptive const-expression error, 204 repeated icon `codePoint` const-argument warnings, and lint infos. Corrected the adaptive divider (runtime theme color cannot be const), replaced all 204 reconstructed Phosphor `IconData` wrappers with the package's canonical const glyph objects, restored immutable const icon maps, and made Sargoshi directional icons mirror with an explicit RTL transform. Updated the icon test, moved scaffold assertions into runtime build validation, restored const widget tests, migrated deprecated `RadioListTile` usage to `RadioGroup`, and cleared identified const/style infos. | Owner rerun still required; confirm analyzer is clean and expanded widget tests compile/pass. Gradle daemon stop command previously failed because the new PowerShell session had no `JAVA_HOME`; Flutter clean and dependency resolution nevertheless completed. | Pull main; set Android Studio JBR as `JAVA_HOME`; run analyzer and full tests before launching emulator |
-| 2026-11-27 | P01 repair | Owner supplied the first expanded P01 run: token and copy-catalogue checks passed, but analyze reported 240 issues and tests/build failed. Root causes identified and patched on main: four Phosphor maps incorrectly used constant evaluation for codePoint (204 repeated errors); dynamic_color 2.x brought a second material_ui ColorScheme type; welcome referenced non-existent camelCase getters instead of ARB resource identifiers; adaptive-scaffold list-length assertions were evaluated from const constructors; theme extensions were spread with an incompatible generic collection; two pulse tests counted Flutter's internal CustomPaints. Obsolete synthetic-package warning removed. | Owner must pull and rerun the clean P01 checks; verify the Kotlin incremental-cache failure is cleared after a clean build; address any remaining genuine test failures and lint feedback | Pull main, flutter clean, stop Gradle, pub get, gen-l10n, token/copy checks, analyze, tests, then run the emulator only if compile/tests pass |
-| Date | Phase | Completed | Remaining | Resume |
-|---|---|---|---|---|
-| 2026-11-26 | P00/P01 | Owner verified Android SDK Platform 36, Build-Tools, NDK and all three Rust Android targets; initial Flutter shell analyzes, one widget test passes and debug APK launches. P01 spec extracts restored; full English/Urdu copy keys seeded and CSV/ARB key-placeholder consistency checked; localization CI check added | Complete P00 archive/tooling sync and Windows gate; owner rerun of expanded P01 tests/build; native Urdu review; Android host commit/native bridge and remaining P01 visual/security/test acceptance criteria | Pull main; run P01 localization/token checks, gen-l10n, analyze/test and release build; then reconcile Android host scaffold and finish P00 gate sync |
 
-## Owner-reported toolchain verification (2026-11-26)
+| Date | Phase | Completed | Remaining / resume |
+|---|---|---|---|
+| 2026-11-27 | P01 verification | Fixed the debug gallery's NavigationRail preview by constraining it to a finite height. Owner then passed localization generation, formatting (38 files, 0 changes), analysis and 127 tests. Commit `5093bb9`; GitHub Actions #118 passed. | Sync the canonical P00 source pack and gate tools into the repository; commit the Android host scaffold and lockfile; continue P01 acceptance work. |
+| 2026-11-27 | P01 repair series | Resolved Phosphor icon const errors, dynamic_color ColorScheme incompatibility, localization getter errors, invalid adaptive test const expressions, lints and component/gallery layout regressions. Added regression coverage for RTL, 200% text, settings persistence, gallery navigation and trailing count badge layout. | P01 remains open until every requirement, evidence item and phase gate is complete. |
+| 2026-11-26 | P00/P01 bootstrap | Owner verified Android SDK Platform 36, Build-Tools, NDK, Rust Android targets and initial debug APK launch on Android 17/API 37. | Complete P00 source-pack/tooling synchronization and owner Windows gate; finish P01 implementation and acceptance. |
+
+## Owner-reported toolchain baseline
+
 - Flutter stable 3.47.7; Dart 3.13.5.
-- Java OpenJDK 25.0.4 is available after setting Android Studio JBR on PATH.
-- Android SDK Platform 36 is installed; Build-Tools 35.0.0, 36.0.0 and 37.0.0 are installed.
-- Android NDK versions 28.2.13676358 and 30.0.16248370 are installed.
-- Rust 1.96.0 / Cargo 1.96.0 with targets `aarch64-linux-android`, `armv7-linux-androideabi`, `x86_64-linux-android`; Windows MSVC target also installed.
-- Android emulator AVDs `Pixel_8` and `Pixel_Play_API36` exist; Android 17/API 37 x86_64 emulator is connected at `emulator-5554`.
-- Docker 29.9.2; Docker Compose 5.6.1; Node 22.22.3; Git 2.54.0; ADB 37.0.1.
-- Owner's `flutter doctor -v` Android toolchain check timed out at 4m30s. It is not marked as passed; the app debug build nevertheless succeeded.
+- Java OpenJDK 25.0.4 through Android Studio JBR.
+- Android SDK root `C:\\Android\\Sdk`; Platform 36; Build-Tools 35/36/37; NDK 28.2.13676358 and 30.0.16248370.
+- Rust/Cargo 1.96.0 with `aarch64-linux-android`, `armv7-linux-androideabi`, `x86_64-linux-android` and Windows MSVC target.
+- Node 22.22.3, Git 2.54.0, Docker 29.9.2, Docker Compose 5.6.1, ADB 37.0.1.
+- `flutter doctor -v` timed out during its Android toolchain check; it is not recorded as a clean pass.
 
-## Owner-reported application smoke test (2026-11-26)
-- `flutter analyze` in `apps/mobile`: PASS — no issues found on the initial shell.
-- `flutter test` in `apps/mobile`: PASS — the initial widget test passed.
-- `flutter run` in `apps/mobile`: PASS — debug APK built, installed and launched on Android 17/API 37 emulator.
-- Startup log reported 154 then 62 skipped frames. This is a cold-start observation only; profile trace required before diagnosing a performance issue.
-- Gradle emitted restricted-Java-method and Android SDK XML compatibility warnings; neither blocked the debug build.
+## P01 implementation state
 
-## P01 implementation in progress (new work not yet owner-verified)
-- Canonical design tokens live in `docs/blueprint/design-tokens.json`; `tools/gen-tokens.mjs` generates Dart theme tokens and supports stale-output `--check`.
-- Theme presets include dark default, light/parchment, AMOLED, Midnight Sky, high contrast, system and Android dynamic colour. The dynamic-colour dependency is pinned to 1.9.0 to avoid the separate `material_ui` ColorScheme introduced in dynamic_color 2.0.
-- Four local variable-font families (Plus Jakarta Sans, Inter, JetBrains Mono, Noto Naskh Arabic) are committed with separate SIL OFL texts. Upstream commit and SHA-256 values are recorded in `docs/compliance/LICENSES.md`.
-- Phosphor icon layer now contains 51 semantic entries:
-- Brand marks are committed as local gradient, light and dark SVG assets. `SgLogo` provides mark-only, horizontal and stacked lockups with adaptive/light/dark treatments and semantic labels; welcome uses the brand mark. Brand dimensions are tokenized in `design-tokens.json` and generated Dart tokens. Widget tests cover all lockup variants and both brightnesses. The outlined wordmark is currently composed from bundled typography rather than the blueprint's full outlined horizontal/stacked lockup SVGs; exact lockup asset integration remains a visual-fidelity follow-up. Adaptive launcher layers, notification glyph, Android 12 splash and device-specific startup integration remain outstanding; a reusable three-arc staggered pulse widget now exists and is integrated on welcome, but still requires owner test execution and visual review.
-- English/Urdu ARB resources, generated localization delegates, persisted language selection, first-strong direction/bidi-isolation helpers, Urdu search normalization and optional Eastern Arabic digit conversion are implemented. The 52-row blueprint copy catalogue is seeded in both locales; a repository check enforces source keys and interpolation placeholders. The Urdu copy is machine-drafted and remains an unreviewed draft. The copy CSV was repaired after detecting malformed quotation in the first GitHub import; the corrected file parses as 52 unique data rows.
-- Shared component catalogue implements the 32 canonical catalogue rows, including the combined checkbox/radio row. It includes button variants, fields, chips, toggles, avatars, badges, list/card/bubble primitives, composer, navigation, sheets/dialogs/snackbars, banners/alerts, PIN pad, progress/stat/skeleton/empty states.
-- Debug component gallery is registered behind `kDebugMode` and can be opened from the welcome screen only in debug builds. It has interactive preview controls for persisted appearance, app language, Lite UI and T1/T2/T3 visual selection.
-- Adaptive size classes use 600/840 dp breakpoints and the specified 4/8/12-column spacing grid. Two-pane and conditional three-pane layouts protect the minimum chat width. A foldable posture detector now consumes Flutter display features: vertical fold/hinge maps to book layout (RTL mirrored), half-open horizontal hinge maps to tabletop video/controls, and cutouts are ignored. Synthetic widget tests cover both orientations and RTL; real foldable hardware verification remains outstanding.
-- Theme preset, Lite UI, language, and user performance-tier preferences are persisted as non-secret app settings. The runtime performance profile now attaches a Material theme extension: T1 disables card shadows/blur, T2 uses standard surface elevation, and T3 enables token-defined glass blur and higher elevation. Device tier model and conservative fallback are implemented in Dart; the Android Kotlin channel implementation is still pending.
-- Typed `AppError` / sealed `Result<T>` and an allow-listed redacting logger are present.
-- Initial tests cover theme presets, 51 icon mappings/RTL mirroring, welcome EN/UR, shared component layout at 200% text in LTR/RTL, adaptive breakpoints/panes, bidi helpers, settings persistence, T1/T2/T3 mapping, typed results and logger allow-list. The component suite now carries SG:CMP-01 through SG:CMP-32 case identifiers, runs each catalogue row in LTR/RTL at 200% text, and adds behavioral checks for destructive-dialog cancel, snackbar undo, scrambled PIN selection, disabled/loading buttons, 78% whisper treatment and six-line attach/voice/send composer. One contradictory T1 media-cap assertion was removed. These expanded tests are committed but have not yet been rerun by the owner.
-- Native Urdu review remains OPEN in `docs/ledger/EXTERNAL.md`.
+Implemented and now owner/CI verified at the Flutter source/test level:
 
-## P01 remaining
-- Run `node tools/gen-tokens.mjs --check`, `node tools/check-copy-catalog.mjs`, `flutter gen-l10n`, analyzer and the complete expanded test suite (including the new logo and foldable tests) on the owner machine; commit the resulting `pubspec.lock`. The Flutter quality workflow runs the token, localization, format, analyze and test checks for push and pull-request changes; no CI run has yet been verified.
-- Complete component variant/state coverage beyond current catalogue render and focused behavior tests; produce visual golden tests at 360/412/600/840/1280 dp in LTR/RTL; complete accessibility audits, full 200% text overflow verification for every component, and performance profiling. Run synthetic foldable tests and later a physical foldable book/tabletop device run.
-- Commit the owner's generated Android platform scaffold, then implement the native Kotlin device-profile channel, edge-to-edge/predictive-back configuration, manifest restrictions, launcher/adaptive icons, splash and platform performance behavior.
-- Review generated font asset names/weights, theme contrast, logo asset visual fidelity, and component visual states on device. A staggered arc pulse is implemented as a non-blocking widget and added to welcome; focused animation/static-mode widget tests are committed but not owner-run.
-- Review generated font asset names/weights, theme contrast, and component visual states on device.
-- P01 is not complete until all prompt acceptance criteria and phase gates pass.
+- Generated design-token pipeline and theme presets (dark default, light/parchment, AMOLED, Midnight Sky, high contrast, system and dynamic colour).
+- Bundled Plus Jakarta Sans, Inter, JetBrains Mono and Noto Naskh Arabic fonts with OFL licence files.
+- Semantic Phosphor icon layer, Sargoshi mark SVGs and mark/horizontal/stacked logo widget scaffolding.
+- English/Urdu ARB resources, persisted language preference, bidi isolation, Urdu search normalization and optional Eastern Arabic digits.
+- 32 shared component catalogue entries, debug-only component gallery, interactive local preference previews.
+- Adaptive size classes, scaffold/rail and pane layouts, synthetic foldable book/tabletop behavior, theme/performance preferences, typed errors and allow-listed redacting logger.
+- Owner-run test suite currently passes 127 tests, including component LTR/RTL layouts at 200% text scale.
+
+Still required before P01 can close:
+
+1. Synchronize the canonical source pack into this repository: full v5 blueprint, all phase prompts, full spec-data, `status.csv`, ledger/tree/reality/registry/gate tools and their CI. The restored archive has been integrity-checked separately, but those files are not yet on GitHub `main`.
+2. Commit the owner's generated `apps/mobile/android` scaffold and `apps/mobile/pubspec.lock` (exclude IDE `.iml` files). Then implement the Kotlin `app.sargoshi/device_profile` / `getDeviceProfile` bridge according to `docs/architecture/android-device-profile-bridge.md`.
+3. Complete Android manifest/privacy configuration, adaptive launcher layers, notification glyph, Android 12 splash and startup integration.
+4. Complete all 11 reusable chat-anatomy regions and remaining scaffold anatomy widgets without creating real messaging screens prematurely.
+5. Complete per-component state/interaction coverage and the golden matrix at 360/412/600/840/1280 dp in both LTR and RTL; export goldens for owner visual review.
+6. Perform contrast/accessibility review, visual review on the current emulator build, 200% text and RTL checks, performance profiling and a release APK build.
+7. Obtain native Urdu review for `app_ur.arb`; this remains OPEN in `docs/ledger/EXTERNAL.md`.
+
+The restored source ledger snapshot lists 36 P01 rows (2 Registry, 2 Settings, 32 Components) as NOT_STARTED. Since that ledger has not yet been synchronized/reconciled with the implemented work and evidence, no row is claimed closed here. Do not hand-edit `status.csv`; use the ledger tool after its synchronization.
 
 ## P00 remains open
-The authoritative restored project pack is present in the assistant working copy and its source integrity was checked (blueprint v5: 3,250 lines, SHA-256 `0a8769238c4f43b2a16aa8a907db5b9aa0e6964a97f7a1fb7ff7f39cb4607312`; registry: 350 data rows; ledger: 883 rows). The local archive gate and reality-scanner negative-control test passed there. However, the complete P00 tooling bundle (ledger, tree/reality/registry checkers and full gate) and all source-pack extracts are not yet synchronized into the owner's clone/GitHub main, and the full P00 gate has not been run on the owner's Windows machine. Do not change CURRENT_PHASE until that synchronization and gate evidence exist.
+
+The restored archive `sargoshi_p00_restored.zip` was checked in the working copy:
+- Blueprint v5: 3,250 lines; SHA-256 `0a8769238c4f43b2a16aa8a907db5b9aa0e6964a97f7a1fb7ff7f39cb4607312`.
+- Registry: 350 data rows.
+- Status ledger: 883 rows.
+- `node tools/gate.mjs --phase P00 --full`: PASS in the restored working copy (tree, reality and registry checks).
+
+This is not a pass in the owner's clone or on GitHub `main`. The complete P00 tooling/source pack is not yet synchronized into the repository, and the owner has not run the full P00 gate in their Windows clone. Keep `CURRENT_PHASE: P00` until synchronization and owner evidence exist.
+
+## P02 boundary
+
+Do not start Rust cryptographic implementation yet. P01 still has explicit acceptance work, and P00's canonical source/tooling pack is not synchronized. When P02 begins, use the restored P02 prompt and blueprint crypto specification; never invent primitives or write bespoke cryptography.
 
 ## Reality boundary
-The initial minimal Flutter shell has owner-reported analyzer, test and debug-emulator evidence. The first expanded P01 run failed with 240 diagnostics. The second clean run passed token and copy-catalogue checks and reduced analysis to 17 info-level lint findings (zero errors or warnings). Source fixes for those findings are committed. The latest edits have not yet been re-run on the owner's Windows machine, so no clean analyzer, expanded test, debug build or P01 completion is claimed. No release build, Rust compilation, cryptographic implementation, security audit or full P01 completion is claimed.
+
+The Flutter foundation is no longer in the earlier failing state: owner-reported analysis and all 127 tests pass, and GitHub Actions #118 is green. This verifies the current Dart quality pipeline only. It does not establish P00/P01 phase completion, Android native bridge behavior, release build success, a security audit, Rust compilation, or production messaging functionality.
