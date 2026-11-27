@@ -70,6 +70,7 @@ class _SgBrandPulseState extends State<SgBrandPulse>
             AnimatedBuilder(
               animation: _controller,
               builder: (context, _) => CustomPaint(
+                key: const ValueKey('sargoshi-brand-pulse-arcs'),
                 size: Size.square(size * 1.7),
                 painter: _BrandArcPainter(
                   progress: _controller.value,
