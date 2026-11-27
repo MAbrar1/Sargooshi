@@ -94,6 +94,19 @@ class WelcomeScreen extends StatelessWidget {
                           message: localizations.copy_welcome_3,
                         ),
                         const SizedBox(height: SargoshiSpace.s24),
+                        SizedBox(
+                          width: double.infinity,
+                          child: FilledButton.icon(
+                            key: const ValueKey<String>('welcome-inbox-preview'),
+                            onPressed: () => context.push('/inbox'),
+                            icon: SgIcon(
+                              SgIconName.chats,
+                              color: colors.paper,
+                            ),
+                            label: Text(localizations.welcomeExploreInbox),
+                          ),
+                        ),
+                        const SizedBox(height: SargoshiSpace.s24),
                       ],
                     ),
                   ),

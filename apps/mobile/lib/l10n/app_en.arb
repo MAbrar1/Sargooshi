@@ -79,5 +79,30 @@
   "copy_scam_pack": "“This looks like a {scamType}” / “Real {organisation} will never ask for your code or PIN in a chat.” / Why? · Report · Ignore",
   "copy_simple_mode": "“Good evening” · “Tap what you need.” · Messages · Calls · Photos · Help · “Speak to send”",
   "copy_sos": "“Hold to send SOS” / “{name} will get your location and a short audio clip.” / “This depends on your signal and battery.”",
-  "copy_restrict": "“Restrict {name}?” / “Their messages go to Requests. They won’t be told.” / Restrict · Cancel"
+  "copy_restrict": "“Restrict {name}?” / “Their messages go to Requests. They won’t be told.” / Restrict · Cancel",
+  "welcomeExploreInbox": "Explore inbox preview",
+  "inboxTitle": "Messages",
+  "inboxPreviewTag": "LOCAL PREVIEW",
+  "inboxPreviewDescription": "You're viewing sample conversations. Nothing is sent or received.",
+  "inboxSearchHint": "Search people or messages",
+  "inboxClearSearch": "Clear search",
+  "inboxFilterAll": "All",
+  "inboxFilterUnread": "Unread",
+  "inboxFilterPeople": "People",
+  "inboxFilterGroups": "Groups",
+  "inboxNoResultsTitle": "Nothing matched",
+  "inboxNoResultsBody": "Try a different name, message or filter.",
+  "inboxPreviewOnlyNotice": "Sample content only. Messaging is not connected yet.",
+  "inboxClose": "Close",
+  "inboxYesterday": "Yesterday",
+  "inboxMondayShort": "Mon",
+  "inboxUnreadCount": "{count} unread"
+,
+  "@inboxUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

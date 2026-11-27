@@ -65,6 +65,24 @@ void main() {
       TextDirection.rtl,
     );
   });
+  testWidgets('welcome action opens the local inbox preview', (tester) async {
+    tester.binding.platformDispatcher.localeTestValue = const Locale('en');
+    addTearDown(tester.binding.platformDispatcher.clearLocaleTestValue);
+
+    await tester.pumpWidget(_testApp(disableAnimations: true));
+    final inboxAction = find.byKey(
+      const ValueKey<String>('welcome-inbox-preview'),
+    );
+    await tester.ensureVisible(inboxAction);
+    await tester.tap(inboxAction);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+
+    expect(find.text('Messages'), findsOneWidget);
+    expect(find.text('LOCAL PREVIEW'), findsOneWidget);
+    expect(find.text('Ayesha Khan'), findsOneWidget);
+  });
+
   testWidgets('debug-only component gallery is reachable from welcome screen',
       (tester) async {
     tester.binding.platformDispatcher.localeTestValue = const Locale('en');

@@ -81,5 +81,30 @@
   "copy_simple_mode": "“شام بخیر” · “جس چیز کی ضرورت ہو اسے ٹیپ کریں۔” · پیغامات · کالز · تصاویر · مدد · “بول کر بھیجیں”",
   "copy_sos": "“SOS بھیجنے کے لیے دبائے رکھیں” / “{name} کو آپ کا مقام اور مختصر آڈیو کلپ ملے گا۔” / “یہ آپ کے سگنل اور بیٹری پر منحصر ہے۔”",
   "copy_restrict": "“{name} کو محدود کریں؟” / “ان کے پیغامات درخواستوں میں جائیں گے۔ انہیں اس کا نہیں بتایا جائے گا۔” / محدود کریں · منسوخ کریں",
-  "@@x-review-scope": "All machine-drafted Urdu catalogue copy in this file requires native review before release."
+  "@@x-review-scope": "All machine-drafted Urdu catalogue copy in this file requires native review before release.",
+  "welcomeExploreInbox": "ان باکس کا پیش نظارہ دیکھیں",
+  "inboxTitle": "پیغامات",
+  "inboxPreviewTag": "مقامی پیش نظارہ",
+  "inboxPreviewDescription": "آپ نمونہ گفتگو دیکھ رہے ہیں۔ کوئی پیغام بھیجا یا موصول نہیں ہوتا۔",
+  "inboxSearchHint": "لوگ یا پیغامات تلاش کریں",
+  "inboxClearSearch": "تلاش صاف کریں",
+  "inboxFilterAll": "سب",
+  "inboxFilterUnread": "غیر پڑھے ہوئے",
+  "inboxFilterPeople": "افراد",
+  "inboxFilterGroups": "گروپس",
+  "inboxNoResultsTitle": "کچھ نہیں ملا",
+  "inboxNoResultsBody": "کسی دوسرے نام، پیغام یا فلٹر سے تلاش کریں۔",
+  "inboxPreviewOnlyNotice": "صرف نمونہ مواد۔ پیغام رسانی ابھی منسلک نہیں ہے۔",
+  "inboxClose": "بند کریں",
+  "inboxYesterday": "کل",
+  "inboxMondayShort": "پیر",
+  "inboxUnreadCount": "{count} غیر پڑھے ہوئے"
+,
+  "@inboxUnreadCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
