@@ -846,21 +846,29 @@ class SgCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (variant == SgCardVariant.alert)
-              Container(
-                width: SargoshiComponents.alertEdge,
-                color: edge,
-              ),
-            Expanded(
-              child: Padding(
-                padding: padding,
-                child: child,
-              ),
-            ),
-          ],
+        child: DecoratedBox(
+          // A directional border gives alert cards their status edge without
+          // forcing a Row to stretch against an unbounded scroll-axis height.
+          decoration: BoxDecoration(
+            border: variant == SgCardVariant.alert
+                ? BorderDirectional(
+                    start: BorderSide(
+                      color: edge,
+                      width: SargoshiComponents.alertEdge,
+                    ),
+                  )
+                : null,
+          ),
+          child: Padding(
+            padding: variant == SgCardVariant.alert
+                ? padding.add(
+                    const EdgeInsetsDirectional.only(
+                      start: SargoshiComponents.alertEdge,
+                    ),
+                  )
+                : padding,
+            child: child,
+          ),
         ),
       ),
     );
