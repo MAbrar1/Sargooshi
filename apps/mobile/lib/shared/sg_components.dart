@@ -1060,8 +1060,7 @@ class SgChatHeader extends StatelessWidget {
     this.voiceCallTooltip = 'Voice call',
     this.videoCallTooltip = 'Video call',
     super.key,
-  })  : assert(onVoiceCall == null || voiceCallTooltip.isNotEmpty),
-        assert(onVideoCall == null || videoCallTooltip.isNotEmpty);
+  });
 
   final String name;
   final String initials;
@@ -1129,7 +1128,7 @@ class SgChatHeader extends StatelessWidget {
                                     const SizedBox(width: SargoshiSpace.s4),
                                     SgIcon(
                                       SgIconName.verified,
-                                      size: SargoshiIconSize.small,
+                                      size: 16,
                                       color: colors.glow,
                                     ),
                                   ],
