@@ -41,7 +41,7 @@ abstract final class AppTheme {
       scaffoldBackgroundColor: colors.ink,
       fontFamily: 'Inter',
       extensions: <ThemeExtension<dynamic>>[colors],
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         displayLarge: SargoshiType.displayL,
         displayMedium: SargoshiType.display,
         headlineLarge: SargoshiType.headline,
