@@ -8,7 +8,7 @@
 
 ## P01 dependency and platform decisions
 
-- Dynamic system colours use `dynamic_color ^2.1.0`, the Material-maintained package. It exposes light and dark schemes from Android S+ dynamic colour.
+- Dynamic system colours use `dynamic_color ^1.9.0`, the Material-maintained package. The 2.0.0 line migrated to a separately packaged `material_ui` ColorScheme that conflicted with this Flutter app's `package:flutter/material.dart`; 1.9.0 retains the Flutter Material type while exposing light and dark platform schemes.
 - Phosphor icons use `phosphor_icons ^3.0.1`, the FuncCloud-maintained compatibility fork.
 - First-party Sargoshi logo artwork is bundled as local SVG assets and rendered with `flutter_svg ^2.5.1`; no external logo service or runtime asset download is used. The fork addresses Flutter 3.43+ `IconData` changes, retains Phosphor's family/weights, and has all supplied icon names verified in its source registries.
 - Four font families are bundled from a pinned Google Fonts repository revision and remain unmodified under their SIL Open Font Licences. Fonts are not fetched at runtime.
