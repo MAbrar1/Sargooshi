@@ -39,7 +39,7 @@ void main() {
     await tester.pumpWidget(
       _harness(
         width: 500,
-        child: const SgAdaptiveScaffold(
+        child: SgAdaptiveScaffold(
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
@@ -60,7 +60,7 @@ void main() {
     await tester.pumpWidget(
       _harness(
         width: 700,
-        child: const SgAdaptiveScaffold(
+        child: SgAdaptiveScaffold(
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
@@ -83,7 +83,7 @@ void main() {
     await tester.pumpWidget(
       _harness(
         width: 1100,
-        child: const SgAdaptiveScaffold(
+        child: SgAdaptiveScaffold(
           destinations: _destinations,
           selectedIndex: 0,
           onDestinationSelected: _noopIndex,
